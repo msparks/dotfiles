@@ -61,6 +61,10 @@ case $TERM in
     ;;
 esac
 
+### Set up completion
+autoload -U compinit
+compinit
+
 ### Add hostname completion for hosts in ~/.ssh/known_hosts
 local _myhosts
 _myhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
