@@ -5,7 +5,7 @@
 ### Set options
 setopt   CORRECT                             # correct misspelled commands
 unsetopt BEEP                                # No beeps on error
-setopt   PROMPT_SUBST                        # Prompt substitution/expansion
+#setopt   PROMPT_SUBST                       # Prompt substitution/expansion
 
 bindkey -e                                   # Use emacs keybindings
 
