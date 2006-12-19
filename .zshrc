@@ -5,8 +5,9 @@
 ### Set options
 setopt   CORRECT                             # correct misspelled commands
 unsetopt BEEP                                # No beeps on error
-setopt   EMACS                               # Emacs keybindings for ZLE
 setopt   PROMPT_SUBST                        # Prompt substitution/expansion
+
+bindkey -e                                   # Use emacs keybindings
 
 ### Set up (Gentoo-style) prompt
 PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
