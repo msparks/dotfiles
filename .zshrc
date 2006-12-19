@@ -10,7 +10,11 @@ setopt   PROMPT_SUBST                        # Prompt substitution/expansion
 bindkey -e                                   # Use emacs keybindings
 
 ### Set up (Gentoo-style) prompt
-PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
+if ((EUID == 0)); then
+    PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %# %{\e[00m%}'
+else
+    PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
+fi
 
 ### Various things for coloring outputs
 if echo hello|grep --color=auto l >/dev/null 2>&1; then
