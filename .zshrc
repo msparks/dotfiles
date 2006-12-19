@@ -9,6 +9,10 @@ setopt   PROMPT_SUBST                        # Prompt substitution/expansion
 
 bindkey -e                                   # Use emacs keybindings
 
+### Set up completion
+autoload -U compinit
+compinit
+
 ### Set up (Gentoo-style) prompt
 if ((EUID == 0)); then
     PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %# %{\e[00m%}'
@@ -16,11 +20,32 @@ else
     PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
 fi
 
-### Various things for coloring outputs
-if echo hello|grep --color=auto l >/dev/null 2>&1; then
-    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-fi
+### Change names of screen windows to running program
+precmd() {
+    if [[ "$STY" != "" ]]; then
+        echo -ne "\ekzsh\e\\"
+    fi
+}
+preexec() {
+    if [[ "$STY" != "" ]]; then
+        local CMD=`echo $1 | sed 's/^sudo //; s/ .*//'`
+        echo -ne "\ek$CMD\e\\"
+    fi
+}
 
+### Change the window title of X terminals 
+case $TERM in
+    *xterm*|rxvt|(dt|k|E|a)term)
+        precmd() {
+            print -Pn "\e]0;%n@%m %~\a"
+        }
+        preexec() {
+            print -Pn "\e]0;%n@%m <$1> %~\a"
+        }
+    ;;
+esac
+
+### Colors for lists
 if which dircolors >&/dev/null; then
     if [[ -e "${zdotdir}/.dircolors" ]]; then
         eval `dircolors -b $zdotdir/.dircolors`
@@ -53,22 +78,6 @@ alias p='ps -fu $USER'
 alias h='history'
 alias du='du -h'
 alias df='df -h'
-
-### Change the window title of X terminals 
-case $TERM in
-    *xterm*|rxvt|(dt|k|E|a)term)
-        precmd() {
-            print -Pn "\033]0;%n@%m %~\007"
-        }
-        preexec() {
-            print -Pn "\033]0;%n@%m <$1> %~\007"
-        }
-    ;;
-esac
-
-### Set up completion
-autoload -U compinit
-compinit
 
 ### Add hostname completion for hosts in ~/.ssh/known_hosts
 local _myhosts
