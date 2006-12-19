@@ -86,7 +86,7 @@ zstyle ':completion:*' hosts $_myhosts
 
 ### Keybindings 
 case $TERM in
-    linux)
+    linux|screen)
         bindkey "^[[2~" yank                 # Insert
         bindkey "^[[3~" delete-char          # Delete
         bindkey "^[[5~" up-line-or-history   # Page Up
