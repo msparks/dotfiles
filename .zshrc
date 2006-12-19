@@ -16,15 +16,31 @@ if echo hello|grep --color=auto l >/dev/null 2>&1; then
     export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 fi
 
-if ls --help 2>&1 | grep color > /dev/null; then
-    alias ls="ls --color=auto "
+if which dircolors >&/dev/null; then
+    if [[ -e "${zdotdir}/.dircolors" ]]; then
+        eval `dircolors -b $zdotdir/.dircolors`
+    else
+        eval `dircolors -b`
+    fi
 fi
+
+if [[ $ZSH_VERSION > 3.1.5 ]]; then
+    zmodload -i zsh/complist
+    
+    zstyle ':completion:*' list-colors ''
+    
+    zstyle ':completion:*:*:kill:*:processes' list-colors \
+        '=(#b) #([0-9]#)*=0=01;31'
+    
+    zstyle ':completion:*' list-colors "$LS_COLORS"
+fi  
 
 ### Other aliases
 alias sshg="ssh -X f0rked@godfather.f0rked.com"
 alias l='ls'
 alias ll='ls -lh'
 alias la='ls -a'
+alias ls='ls --color=auto'
 alias lla='ls -alh'
 alias lsd='ls -ld *(-/DN)'
 alias j='jobs -l'
@@ -49,9 +65,6 @@ esac
 local _myhosts
 _myhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*' hosts $_myhosts
-
-### Other completion stuff
-zmodload -i zsh/complist                     # use color in menu selection
 
 ### Keybindings 
 case $TERM in
