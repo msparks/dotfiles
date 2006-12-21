@@ -20,20 +20,7 @@ else
     PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
 fi
 
-### Change names of screen windows to running program
-precmd() {
-    if [[ "$STY" != "" ]]; then
-        echo -ne "\ekzsh\e\\"
-    fi
-}
-preexec() {
-    if [[ "$STY" != "" ]]; then
-        local CMD=`echo $1 | sed 's/^sudo //; s/ .*//'`
-        echo -ne "\ek$CMD\e\\"
-    fi
-}
-
-### Change the window title of X terminals 
+### Change the titles of X terminals and screen windows
 case $TERM in
     *xterm*|rxvt|(dt|k|E|a)term)
         precmd() {
@@ -41,6 +28,15 @@ case $TERM in
         }
         preexec() {
             print -Pn "\e]0;%n@%m <$1> %~\a"
+        }
+    ;;
+    screen|linux)
+        precmd() {
+            print -Pn "\ekzsh\e\\"
+        }
+        preexec() {
+            local CMD=`echo $1 | sed 's/^sudo //; s/ .*//'`
+            print -Pn "\ek$CMD\e\\"   
         }
     ;;
 esac
