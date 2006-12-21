@@ -1,5 +1,5 @@
-# $Id$
-#
+# ~/.zshrc
+# $Date$
 # Matt Sparks (f0rked)
 
 ### Set options
@@ -65,6 +65,28 @@ if [[ $ZSH_VERSION > 3.1.5 ]]; then
     zstyle ':completion:*' list-colors "$LS_COLORS"
 fi  
 
+### More completions
+# Add hostname completion for hosts in ~/.ssh/known_hosts
+local _myhosts
+_myhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+zstyle ':completion:*' hosts $_myhosts
+
+# Ignore what's already on the line for certain commands
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
+
+# Ignore parent directory
+zstyle ':completion:*:(cd|mv|cp):*' ignore-parents parent pwd
+
+# Ignore uninteresting users for the user completion (for chmod, etc)
+zstyle ':completion:*:*:*:users' ignored-patterns \
+    adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
+    named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
+    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs backup  bind  \
+    dictd  gnats  identd  irc  man  messagebus  postfix  proxy  sys  www-data
+
+# Complete on the current prefix (before the cursor) ignoring the suffix with ^i
+bindkey '^i' expand-or-complete-prefix
+
 ### Other aliases
 alias sshg="ssh -X f0rked@godfather.f0rked.com"
 alias l='ls'
@@ -78,11 +100,6 @@ alias p='ps -fu $USER'
 alias h='history'
 alias du='du -h'
 alias df='df -h'
-
-### Add hostname completion for hosts in ~/.ssh/known_hosts
-local _myhosts
-_myhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-zstyle ':completion:*' hosts $_myhosts
 
 ### Keybindings 
 case $TERM in
