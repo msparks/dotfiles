@@ -129,6 +129,7 @@ esac
 ### Environment variables
 export EDITOR=`which emacs`
 export FCEDIT=`which emacs`
+export PATH="$PATH:/usr/sbin:/sbin:~/bin:/opt/bin"
 
 ### Shell variables
 HISTFILE=$HOME/.zhistory                     # history file name
