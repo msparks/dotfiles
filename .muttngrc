@@ -24,7 +24,8 @@ set status_format = ">> Mutt: (%r) mb(%b) %f: new(%n)/total(%m) [%l]     del(%d)
 set hostname = "f0rked.com"
 set realname = "Matt Sparks"
 set signature = ~/.signature
-set sendmail="/usr/bin/nbsmtp -s -D -h f0rked.com"
+#set sendmail="/usr/bin/nbsmtp -s -D -h f0rked.com"
+set sendmail="/usr/sbin/sendmail"
 alternates (.*@f0rked.com|.*@friedhosting.com|.*@frkd.com|f0rked@nullirc.net|jsparks2@uiuc.edu)
 
 set use_from = no
