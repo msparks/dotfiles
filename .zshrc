@@ -126,6 +126,13 @@ case $TERM in
     ;;
 esac
 
+# For F keys
+bindkey "^[[13~" digit-argument
+bindkey "^[[14~" digit-argument
+bindkey "^[[15~" digit-argument
+bindkey "^[[16~" digit-argument
+bindkey "^[[17~" digit-argument
+
 ### Environment variables
 export EDITOR=`which emacs`
 export FCEDIT=`which emacs`
