@@ -126,10 +126,20 @@ case $TERM in
     ;;
 esac
 
+# For F keys
+bindkey "^[[13~" digit-argument
+bindkey "^[[14~" digit-argument
+bindkey "^[[15~" digit-argument
+bindkey "^[[16~" digit-argument
+bindkey "^[[17~" digit-argument
+
 ### Environment variables
 export EDITOR=`which emacs`
 export FCEDIT=`which emacs`
-export PATH="$PATH:/usr/sbin:/sbin:~/bin:/opt/bin:/usr/local/bin"
+
+# Add to and unique-ify the path
+path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
+typeset -U path
 
 ### Shell variables
 HISTFILE=$HOME/.zhistory                     # history file name
