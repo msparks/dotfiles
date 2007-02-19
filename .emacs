@@ -32,20 +32,16 @@
  '(widget-inactive-face ((((class grayscale color) (background dark)) (:foreground "gray")))))
 
 (require 'cc-mode)
-;;(defun my-build-tab-stop-list (width)
-;;  (let ((num-tab-stops (/ 80 width))
-;;	(counter 1)
-;;	(ls nil))
-;;    (while (<= counter num-tab-stops)
-;;      (setq ls (cons (* width counter) ls))
-;;      (setq counter (1+ counter)))
-;;    (set (make-local-variable 'tab-stop-list) (nreverse ls))))
 (defun my-c-mode-common-hook ()
   (setq tab-width 4)
-;;  (my-build-tab-stop-list tab-width)
   (setq c-basic-offset tab-width)
   (setq indent-tabs-mode nil)) ;; force only spaces for indentation
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; set indent style to 'k&r' style for everything but java
+;; http://en.wikipedia.org/wiki/Indent_style 
+(setq c-default-style
+      '((java-mode . "java") (other . "k&r")))
 
 ;; line by line scrolling
 (setq scroll-step 1)
@@ -85,7 +81,7 @@
 ;; TeX stuff
 ;; C-c C-f to compile, C-c C-v to view
 (setq tex-dvi-view-command "kdvi")
-;(load "/usr/share/emacs/site-lisp/site-gentoo")
+(load "/usr/share/emacs/site-lisp/site-gentoo")
 ;(setq TeX-auto-save t)
 ;(setq TeX-parse-self t)
 
