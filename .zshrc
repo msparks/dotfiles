@@ -27,7 +27,7 @@ case $TERM in
             print -Pn "\e]0;%n@%m %~\a"
         }
         preexec() {
-            print -Pn "\e]0;%n@%m <$1> %~\a"
+            print -Pn "\e]0;%n@%m <${(Vq)2}> %~\a"
         }
     ;;
     screen|linux)
@@ -35,7 +35,7 @@ case $TERM in
             print -Pn "\ekzsh\e\\"
         }
         preexec() {
-            local CMD=`echo $1 | sed 's/^sudo //; s/ .*//'`
+            local CMD=`echo $1 | sed 's/^sudo //; s/ .*//' | head -n 1`
             print -Pn "\ek$CMD\e\\"   
         }
     ;;
