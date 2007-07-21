@@ -17,3 +17,5 @@ hardstatus string '%{= G}%-Lw%{= W}%50>%n%f* %t%{= G}%+Lw%< %{= G}%-=[%D %d %M %
 
 #termcapinfo xterm*|rxvt hs:ts=\E]2;:fs=^G:ds=\E]2;TITLEDISABLED^G
 
+term rxvt
+
