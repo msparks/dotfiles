@@ -36,7 +36,7 @@ case $TERM in
         }
         preexec() {
             local CMD=`echo $1 | sed 's/^sudo //; s/ .*//' | head -n 1`
-            print -Pn "\ek$CMD\e\\"   
+            print -Pn "\ek$CMD\e\\"
         }
     ;;
 esac
@@ -52,14 +52,14 @@ fi
 
 if [[ $ZSH_VERSION > 3.1.5 ]]; then
     zmodload -i zsh/complist
-    
+
     zstyle ':completion:*' list-colors ''
-    
+
     zstyle ':completion:*:*:kill:*:processes' list-colors \
         '=(#b) #([0-9]#)*=0=01;31'
-    
+
     zstyle ':completion:*' list-colors "$LS_COLORS"
-fi  
+fi
 
 ### More completions
 # Add hostname completion for hosts in ~/.ssh/known_hosts
@@ -111,7 +111,7 @@ case $TERM in
         bindkey "^[[B" down-line-or-search
         bindkey " " magic-space
     ;;
-    
+
     *xterm*|rxvt|(dt|k|a|E)term)
         bindkey "^[[2~" yank                 # Insert
         bindkey "^[[3~" delete-char          # Delete
@@ -133,9 +133,14 @@ bindkey "^[[15~" digit-argument
 bindkey "^[[16~" digit-argument
 bindkey "^[[17~" digit-argument
 
+# Turn off terminal driver flow control
+stty -ixon -ixoff
+
 ### Environment variables
 export EDITOR=`which emacs`
 export FCEDIT=`which emacs`
+export LESS="-R -M --shift 5"
+export LESSOPEN="|lesspipe.sh %s"
 
 # Add to and unique-ify the path
 path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
@@ -149,3 +154,4 @@ SAVEHIST=5000                                # lines of history
 watch=()                                     # watch for login/logout events
 LOGCHECK=30                                  # seconds between checks
 WATCHFMT='%n %a %l from %m at %T'            # format for printing events
+
