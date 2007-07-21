@@ -109,11 +109,12 @@ if (&termencoding == "utf-8") || has("gui_running")
   endif
 else
   if v:version >= 700
-    set list listchars=tab:>-,trail:.,extends:>,nbsp:_
+    set list listchars=tab:>-,trail:\ ,extends:>,nbsp:_
   else
-    set list listchars=tab:>-,trail:.,extends:>
+    set list listchars=tab:>-,trail:\ ,extends:>
   endif
 endif
+highlight SpecialKey ctermbg=Yellow guibg=Yellow
 
 " Get rid of the annoying UI
 if has("gui")
