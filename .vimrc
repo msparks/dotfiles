@@ -122,6 +122,7 @@ endfun
 
 autocmd FileType perl :call <SID>Perl()
 autocmd FileType php  :call <SID>ResetIndent()
+autocmd FileType mail :set nocindent
 
 " Highlight text beyond the set text width
 highlight LongLines ctermfg=Red
@@ -168,7 +169,10 @@ else
     set list listchars=tab:>-,trail:.,extends:>
   endif
 endif
-highlight SpecialKey ctermbg=Yellow guibg=Yellow ctermfg=DarkGray
+highlight SpecialKey ctermbg=Yellow guibg=Yellow ctermfg=DarkYellow
+autocmd FileType mail :set nolist
+autocmd FileType mail :highlight SpecialKey NONE
+autocmd FileType mail :set nohls
 
 " Get rid of the annoying UI
 if has("gui")
