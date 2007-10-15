@@ -67,7 +67,7 @@ highlight LineNr ctermfg=DarkGray
 let perl_extended_vars=1         " highlight advanced perl vars inside strings
 
 " screen has broken this before...
-if &term != "screen"
+if (&term != "screen" && &term != "screen-bce")
   set mouse=a                    " Use mouse everywhere
 endif
 
@@ -123,6 +123,7 @@ endfun
 autocmd FileType perl :call <SID>Perl()
 autocmd FileType php  :call <SID>ResetIndent()
 autocmd FileType mail :set nocindent
+autocmd FileType tex  :set nocindent
 
 " Highlight text beyond the set text width
 highlight LongLines ctermfg=Red
