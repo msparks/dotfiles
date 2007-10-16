@@ -292,6 +292,7 @@ imap <C-x><C-w> <C-o>:write<Space>
 imap <C-x><C-q> <C-o>:set invreadonly<CR>
 imap <C-x><C-r> <C-o>:hide view<Space>
 inoremap <C-c> <nop>
+inoremap <C-x> <nop>
 inoremap <C-x><C-c> <C-o>:confirm qall<CR>
 nmap <C-x><C-c> :confirm qall<CR>
 map <C-z> :suspend!<CR>
