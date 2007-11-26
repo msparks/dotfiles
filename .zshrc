@@ -156,6 +156,7 @@ export LESSOPEN="|lesspipe.sh %s"
 
 # Add to and unique-ify the path
 path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
+path=($path /opt/local/bin /opt/local/sbin)  # DarwinPorts paths
 typeset -U path
 
 ### Shell variables
