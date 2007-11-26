@@ -91,6 +91,7 @@ case $HOME in
     alias ls="gls --color=auto"
     alias du="gdu -h"
     alias df="gdf -h"
+    alias find="gfind"
   ;;
 
   *)
