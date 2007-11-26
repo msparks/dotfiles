@@ -84,46 +84,58 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 bindkey '^i' expand-or-complete-prefix
 
 ### Other aliases
-alias sshg="ssh -X f0rked@godfather.f0rked.com"
+alias ssht="ssh -X f0rked.com"
+
+case $HOME in
+  /Users/*)
+    alias ls="gls --color=auto"
+    alias du="gdu -h"
+    alias df="gdf -h"
+  ;;
+
+  *)
+    alias ls="ls --color=auto"
+    alias du='du -h'
+    alias df='df -h'
+  ;;
+esac
+
 alias l='ls'
 alias ll='ls -lh'
 alias la='ls -a'
-alias ls='ls --color=auto'
 alias lla='ls -alh'
 alias lsd='ls -ld *(-/DN)'
 alias j='jobs -l'
 alias p='ps -fu $USER'
 alias h='history'
-alias du='du -h'
-alias df='df -h'
 
-### Keybindings 
+### Keybindings
 case $TERM in
-    linux|screen)
-        bindkey "^[[2~" yank                 # Insert
-        bindkey "^[[3~" delete-char          # Delete
-        bindkey "^[[5~" up-line-or-history   # Page Up
-        bindkey "^[[6~" down-line-or-history # Page Down
-        bindkey "^[[1~" beginning-of-line    # Home
-        bindkey "^[[4~" end-of-line          # End
-        bindkey "^[e" expand-cmd-path        # Meta+E
-        bindkey "^[[A" up-line-or-search
-        bindkey "^[[B" down-line-or-search
-        bindkey " " magic-space
-    ;;
+  linux|screen)
+    bindkey "^[[2~" yank                 # Insert
+    bindkey "^[[3~" delete-char          # Delete
+    bindkey "^[[5~" up-line-or-history   # Page Up
+    bindkey "^[[6~" down-line-or-history # Page Down
+    bindkey "^[[1~" beginning-of-line    # Home
+    bindkey "^[[4~" end-of-line          # End
+    bindkey "^[e" expand-cmd-path        # Meta+E
+    bindkey "^[[A" up-line-or-search
+    bindkey "^[[B" down-line-or-search
+    bindkey " " magic-space
+  ;;
 
-    *xterm*|rxvt|(dt|k|a|E)term)
-        bindkey "^[[2~" yank                 # Insert
-        bindkey "^[[3~" delete-char          # Delete
-        bindkey "^[[5~" up-line-or-history   # Page Up
-        bindkey "^[[6~" down-line-or-history # Page Down
-        bindkey "^[[7~" beginning-of-line    # Home
-        bindkey "^[[8~" end-of-line          # End
-        bindkey "^[e" expand-cmd-path        # Meta+E
-        bindkey "^[[A" up-line-or-search
-        bindkey "^[[B" down-line-or-search
-        bindkey " " magic-space
-    ;;
+  *xterm*|rxvt|(dt|k|a|E)term)
+    bindkey "^[[2~" yank                 # Insert
+    bindkey "^[[3~" delete-char          # Delete
+    bindkey "^[[5~" up-line-or-history   # Page Up
+    bindkey "^[[6~" down-line-or-history # Page Down
+    bindkey "^[[7~" beginning-of-line    # Home
+    bindkey "^[[8~" end-of-line          # End
+    bindkey "^[e" expand-cmd-path        # Meta+E
+    bindkey "^[[A" up-line-or-search
+    bindkey "^[[B" down-line-or-search
+    bindkey " " magic-space
+  ;;
 esac
 
 # For F keys
