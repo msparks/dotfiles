@@ -154,7 +154,6 @@ export EDITOR=`which emacs`
 export FCEDIT=`which emacs`
 export LESS="-R -M --shift 5"
 export LESSOPEN="|lesspipe.sh %s"
-export MANPATH="$MANPATH:/opt/local/share/man"
 
 # Add to and unique-ify the path
 path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
