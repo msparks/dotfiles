@@ -150,8 +150,8 @@ bindkey "^[[17~" digit-argument
 stty -ixon -ixoff
 
 ### Environment variables
-export EDITOR=`which emacs`
-export FCEDIT=`which emacs`
+export EDITOR=`which vim`
+export FCEDIT=`which vim`
 export LESS="-R -M --shift 5"
 export LESSOPEN="|lesspipe.sh %s"
 export MANPATH="$MANPATH:/opt/local/share/man"
