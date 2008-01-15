@@ -92,12 +92,14 @@ case $HOME in
     alias du="gdu -h"
     alias df="gdf -h"
     alias find="gfind"
+    stty erase ^H
   ;;
 
   *)
     alias ls="ls --color=auto"
     alias du='du -h'
     alias df='df -h'
+    stty erase ^?
   ;;
 esac
 
