@@ -149,9 +149,6 @@ bindkey "^[[17~" digit-argument
 # Turn off terminal driver flow control
 stty -ixon -ixoff
 
-# Trying a more universal approach to backspace
-stty erase "^H^?"
-
 ### Environment variables
 export EDITOR=`which vim`
 export FCEDIT=`which vim`
@@ -173,3 +170,6 @@ watch=()                                     # watch for login/logout events
 LOGCHECK=30                                  # seconds between checks
 WATCHFMT='%n %a %l from %m at %T'            # format for printing events
 
+### Local settings
+touch ~/.zshrc.local
+source ~/.zshrc.local
