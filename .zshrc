@@ -92,14 +92,12 @@ case $HOME in
     alias du="gdu -h"
     alias df="gdf -h"
     alias find="gfind"
-    stty erase ^H
   ;;
 
   *)
     alias ls="ls --color=auto"
     alias du='du -h'
     alias df='df -h'
-    stty erase ^?
   ;;
 esac
 
@@ -150,6 +148,9 @@ bindkey "^[[17~" digit-argument
 
 # Turn off terminal driver flow control
 stty -ixon -ixoff
+
+# Trying a more universal approach to backspace
+stty erase "^H^?"
 
 ### Environment variables
 export EDITOR=`which vim`
