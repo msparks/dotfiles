@@ -307,6 +307,8 @@ map! <M-f> <S-Right>
 map <M-b> <S-Left>
 map! <M-b> <S-Left>
 map <C-a> <Home>
+map! <C-a> <Home>
+map <C-e> <End>
 map! <C-e> <End>
 map <C-f> <Right>
 map! <C-f> <Right>
