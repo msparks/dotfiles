@@ -299,7 +299,7 @@ map <C-z> :suspend!<CR>
 imap <C-z> <C-o>:suspend!<CR>
 imap <C-_> <C-o>u
 inoremap <C-l> <C-o>zz<C-o><C-l>
-nnoremap <C-l zz<C-l>
+nnoremap <C-l> zz<C-l>
 
 " Navigation
 map <M-f> <S-Right>
