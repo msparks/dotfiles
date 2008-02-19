@@ -1,0 +1,204 @@
+# ~/.muttrc
+# Matt Sparks (http://f0rked.com)
+# Updated: 2007-10-20
+#
+# Make your mutt not suck.
+# Search for [customize] below for the less-obvious things that need to be
+# personalized to you.
+
+# Mail Folder
+set mbox_type = Maildir
+set spoolfile = "~/Maildir/"
+set folder = "~/Maildir/"
+set mask = "^\\."          # Show only these files in the file browser
+
+# Automatically load all mailboxes
+mailboxes ! `\
+for file in ~/Maildir/.*; do \
+  box=$(basename "$file"); \
+  if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.Spam' \
+      -a ! "$box" = '.subscriptions' ]; then \
+    echo -n "\"+$box\" "; \
+  fi; \
+done`
+
+set header_cache = "~/.mutt-hcache"
+set mbox = +inbox          # Where mail is appended to from spoolfile
+set move = no
+set postponed = "+.unsent" # Where to save postponed mail
+set copy = yes             # Save copies of outgoing mail?
+set record = "+.sent"      # Where to save copies of outgoing mail
+
+# NNTP stuff
+# This file contains nntp_* settings for newsgroups
+source ~/.muttrc.nntp
+
+# Formatting
+set date_format = "%Y-%m-%d %H:%M %Z"
+set index_format = "%4C %Z %-19.16D %-25.25n %?M?(%M) ?%s"
+set folder_format = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+set status_format = ">> Mutt: (%r) mb(%b) %f: new(%n)/flagged(%F)%?p?/draft(%p)?/total(%m) %?V?(limit: %V)? %> (%P)"
+set attach_format = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s]"
+set attribution = "On %d, %f wrote:"
+
+# Personal options
+set hostname = "f0rked.com"
+set realname = "Matt Sparks"
+set signature = ~/.signature
+# Tell mutt who we are so it knows when messages are addressed /to/ us.
+alternates (.*@f0rked.com|.*@friedhosting.com|.*@frkd.com|f0rked@nullirc.net|jsparks2@uiuc.edu|f0rked@poundcs.org|.*@sixtyfive.org|.*@quadpoint.org)
+
+set use_from = no
+# default from header
+my_hdr From: Matt Sparks <ms@quadpoint.org>
+message-hook . "my_hdr From: Matt Sparks <ms@quadpoint.org>"
+
+# automatically bcc me
+set abort_unmodified = no   # need this or else the push below makes a mess
+reply-hook "~C .*@f0rked.com" "push <edit-bcc>root@f0rked.com<enter>"
+reply-hook "~C .*@quadpoint.org" "push <edit-bcc>ms@quadpoint.org<enter>"
+reply-hook "~C jsparks2@uiuc.edu" "push <edit-bcc>jsparks2@uiuc.edu<enter>"
+
+# change From header depending on who the message was sent to
+reply-hook . "my_hdr From: Matt Sparks <ms@quadpoint.org>"
+reply-hook "~C .*@friedhosting.com" "my_hdr From: FriedHosting Staff <matt@friedhosting.com>"
+reply-hook "~C jsparks2@uiuc.edu" "my_hdr From: Matt Sparks <jsparks2@uiuc.edu>"
+
+# from header macros -- switch to another alias with ^N,#
+macro index \Cn1 "!echo 'switched to ms@quadpoint.org'\n:my_hdr From: Matt Sparks <ms@quadpoint.org>\n"
+macro pager \Cn1 "!echo 'switched to ms@quadpoint.org'\n:my_hdr From: Matt Sparks <ms@quadpoint.org>\n"
+macro compose \Cn1 "<esc>f<home>\CkMatt Sparks <ms@quadpoint.org>\n"
+
+macro index \Cn2 "!echo 'switched to jsparks2@uiuc.edu'\n:my_hdr From: Matt Sparks <jsparks2@uiuc.edu>\n"
+macro pager \Cn2 "!echo 'switched to jsparks2@uiuc.edu'\n:my_hdr From: Matt Sparks <jsparks2@uiuc.edu>\n"
+macro compose \Cn2 "<esc>f<home>\CkMatt Sparks<jsparks2@uiuc.edu>\n"
+
+# Quickly change to my favorite folders
+# Use 'I' to switch to the inbox
+macro index I "c!\n" "Go to inbox"
+macro pager I "c!\n" "Go to inbox"
+
+# Use 'S' to send tagged messages to spam folder
+macro index S ";s=INBOX.Spam\n\n"
+macro pager S "s=INBOX.Spam\n\n"
+
+# Aliases (address book)
+set alias_file = ~/.mutt-aliases
+source ~/.mutt-aliases
+set reverse_alias       # Show real name instead of e-mail address in index
+set sort_alias = alias  # Sort aliases by alias name not email address
+
+# Prune the headers
+ignore * # Ignore all header info
+unignore from: date subject to cc reply-to:
+unignore organization organisation
+unignore newsgroups: posted-to: x-spam-rule: X-Spam-Status: X-SpamProbe:
+unignore user-agent: x-agent: x-mailer: x-newsreader: sender:
+# These can provide amusement
+unignore X-Fnord: X-WebTV-Stationery: X-Message-Flag:
+
+bind pager <Up> previous-line
+bind pager <Down> next-line
+
+hdr_order Date: To: CC: From: Subject:
+
+## Other settings
+unset markers              # Don't use "+" to show wrapped lines
+set metoo                  # Keep my address when replying
+unset suspend              # Don't stop on Ctrl-Z
+unset mark_old             # Don't mark unread messages "old"
+unset resolve
+set edit_headers           # Make headers visible in editor
+set fast_reply             # do not ask for to, subject,... when replying.
+set menu_scroll            # scroll on last line of menu (set) or do a nextpage?
+set pager_stop             # don't go to the next mail when using next-page
+set editor = "vim -c 'set tw=72 et' '+/^$'"  # [customize]
+
+set sort = threads                     # default sort messages by thread
+set sort_browser = reverse-date        # showing mbox list default to newest first
+set sort_aux = reverse-last-date-sent  # showing threads with youngest message last
+set collapse_flagged = no
+set collapse_unread = no
+
+set include = yes
+set hide_thread_subject = no
+set narrow_tree = yes
+set ispell = aspell
+set sleep_time = 0
+set timeout = 10
+set pager_index_lines = 10
+set sendmail_wait = -1  # wait in background
+
+# GnuPG
+set pgp_decode_command = "gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
+set pgp_verify_command = "gpg --no-verbose --batch --output - --verify %s %f"
+set pgp_decrypt_command = "gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
+set pgp_sign_command = "gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command = "gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command = "pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xD2350400 -- -r %r -- %f"
+set pgp_encrypt_sign_command = "pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xD2350400 -- -r %r -- %f"  # [customize]
+set pgp_import_command = "gpg --no-verbose --import -v %f"
+set pgp_export_command = "gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command = "gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command = "gpg --no-verbose --batch --with-colons --list-keys %r"
+set pgp_list_secring_command = "gpg --no-verbose --batch --with-colons --list-secret-keys %r"
+set crypt_autosign = yes
+set pgp_sign_as = 0xD2350400  # [customize]
+set crypt_replyencrypt = yes
+set pgp_timeout = 32767
+set pgp_good_sign = "^gpg: Good signature from"
+
+
+## Colors
+color   hdrdefault  brightcyan     default
+color   header      brightwhite    default "^from:"
+color   header      brightwhite    default "^subject:"
+
+color   quoted      brightgreen    default
+color   signature   brightwhite    default
+
+color   indicator   black          green
+
+color   error       red            default
+mono    error       bold
+
+color   status      brightcyan     default
+mono    status      bold
+
+color   tree        yellow         default
+
+color   tilde       brightmagenta  default
+color   body        brightyellow   default "^Good signature"
+mono    body        bold                   "^Good signature"
+color   body        brightwhite    red     "^Bad signature from.*"
+mono    body        bold                   "^Bad signature from.*"
+color   normal      white          default
+color   message     green          default
+color   attachment  brightgreen    default
+
+## Highlights inside the body of a message.
+# URLs
+color   body        brightcyan     default "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color   body        brightcyan     default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+# email addresses
+color   body        brightcyan     default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+# Various smilies and the like
+color   body        brightgreen    default "<[Gg]>"               # <g>
+color   body        brightgreen    default "<[Bb][Gg]>"           # <bg>
+color   body        brightgreen    default " [;:]-*[)>(<|]"       # :-) etc...
+
+# Levels of replies
+color   body        brightwhite    default "^>[^>].*"
+color   body        brightgreen    default "^>>[^>].*"
+color   body        brightmagenta  default "^>>>[^>].*"
+color   body        brightred      default "^>>>>[^>].*"
+
+# Index coloring rules
+# [customize]
+color   index       magenta        default "~v"
+color   index       green          default "~N"  # new messages
+color   index       cyan           default "~C jsparks2@uiuc.edu"
+color   index       brightcyan     default "~C jsparks2@uiuc.edu ~N"
+color   index       yellow         default "~C admin@acm.uiuc.edu"
+color   index       brightred      default "~F"
+
