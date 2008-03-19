@@ -79,8 +79,8 @@ macro index I "c!\n" "Go to inbox"
 macro pager I "c!\n" "Go to inbox"
 
 # Use 'S' to send tagged messages to spam folder
-macro index S ";s=INBOX.Spam\n\n"
-macro pager S "s=INBOX.Spam\n\n"
+macro index S ";s=.Spam\n\n"
+macro pager S "s=.Spam\n\n"
 
 # Aliases (address book)
 set alias_file = ~/.mutt-aliases
