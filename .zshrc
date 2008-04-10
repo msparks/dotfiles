@@ -30,7 +30,7 @@ case $TERM in
             print -Pn "\e]0;%n@%m <${(Vq)2}> %~\a"
         }
     ;;
-    screen|linux)
+    screen)
         precmd() {
             print -Pn "\ekzsh\e\\"
         }
