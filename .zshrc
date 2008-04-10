@@ -14,11 +14,9 @@ unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 
 bindkey -e                   # Use emacs keybindings
 
-autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
-autoload -Uz age
-autoload -Uz zmv
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
+autoload -U compinit; compinit -d "${HOME}/.zsh/.zcompdump"
+autoload -U age
+autoload -U zmv
 
 # Set up (Gentoo-style) prompt
 if [[ $EUID == "0" ]]; then
