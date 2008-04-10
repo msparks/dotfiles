@@ -121,6 +121,7 @@ alias lsd='ls -ld *(-/DN)'
 alias j='jobs -l'
 alias p='ps -fu $USER'
 alias h='history'
+alias hd='od -Ax -tx1z -v'  # convenient hex dump
 
 # Color diffing
 if (test -e `which colordiff`); then
