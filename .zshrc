@@ -1,61 +1,62 @@
 # ~/.zshrc
 # Matt Sparks
 # quadpoint.org
+#
+# Considerable zsh-fu from compnerd, jdong, and Mako
 
 # Set options
 setopt   CORRECT             # correct misspelled commands
 unsetopt BEEP                # No beeps on error
-#setopt   PROMPT_SUBST       # Prompt substitution/expansion
+setopt   CHASE_DOTS          # resolve .. in cd
+setopt   CHASE_LINKS         # resolve symbolic links in cd
 setopt   AUTO_CD             # use 'cd x' if 'x' is run and is not a command
 unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 
 bindkey -e                   # Use emacs keybindings
 
-# Set up completion
-autoload -U compinit
-compinit
+autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
+autoload -Uz age
+autoload -Uz zmv
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
 
 # Set up (Gentoo-style) prompt
-if ((EUID == 0)); then
-    PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %# %{\e[00m%}'
+if [[ $EUID == "0" ]]; then
+  PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %(?..%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
 else
-    PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
+  PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %(?..%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
 fi
 
 # Change the titles of X terminals and screen windows
 case $TERM in
-    *xterm*|rxvt|(dt|k|E|a)term)
-        precmd() {
-            print -Pn "\e]0;%n@%m %~\a"
-        }
-        preexec() {
-            print -Pn "\e]0;%n@%m <${(Vq)2}> %~\a"
-        }
-    ;;
-    screen)
-        precmd() {
-            print -Pn "\ekzsh\e\\"
-        }
-        preexec() {
-            local CMD=`echo $1 | sed 's/^sudo //; s/ .*//' | head -n 1`
-            print -Pn "\ek$CMD\e\\"
-        }
-    ;;
+  *xterm*|rxvt|(dt|k|E|a)term)
+    precmd() { print -Pn "\e]0;%n@%m %~\a" }
+    preexec() { print -Pn "\e]0;%n@%m <${(Vq)2}> %~\a" }
+  ;;
+  screen)
+    precmd() { print -Pn "\ekzsh\e\\" }
+    preexec() {
+      local CMD=`echo $1 | sed 's/^sudo //; s/ .*//' | head -n 1`
+      print -Pn "\ek$CMD\e\\"
+    }
+  ;;
 esac
 
 # Colors for lists
 if which dircolors >&/dev/null; then
-    if [[ -e "${zdotdir}/.dircolors" ]]; then
-        eval `dircolors -b $zdotdir/.dircolors`
-    else
-        eval `dircolors -b`
-    fi
+  if [[ -e "${zdotdir}/.dircolors" ]]; then
+    eval `dircolors -b $zdotdir/.dircolors`
+  else
+    eval `dircolors -b`
+  fi
 fi
-
-    zmodload -i zsh/complist
 
 # Completions
 zstyle ':completion:*' list-colors ''
+
+# Caching
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${HOME}/.zsh/.${HOST}-cache"
 
 # add colors to processes for kill completion
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
@@ -107,10 +108,10 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # Ignore uninteresting users for the user completion (for chmod, etc)
 zstyle ':completion:*:*:*:users' ignored-patterns \
-    adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
-    named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
-    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs backup  bind  \
-    dictd  gnats  identd  irc  man  messagebus  postfix  proxy  sys  www-data
+  adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
+  named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
+  rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs backup bind \
+  dictd gnats identd irc man messagebus postfix proxy sys www-data
 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
@@ -132,21 +133,31 @@ bindkey '^i' expand-or-complete-prefix
 
 # Add to and unique-ify the path
 path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
-path=($path /opt/local/bin /opt/local/sbin)  # DarwinPorts paths
+path=($path /opt/local/bin /opt/local/sbin)  # MacPorts paths
 typeset -U path
 
 # Other aliases
 alias ssht="ssh quadpoint.org"
 
-# FIXME: need a better way to finding the right ls binary (BSD vs GNU)
-case $HOME in
-  /Users/*)  # Look for GNU utils on Mac OS X systems
-    alias ls="gls --color=auto -F"
-    if (test -e `which gdu`); then
-      alias du="gdu -h"
-      alias df="gdf -hT"
+case `uname -s` in
+  SunOS|Darwin|*BSD)  # Look for GNU utils on non-GNU systems
+    if which gls >&/dev/null; then
+      alias ls="gls --color=auto -F"
+    else
+      alias ls="ls -F"
     fi
-    if (test -e `which gfind`); then
+
+    if which gdu >&/dev/null; then
+      alias du="gdu -h"
+    fi
+
+    if which gdu >&/dev/null; then
+      alias df="gdf -hT"
+    else
+      alias df="df -h"
+    fi
+
+    if which gfind >&/dev/null; then
       alias find="gfind"
     fi
   ;;
@@ -168,8 +179,13 @@ alias p='ps -fu $USER'
 alias h='history'
 alias hd='od -Ax -tx1z -v'  # convenient hex dump
 
+alias cp='nocorrect cp'
+alias mv='nocorrect mv'
+alias rm='nocorrect rm -i'
+alias mkdir='nocorrect mkdir'
+
 # Color diffing
-if (test -e `which colordiff`); then
+if which colordiff >&/dev/null; then
   alias diff='colordiff'
 fi
 
@@ -217,7 +233,7 @@ export LESSOPEN="|lesspipe.sh %s"
 export MANPATH="$MANPATH:/opt/local/share/man"
 
 # Shell variables
-HISTFILE=$HOME/.zhistory                     # history file name
+HISTFILE=$HOME/.zsh/.history                 # history file name
 SAVEHIST=5000                                # lines of history
 
 # Watch settings
@@ -225,6 +241,10 @@ watch=()                                     # watch for login/logout events
 LOGCHECK=30                                  # seconds between checks
 WATCHFMT='%n %a %l from %m at %T'            # format for printing events
 
-# Local settings
-touch ~/.zshrc.local
-source ~/.zshrc.local
+# Extras
+if [[ -d "${HOME}/.zsh" ]] ; then
+  for file in "${HOME}"/.zsh/*(N.x:t) ; do
+    source "${HOME}/.zsh/${file}"
+  done
+fi
+
