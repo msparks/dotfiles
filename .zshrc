@@ -1,26 +1,28 @@
 # ~/.zshrc
-# $Date$
-# Matt Sparks (f0rked)
+# Matt Sparks
+# quadpoint.org
 
-### Set options
-setopt   CORRECT                             # correct misspelled commands
-unsetopt BEEP                                # No beeps on error
-#setopt   PROMPT_SUBST                       # Prompt substitution/expansion
+# Set options
+setopt   CORRECT             # correct misspelled commands
+unsetopt BEEP                # No beeps on error
+#setopt   PROMPT_SUBST       # Prompt substitution/expansion
+setopt   AUTO_CD             # use 'cd x' if 'x' is run and is not a command
+unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 
-bindkey -e                                   # Use emacs keybindings
+bindkey -e                   # Use emacs keybindings
 
-### Set up completion
+# Set up completion
 autoload -U compinit
 compinit
 
-### Set up (Gentoo-style) prompt
+# Set up (Gentoo-style) prompt
 if ((EUID == 0)); then
     PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %# %{\e[00m%}'
 else
     PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %# %{\e[00m%}'
 fi
 
-### Change the titles of X terminals and screen windows
+# Change the titles of X terminals and screen windows
 case $TERM in
     *xterm*|rxvt|(dt|k|E|a)term)
         precmd() {
@@ -41,7 +43,7 @@ case $TERM in
     ;;
 esac
 
-### Colors for lists
+# Colors for lists
 if which dircolors >&/dev/null; then
     if [[ -e "${zdotdir}/.dircolors" ]]; then
         eval `dircolors -b $zdotdir/.dircolors`
@@ -61,7 +63,7 @@ if [[ $ZSH_VERSION > 3.1.5 ]]; then
     zstyle ':completion:*' list-colors "$LS_COLORS"
 fi
 
-### More completions
+# More completions
 # Add hostname completion for hosts in ~/.ssh/known_hosts
 local _myhosts
 _myhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
@@ -83,21 +85,31 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # Complete on the current prefix (before the cursor) ignoring the suffix with ^i
 bindkey '^i' expand-or-complete-prefix
 
-### Other aliases
-alias ssht="ssh -X f0rked.com"
+# Add to and unique-ify the path
+path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
+path=($path /opt/local/bin /opt/local/sbin)  # DarwinPorts paths
+typeset -U path
 
+# Other aliases
+alias ssht="ssh quadpoint.org"
+
+# FIXME: need a better way to finding the right ls binary (BSD vs GNU)
 case $HOME in
-  /Users/*)
-    alias ls="gls --color=auto"
-    alias du="gdu -h"
-    alias df="gdf -h"
-    alias find="gfind"
+  /Users/*)  # Look for GNU utils on Mac OS X systems
+    alias ls="gls --color=auto -F"
+    if (test -e `which gdu`); then
+      alias du="gdu -h"
+      alias df="gdf -hT"
+    fi
+    if (test -e `which gfind`); then
+      alias find="gfind"
+    fi
   ;;
 
   *)
-    alias ls="ls --color=auto"
+    alias ls="ls --color=auto -F"
     alias du='du -h'
-    alias df='df -h'
+    alias df='df -hT'
   ;;
 esac
 
@@ -110,7 +122,12 @@ alias j='jobs -l'
 alias p='ps -fu $USER'
 alias h='history'
 
-### Keybindings
+# Color diffing
+if (test -e `which colordiff`); then
+  alias diff='colordiff'
+fi
+
+# Keybindings
 case $TERM in
   linux|screen)
     bindkey "^[[2~" yank                 # Insert
@@ -146,30 +163,22 @@ bindkey "^[[15~" digit-argument
 bindkey "^[[16~" digit-argument
 bindkey "^[[17~" digit-argument
 
-# Turn off terminal driver flow control
-stty -ixon -ixoff
-
-### Environment variables
+# Environment variables
 export EDITOR=`which vim`
 export FCEDIT=`which vim`
 export LESS="-R -M --shift 5"
 export LESSOPEN="|lesspipe.sh %s"
 export MANPATH="$MANPATH:/opt/local/share/man"
 
-# Add to and unique-ify the path
-path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
-path=($path /opt/local/bin /opt/local/sbin)  # DarwinPorts paths
-typeset -U path
-
-### Shell variables
+# Shell variables
 HISTFILE=$HOME/.zhistory                     # history file name
 SAVEHIST=5000                                # lines of history
 
-### Watch settings
+# Watch settings
 watch=()                                     # watch for login/logout events
 LOGCHECK=30                                  # seconds between checks
 WATCHFMT='%n %a %l from %m at %T'            # format for printing events
 
-### Local settings
+# Local settings
 touch ~/.zshrc.local
 source ~/.zshrc.local
