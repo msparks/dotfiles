@@ -20,7 +20,7 @@ autoload -U zmv
 
 # Set up (Gentoo-style) prompt
 if [[ $EUID == "0" ]]; then
-  PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %(?..%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
+  PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %(?..%{\e[01;31m%})%(!..)%# %{\e[00m%}'
 else
   PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %(?..%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
 fi
