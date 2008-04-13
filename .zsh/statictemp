@@ -1,0 +1,1 @@
+function statictemp { scp $@ quadpoint.org:public/static.quadpoint.org/temp }
