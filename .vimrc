@@ -256,6 +256,7 @@ map! <esc><del> <m-f><c-w>
 map! ÿ <c-w>
 map! <m-bs> <c-w>
 map! <esc><bs> <c-w>
+map!  <c-w>
 
 " Buffer switching with <C-n> and <C-p>
 nmap <C-p> :bprevious<CR>
