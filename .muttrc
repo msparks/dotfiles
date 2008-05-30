@@ -1,6 +1,6 @@
 # ~/.muttrc
-# Matt Sparks (http://f0rked.com)
-# Updated: 2007-10-20
+# Matt Sparks (http://quadpoint.org)
+# Updated: 2008-05-29
 #
 # Make your mutt not suck.
 # Search for [customize] below for the less-obvious things that need to be
@@ -42,7 +42,7 @@ set attach_format = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s]"
 set attribution = "On %d, %f wrote:"
 
 # Personal options
-set hostname = "f0rked.com"
+set hostname = "quadpoint.org"
 set realname = "Matt Sparks"
 set signature = ~/.signature
 # Tell mutt who we are so it knows when messages are addressed /to/ us.
