@@ -7,7 +7,7 @@
 # Set options
 setopt   CORRECT             # correct misspelled commands
 unsetopt BEEP                # No beeps on error
-setopt   CHASE_DOTS          # resolve .. in cd
+unsetopt CHASE_DOTS          # don't resolve .. in cd
 unsetopt CHASE_LINKS         # don't resolve symbolic links in cd
 setopt   AUTO_CD             # use 'cd x' if 'x' is run and is not a command
 unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
