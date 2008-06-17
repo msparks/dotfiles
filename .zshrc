@@ -10,6 +10,10 @@ unsetopt BEEP                # No beeps on error
 unsetopt CHASE_DOTS          # don't resolve .. in cd
 unsetopt CHASE_LINKS         # don't resolve symbolic links in cd
 setopt   AUTO_CD             # use 'cd x' if 'x' is run and is not a command
+setopt   PUSHD_IGNORE_DUPS   # don't push multiple copies onto dir stack
+setopt   PUSHD_SILENT        # don't print stack after pushd/popd
+setopt   AUTO_PUSHD          # cd pushes dir on to dir stack
+unsetopt NOMATCH             # no error if glob fails to expand (scp fix)
 unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 stty -ixon -ixoff            # really, no flow control.
 
