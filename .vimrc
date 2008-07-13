@@ -44,6 +44,7 @@ set noerrorbells                 " No noise
 set cmdheight=2                  " Show two lines for command history
 set showcmd                      " Show partial command / info about visual selection
 set background=dark              " I use a black background
+set tabpagemax=20                " Maximum number of tabs opened by -p
 
 " Backup locations
 set backup
@@ -259,34 +260,34 @@ map! <esc><bs> <c-w>
 map!  <c-w>
 
 " Buffer switching with <C-n> and <C-p>
-nmap <C-p> :bprevious<CR>
-vmap <C-p> :bprevious<CR>
-imap <C-p> <esc>:bprevious<CR>i
-nmap <C-n> :bnext<CR>
-vmap <C-n> :bnext<CR>
-imap <C-n> <esc>:bnext<CR>i
+nmap <C-p> :tabprevious<CR>
+vmap <C-p> :tabprevious<CR>
+imap <C-p> <esc>:tabprevious<CR>i
+nmap <C-n> :tabnext<CR>
+vmap <C-n> :tabnext<CR>
+imap <C-n> <esc>:tabnext<CR>i
 
-" Switch buffers with meta-#
+" Switch tags with meta-#
 if has("eval")
   let n = 1
   while n != 9
-    exec "imap <M-".n."> <C-o>:b ".n."<CR>"
-    exec "nmap <M-".n."> <C-o>:b ".n."<CR>"
-    exec "vmap <M-".n."> <C-o>:b ".n."<CR>"
+    exec "imap <M-".n."> <C-o>:tabn ".n."<CR>"
+    exec "nmap <M-".n."> <C-o>:tabn ".n."<CR>"
+    exec "vmap <M-".n."> <C-o>:tabn ".n."<CR>"
     let n = n + 1
   endw
 endif
 
 " Map ctrl-delete to delete buffer
-imap <esc>[3^ <C-o>:bdelete
+imap <esc>[3^ <C-o>:tabc
 
 " emacs/shell keybindings
 imap <M-x> <C-o>:
 nmap <M-x> :
 imap <C-x><C-s> <C-o>:update<CR>
 nmap <C-x><C-s> :update<CR>
-imap <C-x><C-f> <C-o>:hide edit<Space>
-nmap <C-x><C-f> :hide edit<Space>
+imap <C-x><C-f> <C-o>:tabedit<Space>
+nmap <C-x><C-f> :tabedit<Space>
 imap <C-x>s <C-o>:wall<CR>
 imap <C-x>i <C-o>:read<Space>
 imap <C-x><C-w> <C-o>:write<Space>
