@@ -163,7 +163,7 @@ let g:TabLineSet_max_cols = &columns
 
 let g:TabLineSet_verbose_auto = 4    " turn on/off verbose at this tab width
 
-let g:TabLineSet_max_wrap = 1      " maximum rows to wrap tabline into
+let g:TabLineSet_max_wrap = 15      " maximum rows to wrap tabline into
                     " Value can be 1+
 
 
