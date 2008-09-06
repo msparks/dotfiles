@@ -1,1 +1,12 @@
-function statictemp { scp -r $@ quadpoint.org:public/static.quadpoint.org/temp }
+statictemp() {
+  local target="quadpoint.org:public/static.quadpoint.org/temp"
+  local lastarg=$argv[$#]
+  local files
+  if [[ ${lastarg[1]} == ":" ]]; then
+    files=$argv[1,$(($# - 1))]
+    target="$target/${lastarg[2,-1]}"
+  else
+    files=$@
+  fi
+  scp -r $files $target
+}
