@@ -55,14 +55,17 @@ message-hook . "my_hdr From: Matt Sparks <ms@quadpoint.org>"
 
 # automatically bcc me
 set abort_unmodified = no   # need this or else the push below makes a mess
-reply-hook "~C .*@f0rked.com" "push <edit-bcc>root@f0rked.com<enter>"
-reply-hook "~C .*@quadpoint.org" "push <edit-bcc>ms@quadpoint.org<enter>"
-reply-hook "~C jsparks2@uiuc.edu" "push <edit-bcc>jsparks2@uiuc.edu<enter>"
+reply-hook "~C .*@f0rked.com" "push <edit-bcc>,root@f0rked.com<enter>"
+reply-hook "~C .*@quadpoint.org" "push <edit-bcc>,ms@quadpoint.org<enter>"
+reply-hook "~C jsparks2@uiuc.edu" "push <edit-bcc>,jsparks2@uiuc.edu<enter>"
+reply-hook "~C jsparks2@illinois.edu" "push <edit-bcc>,jsparks2@uiuc.edu<enter>"
+reply-hook ! "~C .*@f0rked.com | ~C .*@quadpoint.org | ~C jsparks2@uiuc.edu | ~C jsparks2@illinois.edu" "push <edit-bcc>ms@quadpoint.org<enter>"
 
 # change From header depending on who the message was sent to
 reply-hook . "my_hdr From: Matt Sparks <ms@quadpoint.org>"
 reply-hook "~C .*@friedhosting.com" "my_hdr From: FriedHosting Staff <matt@friedhosting.com>"
 reply-hook "~C jsparks2@uiuc.edu" "my_hdr From: Matt Sparks <jsparks2@uiuc.edu>"
+reply-hook "~C jsparks2@illinois.edu" "my_hdr From: Matt Sparks <jsparks2@uiuc.edu>"
 
 # from header macros -- switch to another alias with ^N,#
 macro index \Cn1 "!echo 'switched to ms@quadpoint.org'\n:my_hdr From: Matt Sparks <ms@quadpoint.org>\n"
@@ -135,7 +138,7 @@ set pgp_verify_command = "gpg --no-verbose --batch --output - --verify %s %f"
 set pgp_decrypt_command = "gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
 set pgp_sign_command = "gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
 set pgp_clearsign_command = "gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
-set pgp_encrypt_only_command = "pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xD2350400 -- -r %r -- %f"
+set pgp_encrypt_only_command = "pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xD2350400 -- -r %r -- %f"  # [customize]
 set pgp_encrypt_sign_command = "pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xD2350400 -- -r %r -- %f"  # [customize]
 set pgp_import_command = "gpg --no-verbose --import -v %f"
 set pgp_export_command = "gpg --no-verbose --export --armor %r"
@@ -197,8 +200,14 @@ color   body        brightred      default "^>>>>[^>].*"
 # [customize]
 color   index       magenta        default "~v"
 color   index       green          default "~N"  # new messages
+color   index       green          default "~O"  # old messages
 color   index       cyan           default "~C jsparks2@uiuc.edu"
 color   index       brightcyan     default "~C jsparks2@uiuc.edu ~N"
+color   index       brightcyan     default "~C jsparks2@uiuc.edu ~O"
+color   index       cyan           default "~C jsparks2@illinois.edu"
+color   index       brightcyan     default "~C jsparks2@illinois.edu ~N"
+color   index       brightcyan     default "~C jsparks2@illinois.edu ~O"
 color   index       yellow         default "~C admin@acm.uiuc.edu"
+color   index       brightyellow   default "~C admin@acm.uiuc.edu ~N"
+color   index       brightyellow   default "~C admin@acm.uiuc.edu ~O"
 color   index       brightred      default "~F"
-
