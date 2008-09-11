@@ -127,7 +127,7 @@ autocmd FileType perl :call <SID>Perl()
 autocmd FileType php  :call <SID>ResetIndent()
 autocmd FileType mail :set nocindent
 autocmd FileType tex  :set nocindent
-autocmd FileType text :set nocindent
+autocmd FileType text :set nocindent | set nosmarttab
 
 " Highlight text beyond the set text width
 highlight LongLines ctermfg=Red
