@@ -121,10 +121,13 @@ fun! <SID>Perl()
   call <SID>ResetIndent()
 endfun
 
+au BufRead,BufNewFile *.txt,README setfiletype text
+
 autocmd FileType perl :call <SID>Perl()
 autocmd FileType php  :call <SID>ResetIndent()
 autocmd FileType mail :set nocindent
 autocmd FileType tex  :set nocindent
+autocmd FileType text :set nocindent
 
 " Highlight text beyond the set text width
 highlight LongLines ctermfg=Red
