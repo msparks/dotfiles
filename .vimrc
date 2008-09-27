@@ -131,7 +131,7 @@ autocmd FileType text :set nocindent | set nosmarttab
 
 " Highlight text beyond the set text width
 highlight LongLines ctermfg=Red
-au BufEnter *.py,*.c,*.cpp,*.java,*.h,*.pl,*.php exec 'match LongLines /\%>'.&textwidth.'v.\+/'
+au BufEnter *.py,*.c,*.cpp,*.cc,*.java,*.h,*.pl,*.php exec 'match LongLines /\%>'.&textwidth.'v.\+/'
 
 " Turn off search hilite when idle
 if has("autocmd")
