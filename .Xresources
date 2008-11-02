@@ -1,0 +1,79 @@
+! URxvt
+URxvt*color0:  #000000
+URxvt*color1:  #cc0000
+URxvt*color2:  #00cc00
+URxvt*color3:  #cccc00
+URxvt*color4:  #0000cc
+URxvt*color5:  #cc00cc
+URxvt*color6:  #00cccc
+URxvt*color7:  #aaaaaa
+URxvt*color8:  #333333
+URxvt*color9:  #ff0000
+URxvt*color10: #00ff00
+URxvt*color11: #ffff00
+URxvt*color12: #0000ff
+URxvt*color13: #ff00ff
+URxvt*color14: #00ffff
+URxvt*color15: #ffffff
+
+URxvt*colorBDMode: true
+URxvt*colorBD: #ffffff
+URxvt*background:black
+URxvt*foreground:#A8A8A8
+URxvt*cursorColor: yellow
+
+URxvt*saveLines: 1000
+URxvt*visualBell: true
+
+URxvt*inheritPixmap: true
+URxvt*tintColor: white
+URxvt*shading: 20
+
+URxvt*scrollBar: true
+URxvt*scrollBar_right: true
+URxvt*scrollBar_floating: true
+URxvt*scrollstyle: plain
+URxvt*transparentScrollbar: true
+
+URxvt*hideButtons: true
+URxvt*transparentMenubar: true
+
+! default: `"'&()*,;<=>?@[]{|}
+! remove: &,;<=>?@
+URxvt*cutchars: `"'()*<>[]{|}
+
+URxvt*font: 6x13
+URxvt*boldFont: 6x13
+
+
+! UXTerm
+UXTerm*color0:  #000000
+UXTerm*color1:  #cc0000
+UXTerm*color2:  #00cc00
+UXTerm*color3:  #cccc00
+UXTerm*color4:  #0000cc
+UXTerm*color5:  #cc00cc
+UXTerm*color6:  #00cccc
+UXTerm*color7:  #aaaaaa
+UXTerm*color8:  #333333
+UXTerm*color9:  #ff0000
+UXTerm*color10: #00ff00
+UXTerm*color11: #ffff00
+UXTerm*color12: #0000ff
+UXTerm*color13: #ff00ff
+UXTerm*color14: #00ffff
+UXTerm*color15: #ffffff
+
+UXTerm*colorBDMode: true
+UXTerm*colorBD: white
+UXTerm*background: black
+UXTerm*foreground: #A8A8A8
+UXTerm*cursorColor: yellow
+
+UXTerm*font: 6x13
+UXTerm*boldFont: 6x13
+
+UXTerm*saveLines: 1000
+UXTerm*eightBitInput: false
+UXTerm*charClass: 33:48,37-38:48,44-47:48,59-64:48
+UXTerm*visualBell: true
