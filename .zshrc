@@ -6,7 +6,13 @@
 
 # Set options
 setopt   CORRECT             # correct misspelled commands
+setopt   INC_APPEND_HISTORY  # Append history file immediately
+setopt   SHARE_HISTORY       # Read history file for history
+setopt   HIST_IGNORE_SPACE
+setopt   HIST_REDUCE_BLANKS
+setopt   HIST_IGNORE_ALL_DUPS
 unsetopt BEEP                # No beeps on error
+unsetopt HIST_BEEP           # No history beeps
 unsetopt CHASE_DOTS          # don't resolve .. in cd
 unsetopt CHASE_LINKS         # don't resolve symbolic links in cd
 setopt   AUTO_CD             # use 'cd x' if 'x' is run and is not a command
