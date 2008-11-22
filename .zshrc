@@ -4,6 +4,11 @@
 #
 # Considerable zsh-fu from compnerd, jdong, and Mako
 
+# History variables
+HISTSIZE=1000
+HISTFILE=~/.zsh/.history     # history file name
+SAVEHIST=1000                # lines of history
+
 # Set options
 setopt   CORRECT             # correct misspelled commands
 setopt   INC_APPEND_HISTORY  # Append history file immediately
@@ -11,8 +16,10 @@ setopt   SHARE_HISTORY       # Read history file for history
 setopt   HIST_IGNORE_SPACE
 setopt   HIST_REDUCE_BLANKS
 setopt   HIST_IGNORE_ALL_DUPS
+setopt   EXTENDED_HISTORY
 unsetopt BEEP                # No beeps on error
 unsetopt HIST_BEEP           # No history beeps
+unsetopt LIST_BEEP           # No list beeps
 unsetopt CHASE_DOTS          # don't resolve .. in cd
 unsetopt CHASE_LINKS         # don't resolve symbolic links in cd
 setopt   AUTO_CD             # use 'cd x' if 'x' is run and is not a command
@@ -145,9 +152,6 @@ path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
 path=($path /opt/local/bin /opt/local/sbin)  # MacPorts paths
 typeset -U path
 
-# Other aliases
-alias ssht="ssh quadpoint.org"
-
 case `uname -s` in
   SunOS|Darwin|*BSD)  # Look for GNU utils on non-GNU systems
     if which gls >&/dev/null; then
@@ -240,10 +244,6 @@ export FCEDIT=`which vim`
 export LESS="-R -M --shift 5"
 export LESSOPEN="|lesspipe.sh %s"
 export MANPATH="$MANPATH:/opt/local/share/man"
-
-# Shell variables
-HISTFILE=$HOME/.zsh/.history                 # history file name
-SAVEHIST=5000                                # lines of history
 
 # Watch settings
 watch=()                                     # watch for login/logout events

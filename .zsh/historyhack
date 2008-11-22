@@ -1,0 +1,5 @@
+# VMware hgfs does not support hardlinks, and somehow that causes zsh history
+# for a shared home directory to not work.
+#
+# http://benno.id.au/blog/2008/05/21/vmhgfs-zsh-hardlinks
+export HISTFILE=/tmp/.zhistory
