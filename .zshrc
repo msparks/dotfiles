@@ -16,7 +16,7 @@ setopt   SHARE_HISTORY       # Read history file for history
 setopt   HIST_IGNORE_SPACE
 setopt   HIST_REDUCE_BLANKS
 setopt   HIST_IGNORE_ALL_DUPS
-setopt   EXTENDED_HISTORY
+unsetopt EXTENDED_HISTORY
 unsetopt BEEP                # No beeps on error
 unsetopt HIST_BEEP           # No history beeps
 unsetopt LIST_BEEP           # No list beeps
