@@ -18,6 +18,6 @@ hardstatus alwayslastline
 # from tomaw@FreeNode
 # "%{gk}[%{B} %d/%m%{W}%c:%s %{g}][%= %{wk}%?%-Lw%?%{r}(%{W}%n*%f
 #     %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][ %{G}%H/%l %{g}]"
-hardstatus string '%{= G}%-Lw%{= W}%50>%n%f* %t%{= G}%+Lw%< %-= [%{G}%H/%l]'
+hardstatus string '%{= G}%-Lw%{= W}%50>%n%f* %t%{= G}%+Lw%< %-= %{G}%H'
 
 #termcapinfo xterm*|rxvt hs:ts=\E]2;:fs=^G:ds=\E]2;TITLEDISABLED^
