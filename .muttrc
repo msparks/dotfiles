@@ -6,32 +6,16 @@
 # Search for [customize] below for the less-obvious things that need to be
 # personalized to you.
 
-# Mail Folder
-set mbox_type = Maildir
-set spoolfile = "~/Maildir/"
-set folder = "~/Maildir/"
-set mask = "^\\."          # Show only these files in the file browser
-
-# Automatically load all mailboxes
-mailboxes ! `\
-for file in ~/Maildir/.*; do \
-  box=$(basename "$file"); \
-  if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.Spam' \
-      -a ! "$box" = '.subscriptions' ]; then \
-    echo -n "\"+$box\" "; \
-  fi; \
-done`
-
 set header_cache = "~/.mutt-hcache"
-set mbox = +inbox          # Where mail is appended to from spoolfile
 set move = no
-set postponed = "+.unsent" # Where to save postponed mail
 set copy = yes             # Save copies of outgoing mail?
-set record = "+.sent"      # Where to save copies of outgoing mail
 
 # NNTP stuff
 # This file contains nntp_* settings for newsgroups
 source ~/.muttrc.nntp
+
+#source ~/.muttrc.local
+source ~/.muttrc.imap
 
 # Formatting
 set date_format = "%Y-%m-%d %H:%M %Z"
@@ -54,12 +38,12 @@ my_hdr From: Matt Sparks <ms@quadpoint.org>
 message-hook . "my_hdr From: Matt Sparks <ms@quadpoint.org>"
 
 # automatically bcc me
-set abort_unmodified = no   # need this or else the push below makes a mess
-reply-hook "~C .*@f0rked.com" "push <edit-bcc>,root@f0rked.com<enter>"
-reply-hook "~C .*@quadpoint.org" "push <edit-bcc>,ms@quadpoint.org<enter>"
-reply-hook "~C jsparks2@uiuc.edu" "push <edit-bcc>,jsparks2@uiuc.edu<enter>"
-reply-hook "~C jsparks2@illinois.edu" "push <edit-bcc>,jsparks2@uiuc.edu<enter>"
-reply-hook ! "~C .*@f0rked.com | ~C .*@quadpoint.org | ~C jsparks2@uiuc.edu | ~C jsparks2@illinois.edu" "push <edit-bcc>ms@quadpoint.org<enter>"
+#set abort_unmodified = no   # need this or else the push below makes a mess
+#reply-hook "~C .*@f0rked.com" "push <edit-bcc>,root@f0rked.com<enter>"
+#reply-hook "~C .*@quadpoint.org" "push <edit-bcc>,ms@quadpoint.org<enter>"
+#reply-hook "~C jsparks2@uiuc.edu" "push <edit-bcc>,jsparks2@uiuc.edu<enter>"
+#reply-hook "~C jsparks2@illinois.edu" "push <edit-bcc>,jsparks2@uiuc.edu<enter>"
+#reply-hook ! "~C .*@f0rked.com | ~C .*@quadpoint.org | ~C jsparks2@uiuc.edu | ~C jsparks2@illinois.edu" "push <edit-bcc>ms@quadpoint.org<enter>"
 
 # change From header depending on who the message was sent to
 reply-hook . "my_hdr From: Matt Sparks <ms@quadpoint.org>"
