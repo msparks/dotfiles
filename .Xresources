@@ -11,7 +11,7 @@ URxvt*color8:  #333333
 URxvt*color9:  #ff0000
 URxvt*color10: #00ff00
 URxvt*color11: #ffff00
-URxvt*color12: #0000ff
+URxvt*color12: #0099ff
 URxvt*color13: #ff00ff
 URxvt*color14: #00ffff
 URxvt*color15: #ffffff
@@ -59,7 +59,7 @@ UXTerm*color8:  #333333
 UXTerm*color9:  #ff0000
 UXTerm*color10: #00ff00
 UXTerm*color11: #ffff00
-UXTerm*color12: #0000ff
+UXTerm*color12: #0099ff
 UXTerm*color13: #ff00ff
 UXTerm*color14: #00ffff
 UXTerm*color15: #ffffff
