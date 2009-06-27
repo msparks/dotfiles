@@ -114,6 +114,7 @@ set sleep_time = 0
 set timeout = 10
 set pager_index_lines = 10
 set sendmail_wait = -1  # wait in background
+set sidebar_visible = no
 
 # GnuPG
 set pgp_decode_command = "gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
