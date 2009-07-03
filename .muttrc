@@ -12,7 +12,7 @@ set copy = yes             # Save copies of outgoing mail?
 
 # NNTP stuff
 # This file contains nntp_* settings for newsgroups
-source ~/.muttrc.nntp
+#source ~/.muttrc.nntp
 
 #source ~/.muttrc.local
 source ~/.muttrc.imap
@@ -104,7 +104,6 @@ set editor = "vim -c 'set tw=72 et' '+/^$'"  # [customize]
 set sort = threads                     # default sort messages by thread
 set sort_browser = reverse-date        # showing mbox list default to newest first
 set sort_aux = reverse-last-date-sent  # showing threads with youngest message last
-set collapse_flagged = no
 set collapse_unread = no
 
 set include = yes
@@ -115,6 +114,7 @@ set sleep_time = 0
 set timeout = 10
 set pager_index_lines = 10
 set sendmail_wait = -1  # wait in background
+set sidebar_visible = no
 
 # GnuPG
 set pgp_decode_command = "gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
