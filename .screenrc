@@ -18,4 +18,4 @@ termcapinfo xterm ti@:te@
 #attrcolor b ".I"
 
 hardstatus alwayslastline
-hardstatus string '%{= m}%0c   %{= G}%-Lw%{r}(%{W}%50>%n%f* %t%{= r})%{= G}%+w%<%-=   %?+%{m}%u %?%{C}%H%{-} %{w}%l%{-}'
+hardstatus string '%{= m}%0c   %{= G}%-Lw%{r}(%{W}%50>%n%f %t%{= r})%{= G}%+Lw%<%-=   %?+%{m}%u %?%{C}%H%{-} %{w}%l%{-}'
