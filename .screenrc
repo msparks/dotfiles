@@ -3,21 +3,19 @@
 
 defutf8 on
 defnonblock on
+defscrollback 30000
+startup_message off
+multiuser on
+
+# erase background with current bg color
+defbce on
+
+# From http://www4.informatik.uni-erlangen.de/~jnweiger/screen-faq.html
+termcapinfo xterm ti@:te@
 
 # terminfo and termcap for nice 256 color terminal
 # allow bold colors - necessary for some reason
-attrcolor b ".I"
-# tell screen how to set colors. AB = background, AF=foreground
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-# erase background with current bg color
-defbce "on"
+#attrcolor b ".I"
 
-# change the hardstatus settings to give an window list at the bottom of the
-# screen, with the time and date and with the current window highlighted
 hardstatus alwayslastline
-# from tomaw@FreeNode
-# "%{gk}[%{B} %d/%m%{W}%c:%s %{g}][%= %{wk}%?%-Lw%?%{r}(%{W}%n*%f
-#     %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][ %{G}%H/%l %{g}]"
-hardstatus string '%{= G}%-Lw%{= W}%50>%n%f* %t%{= G}%+Lw%< %-= %{G}%H'
-
-#termcapinfo xterm*|rxvt hs:ts=\E]2;:fs=^G:ds=\E]2;TITLEDISABLED^
+hardstatus string '%{= m}%0c   %{= G}%-Lw%{r}(%{W}%50>%n%f* %t%{= r})%{= G}%+w%<%-=   %?+%{m}%u %?%{C}%H%{-} %{w}%l%{-}'
