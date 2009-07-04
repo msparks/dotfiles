@@ -29,6 +29,7 @@ setopt   AUTO_PUSHD          # cd pushes dir on to dir stack
 unsetopt NOMATCH             # no error if glob fails to expand (scp fix)
 unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 stty -ixon -ixoff            # really, no flow control.
+stty erase ^?
 
 bindkey -e                   # Use emacs keybindings
 
