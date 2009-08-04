@@ -46,6 +46,7 @@ set showcmd                      " Show partial command / info about visual sele
 set background=dark              " I use a black background
 set tabpagemax=20                " Maximum number of tabs opened by -p
 
+set t_Co=256                     " 256 colors
 colorscheme wombat256
 
 " Backup locations
