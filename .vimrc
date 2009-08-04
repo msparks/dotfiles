@@ -243,16 +243,30 @@ if has("eval")
   endw
 
   " Fix arrow keys
-  exec "set <C-Left>=\eOd"
-  exec "set <C-Right>=\eOc"
+  map <esc>Od <C-Left>
+  map! <esc>Od <C-Left>
+  map <esc>Oc <C-Right>
+  map! <esc>Oc <C-Right>
   map <esc>Oa <C-Up>
   map! <esc>Oa <C-Up>
   map <esc>Ob <C-Down>
   map! <esc>Ob <C-Down>
+
+  map <esc>OD <Left>
+  map! <esc>OD <Left>
+  map <esc>[D <Left>
+  map! <esc>[D <Left>
+
+  map <esc>OC <Right>
+  map! <esc>OC <Right>
+  map <esc>[C <Right>
+  map! <esc>[C <Right>
+
   map <esc>OA <Up>
   map! <esc>OA <Up>
   map <esc>[A <Up>
   map! <esc>[A <Up>
+
   map <esc>OB <Down>
   map! <esc>OB <Down>
   map <esc>[B <Down>
