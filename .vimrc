@@ -46,6 +46,8 @@ set showcmd                      " Show partial command / info about visual sele
 set background=dark              " I use a black background
 set tabpagemax=20                " Maximum number of tabs opened by -p
 
+colorscheme wombat256
+
 " Backup locations
 set backup
 set backupdir=~/.vim/backup
