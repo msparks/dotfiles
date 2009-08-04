@@ -245,10 +245,18 @@ if has("eval")
   " Fix arrow keys
   exec "set <C-Left>=\eOd"
   exec "set <C-Right>=\eOc"
-  imap <esc>Oa <C-Up>
-  imap <esc>Ob <C-Down>
+  map <esc>Oa <C-Up>
+  map! <esc>Oa <C-Up>
+  map <esc>Ob <C-Down>
+  map! <esc>Ob <C-Down>
   map <esc>OA <Up>
+  map! <esc>OA <Up>
+  map <esc>[A <Up>
+  map! <esc>[A <Up>
+  map <esc>OB <Down>
   map! <esc>OB <Down>
+  map <esc>[B <Down>
+  map! <esc>[B <Down>
 
   map <esc><Space> <M-Space>
   map! <esc><Space> <M-Space>
