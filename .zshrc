@@ -2,7 +2,7 @@
 # Matt Sparks
 # quadpoint.org
 #
-# Considerable zsh-fu from compnerd, jdong, and Mako
+# Considerable zsh-fu from compnerd, jdong, Mako, and majnematic.
 
 # History variables
 HISTSIZE=1000
@@ -29,7 +29,6 @@ setopt   AUTO_PUSHD          # cd pushes dir on to dir stack
 unsetopt NOMATCH             # no error if glob fails to expand (scp fix)
 unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 stty -ixon -ixoff            # really, no flow control.
-stty erase ^?
 
 bindkey -e                   # Use emacs keybindings
 
@@ -208,30 +207,68 @@ fi
 
 # Keybindings
 case $TERM in
-  linux|screen)
-    bindkey "^[[2~" yank                 # Insert
-    bindkey "^[[3~" delete-char          # Delete
-    bindkey "^[[5~" up-line-or-history   # Page Up
-    bindkey "^[[6~" down-line-or-history # Page Down
-    bindkey "^[[1~" beginning-of-line    # Home
-    bindkey "^[[4~" end-of-line          # End
-    bindkey "^[e" expand-cmd-path        # Meta+E
-    bindkey "^[[A" up-line-or-search
-    bindkey "^[[B" down-line-or-search
-    bindkey " " magic-space
+  screen|xterm*|putty*)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+    bindkey '\eOH' beginning-of-line
+    bindkey '\eOF' end-of-line
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+    bindkey '\e[7~' beginning-of-line
+    bindkey '\e[8~' end-of-line
+    bindkey '\e[3~' delete-char
+    bindkey '\e[1;5C' emacs-forward-word
+    bindkey '\e[1;5D' emacs-backward-word
+    bindkey '\e[5C' emacs-forward-word
+    bindkey '\e[5D' emacs-backward-word
+    bindkey '\eOC' emacs-forward-word
+    bindkey '\eOD' emacs-backward-word
+    bindkey '\eOc' emacs-forward-word
+    bindkey '\eOd' emacs-backward-word
+    bindkey '\e[c' emacs-forward-word
+    bindkey '\e[d' emacs-backward-word
   ;;
-
-  *xterm*|rxvt|(dt|k|a|E)term)
-    bindkey "^[[2~" yank                 # Insert
-    bindkey "^[[3~" delete-char          # Delete
-    bindkey "^[[5~" up-line-or-history   # Page Up
-    bindkey "^[[6~" down-line-or-history # Page Down
-    bindkey "^[[7~" beginning-of-line    # Home
-    bindkey "^[[8~" end-of-line          # End
-    bindkey "^[e" expand-cmd-path        # Meta+E
-    bindkey "^[[A" up-line-or-search
-    bindkey "^[[B" down-line-or-search
-    bindkey " " magic-space
+  mlterm|kterm)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+    bindkey '\e[1;5C' emacs-forward-word
+    bindkey '\e[1;5D' emacs-backward-word
+    bindkey '\e[3~' delete-char
+  ;;
+  linux|vt100)
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+    bindkey '\e[3~' delete-char
+  ;;
+  *rxvt*|Eterm|aterm)
+    bindkey '\e[c' emacs-forward-word
+    bindkey '\e[d' emacs-backward-word
+    bindkey '\eOc' emacs-forward-word
+    bindkey '\eOd' emacs-backward-word
+    bindkey '\e[3~' delete-char
+    bindkey '\e[7~' beginning-of-line
+    bindkey '\e[8~' end-of-line
+  ;;
+  cons*)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+    bindkey '^?' delete-char
+  ;;
+  interix)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[U' end-of-line
+    bindkey '^?' delete-char
+  ;;
+  sun*)
+    bindkey '\e[214z' beginning-of-line
+    bindkey '\e[220z' end-of-line
+    bindkey '^?' delete-char
+  ;;
+  cygwin*)
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
   ;;
 esac
 
