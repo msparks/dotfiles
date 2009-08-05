@@ -288,7 +288,8 @@ export MANPATH="$MANPATH:/opt/local/share/man"
 
 # Set up vim for 256 colors if we might have support for it
 #   This is necessary because screen fails.
-if [[ $TERM == "xterm-256color" ||
+if [[ $TERM == "xterm" ||
+      $TERM == "xterm-256color" ||
       $TERM == "screen-bce" ||
       $TERM == "screen" ]]; then
   alias vim='vim -T xterm-256color'
