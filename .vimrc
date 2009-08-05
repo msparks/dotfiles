@@ -161,20 +161,12 @@ endif
 
 " Show trailing whitespace visually
 " Shamelessly stolen from Ciaran McCreesh <ciaranm@gentoo.org>
-if (&termencoding == "utf-8") || has("gui_running")
-  if v:version >= 700
-    set list listchars=tab:»·,trail:·,extends:?,nbsp:?
-  else
-    set list listchars=tab:»·,trail:·,extends:?
-  endif
+if v:version >= 700
+  set list listchars=tab:>-,trail:.,extends:>,nbsp:_
 else
-  if v:version >= 700
-    set list listchars=tab:>-,trail:.,extends:>,nbsp:_
-  else
-    set list listchars=tab:>-,trail:.,extends:>
-  endif
+  set list listchars=tab:>-,trail:.,extends:>
 endif
-highlight SpecialKey ctermbg=Yellow guibg=Yellow ctermfg=DarkYellow
+highlight SpecialKey ctermbg=DarkGray ctermfg=DarkGray
 autocmd FileType mail :set nolist
 autocmd FileType mail :highlight SpecialKey NONE
 autocmd FileType mail :set nohls
@@ -190,7 +182,7 @@ if has("gui")
   set guioptions-=R
 endif
 
-" Link the imports in JAVA sources
+" Link the imports in Java sources
 if has("autocmd")
   autocmd BufRead *.java set include=^#\s*import
   autocmd BufRead *.java set includeexpr=substitute(v:fname,'\\.','/','g')
