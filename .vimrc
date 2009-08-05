@@ -44,6 +44,7 @@ set cmdheight=2                  " Show two lines for command history
 set showcmd                      " Show partial command / info about visual selection
 set background=dark              " I use a black background
 set tabpagemax=20                " Maximum number of tabs opened by -p
+set number                       " Line numbers
 
 set t_Co=256                     " 256 colors
 colorscheme wombat256
@@ -54,16 +55,11 @@ set backupdir=~/.vim/backup
 set directory=~/.vim/temp
 
 set title                        " Set a title on the terminal
-set laststatus=2                 " Always display the status line
 set shortmess=atI                " Enable short messages (press a key is annoying)
 
 " Customize the statusline
 set statusline=(%n)\ %F%m%r%h%w\ (%{&ff},\ %Y)\ (%03l:%03v\ [0x%02B])%=(%p%%/%L)
 set laststatus=2                 " Always show the status line
-
-" Line numbers
-set number                       " Display line numbers
-highlight LineNr ctermfg=DarkGray
 
 let perl_extended_vars=1         " highlight advanced perl vars inside strings
 
@@ -99,6 +95,11 @@ endif
 
 if has("syntax")
   syntax on                      " Enable syntax highlighting
+endif
+
+" Fix line number color if we don't have 256 colors
+if (&t_Co != 256)
+  highlight LineNr ctermfg=DarkGray
 endif
 
 if has("eval")
