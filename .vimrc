@@ -58,7 +58,7 @@ set title                        " Set a title on the terminal
 set shortmess=atI                " Enable short messages (press a key is annoying)
 
 " Customize the statusline
-set statusline=(%n)\ %F%m%r%h%w\ (%{&ff},\ %Y)\ (%03l:%03v\ [0x%02B])%=(%p%%/%L)
+set statusline=(%n)\ %F%m%r%h%w\ (%{&ff}%(\ %y%))\ (%03l:%03v\ [0x%02B])%=(%p%%/%L)
 set laststatus=2                 " Always show the status line
 
 let perl_extended_vars=1         " highlight advanced perl vars inside strings
