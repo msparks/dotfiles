@@ -50,9 +50,9 @@ endfunction
 set tabline=%!MyTabLine()
 set showtabline=1  " 2=always
 
-hi! TabLineNum cterm=underline term=underline ctermfg=magenta
-hi! TabLine cterm=underline term=underline
-hi! TabLineFill cterm=underline term=underline
+hi! TabLineFill ctermbg=none cterm=underline term=underline
+hi! TabLineNum ctermfg=magenta cterm=underline term=underline
+hi! TabLine ctermbg=none cterm=underline term=underline
 
-hi! TabLineNumSel ctermfg=magenta cterm=underline,bold
-hi! TabLineSel cterm=bold,underline
+hi! TabLineNumSel ctermfg=magenta cterm=underline term=underline
+hi! TabLineSel ctermfg=magenta cterm=underline term=underline

@@ -61,7 +61,7 @@ set shortmess=atI                " Enable short messages (press a key is annoyin
 " Customize the statusline
 highlight User1 ctermfg=White ctermbg=Blue cterm=reverse
 highlight User2 ctermfg=White ctermbg=Magenta cterm=bold,reverse
-set statusline=%2*%2n%*:%1*%F%*%m%r%h%w\ [%{&ff}]\ %y\ [asc:%03b\ hex:%02B]\ [l:%03l\ c:%03v]\ \ [%p%%/%L]
+set statusline=(%n)\ %F%*%m%r%h%w\ [%{&ff}]\ %y\ [asc:%03b\ hex:%02B]\ [l:%03l\ c:%03v]\ \ [%p%%/%L]
 set laststatus=2                 " Always show the status line
 
 " Line numbers
@@ -95,7 +95,7 @@ if has("folding")
     endfun
 
     if has("autocmd")
-      autocmd BufEnter * :call <SID>WideFold()
+      "autocmd BufEnter * :call <SID>WideFold()
     endif
   endif
 endif
