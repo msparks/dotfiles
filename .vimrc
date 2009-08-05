@@ -1,5 +1,4 @@
 " ~/.vimrc
-" $Id$
 "
 " Like many .vimrc files, a lot of what is below was copied from other .vimrcs
 " and modified to meet my specifications. Significant features were taken from
@@ -59,9 +58,7 @@ set laststatus=2                 " Always display the status line
 set shortmess=atI                " Enable short messages (press a key is annoying)
 
 " Customize the statusline
-highlight User1 ctermfg=White ctermbg=Blue cterm=reverse
-highlight User2 ctermfg=White ctermbg=Magenta cterm=bold,reverse
-set statusline=(%n)\ %F%*%m%r%h%w\ [%{&ff}]\ %y\ [asc:%03b\ hex:%02B]\ [l:%03l\ c:%03v]\ \ [%p%%/%L]
+set statusline=(%n)\ %F%m%r%h%w\ (%{&ff},\ %Y)\ (%03l:%03v\ [0x%02B])%=(%p%%/%L)
 set laststatus=2                 " Always show the status line
 
 " Line numbers
@@ -136,7 +133,7 @@ autocmd FileType text :set nocindent | set nosmarttab
 highlight LongLines ctermfg=Red
 au BufEnter *.py,*.c,*.cpp,*.cc,*.java,*.h,*.pl,*.php exec 'match LongLines /\%>'.&textwidth.'v.\+/'
 
-" Turn off search hilite when idle
+" Turn off search highlight when idle
 if has("autocmd")
    autocmd CursorHold * nohls | redraw
 endif
