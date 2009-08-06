@@ -67,6 +67,11 @@ if (&term != "screen" && &term != "screen-bce")
   set mouse=a                    " Use mouse everywhere
 endif
 
+" selectively enable 256 colors
+if (&term == "screen" || &term == "screen-bce" || &term == "xterm" || &term == "xterm-256color")
+  set t_Co=256
+endif
+
 if (v:version >= 700)
   set nospell                    " Disable spell checking by default
   set spelllang=en_us            " Spelling check language
