@@ -292,6 +292,8 @@ if [[ $TERM == "xterm" ||
       $TERM == "xterm-256color" ||
       $TERM == "screen-bce" ||
       $TERM == "screen" ]]; then
+  export EDITOR="`which vim` -T xterm-256color"
+  export FCEDIT=$EDITOR
   alias vim='vim -T xterm-256color'
 fi
 
