@@ -286,15 +286,6 @@ export LESS="-R -M --shift 5"
 export LESSOPEN="|lesspipe.sh %s"
 export MANPATH="$MANPATH:/opt/local/share/man"
 
-# Set up vim for 256 colors if we might have support for it
-#   This is necessary because screen fails.
-if [[ $TERM == "xterm" ||
-      $TERM == "xterm-256color" ||
-      $TERM == "screen-bce" ||
-      $TERM == "screen" ]]; then
-  alias vim='vim -T xterm-256color'
-fi
-
 # Watch settings
 watch=()                                     # watch for login/logout events
 LOGCHECK=30                                  # seconds between checks
