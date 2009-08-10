@@ -166,7 +166,7 @@ if v:version >= 700
 else
   set list listchars=tab:>-,trail:.,extends:>
 endif
-highlight SpecialKey ctermbg=DarkGray ctermfg=DarkGray
+highlight SpecialKey ctermbg=Gray ctermfg=Gray
 autocmd FileType mail :set nolist
 autocmd FileType mail :highlight SpecialKey NONE
 autocmd FileType mail :set nohls
