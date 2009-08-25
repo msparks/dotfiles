@@ -212,11 +212,18 @@ case $TERM in
     bindkey '\e[F' end-of-line
     bindkey '\eOH' beginning-of-line
     bindkey '\eOF' end-of-line
-    bindkey '\e[1~' beginning-of-line
-    bindkey '\e[4~' end-of-line
+    bindkey '\e[1~' beginning-of-line      # Home
+    bindkey '\e[2~' yank                   # Insert
+    bindkey '\e[3~' delete-char            # Delete
+    bindkey '\e[4~' end-of-line            # End
+    bindkey '\e[5~' up-line-or-history     # Page Up
+    bindkey '\e[6~' down-line-or-history   # Page Down
     bindkey '\e[7~' beginning-of-line
     bindkey '\e[8~' end-of-line
-    bindkey '\e[3~' delete-char
+    bindkey '\e[A' up-line-or-search       # history search up
+    bindkey '\e[B' down-line-or-search     # history search down
+    bindkey '\ee' expand-cmd-path
+    bindkey ' ' magic-space
     bindkey '\e[1;5C' emacs-forward-word
     bindkey '\e[1;5D' emacs-backward-word
     bindkey '\e[5C' emacs-forward-word
