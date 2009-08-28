@@ -1,23 +1,25 @@
 [user]
-    name = Matt Sparks
-    email = ms@quadpoint.org
+  name = Matt Sparks
+  email = ms@quadpoint.org
 
 [alias]
-    ci = commit -a
-    co = checkout
-    st = status -a
-    lg = log --name-status
-    praise = blame
+  ci = commit -a
+  co = checkout
+  st = status -a
+  lg = log --name-status
+  praise = blame
 
 [apply]
-    whitespace = strip
+  whitespace = strip
 
 [diff]
-    color = auto
-    rename = copy
+  renames = copy
 
-[pager]
-    color = true
+[rebase]
+  stat = true
 
-[status]
-    color = auto
+[color]
+  branch = true
+  diff = true
+  interactive = true
+  status = true
