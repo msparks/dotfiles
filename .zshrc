@@ -198,7 +198,9 @@ alias rm='nocorrect rm -i'
 alias mkdir='nocorrect mkdir'
 
 # reverse-sorted du with nice output
-alias sdu="du -b | sort -rn | perl -ple 's|^(\d+)\s*(.*)$|sprintf qq(%9.2fM  \$2),(\$1/1024/1024)|e' | less"
+sdu () {
+  du -sb $* | sort -rn | perl -ple 's|^(\d+)\s*(.*)$|sprintf qq(%9.2fM  $2),($1/1024/1024)|e' | less
+}
 
 # Color diffing
 if which colordiff >&/dev/null; then
