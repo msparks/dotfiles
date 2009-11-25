@@ -173,6 +173,10 @@ case `uname -s` in
     if which gfind >&/dev/null; then
       alias find="gfind"
     fi
+
+    if which gseq >&/dev/null; then
+      alias seq="gseq"
+    fi
   ;;
 
   *)
