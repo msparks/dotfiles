@@ -30,6 +30,11 @@ unsetopt NOMATCH             # no error if glob fails to expand (scp fix)
 unsetopt FLOW_CONTROL        # turn off output flow control (so ^S/^Q work)
 stty -ixon -ixoff            # really, no flow control.
 
+autoload colors
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+  colors
+fi
+
 autoload -U compinit; compinit -d "${HOME}/.zsh/.zcompdump"
 autoload -U age
 autoload -U zmv
