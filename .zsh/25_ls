@@ -1,0 +1,8 @@
+# Colors for lists
+if which dircolors >&/dev/null; then
+  if [[ -e "${zdotdir}/.dircolors" ]]; then
+    eval `dircolors -b $zdotdir/.dircolors`
+  else
+    eval `dircolors -b`
+  fi
+fi

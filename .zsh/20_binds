@@ -1,0 +1,83 @@
+# Keybindings
+
+bindkey -e  # Use emacs keybindings
+
+case $TERM in
+  screen|xterm*|putty*)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+    bindkey '\eOH' beginning-of-line
+    bindkey '\eOF' end-of-line
+    bindkey '\e[1~' beginning-of-line      # Home
+    bindkey '\e[2~' yank                   # Insert
+    bindkey '\e[3~' delete-char            # Delete
+    bindkey '\e[4~' end-of-line            # End
+    bindkey '\e[5~' up-line-or-history     # Page Up
+    bindkey '\e[6~' down-line-or-history   # Page Down
+    bindkey '\e[7~' beginning-of-line
+    bindkey '\e[8~' end-of-line
+    bindkey '\e[A' up-line-or-search       # history search up
+    bindkey '\e[B' down-line-or-search     # history search down
+    bindkey '\ee' expand-cmd-path
+    bindkey ' ' magic-space
+    bindkey '\e[1;5C' emacs-forward-word
+    bindkey '\e[1;5D' emacs-backward-word
+    bindkey '\e[5C' emacs-forward-word
+    bindkey '\e[5D' emacs-backward-word
+    bindkey '\eOC' emacs-forward-word
+    bindkey '\eOD' emacs-backward-word
+    bindkey '\eOc' emacs-forward-word
+    bindkey '\eOd' emacs-backward-word
+    bindkey '\e[c' emacs-forward-word
+    bindkey '\e[d' emacs-backward-word
+  ;;
+  mlterm|kterm)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+    bindkey '\e[1;5C' emacs-forward-word
+    bindkey '\e[1;5D' emacs-backward-word
+    bindkey '\e[3~' delete-char
+  ;;
+  linux|vt100)
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+    bindkey '\e[3~' delete-char
+  ;;
+  *rxvt*|Eterm|aterm)
+    bindkey '\e[c' emacs-forward-word
+    bindkey '\e[d' emacs-backward-word
+    bindkey '\eOc' emacs-forward-word
+    bindkey '\eOd' emacs-backward-word
+    bindkey '\e[3~' delete-char
+    bindkey '\e[7~' beginning-of-line
+    bindkey '\e[8~' end-of-line
+  ;;
+  cons*)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[F' end-of-line
+    bindkey '^?' delete-char
+  ;;
+  interix)
+    bindkey '\e[H' beginning-of-line
+    bindkey '\e[U' end-of-line
+    bindkey '^?' delete-char
+  ;;
+  sun*)
+    bindkey '\e[214z' beginning-of-line
+    bindkey '\e[220z' end-of-line
+    bindkey '^?' delete-char
+  ;;
+  cygwin*)
+    bindkey '\e[1~' beginning-of-line
+    bindkey '\e[4~' end-of-line
+  ;;
+esac
+
+# For F keys
+bindkey "^[[13~" digit-argument
+bindkey "^[[14~" digit-argument
+bindkey "^[[15~" digit-argument
+bindkey "^[[16~" digit-argument
+bindkey "^[[17~" digit-argument
