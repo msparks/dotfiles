@@ -1,7 +1,15 @@
 # Set up (Gentoo-style) prompt
 setopt prompt_subst
-if [[ $EUID == "0" ]]; then
-  PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ `git-prompt`%(?.%{\e[01;34m%}.%{\e[01;31m%})%(!..)%# %{\e[00m%}'
+if [[ $HOME[0,5] == "/afs/" ]]; then
+  if [[ $EUID == "0" ]]; then
+    PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ %(?.%{\e[01;34m%}.%{\e[01;31m%})%(!..)%# %{\e[00m%}'
+  else
+    PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ %(?.%{\e[01;34m%}.%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
+  fi
 else
-  PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ `git-prompt`%(?.%{\e[01;34m%}.%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
+  if [[ $EUID == "0" ]]; then
+    PROMPT=$'%{\e[01;31m%}%m %{\e[01;34m%}%~ `git-prompt`%(?.%{\e[01;34m%}.%{\e[01;31m%})%(!..)%# %{\e[00m%}'
+  else
+    PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%~ `git-prompt`%(?.%{\e[01;34m%}.%{\e[01;31m%})%(!.#.)%# %{\e[00m%}'
+  fi
 fi
