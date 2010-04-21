@@ -5,7 +5,7 @@
 [alias]
   ci = commit -a
   co = checkout
-  st = status -a
+  st = status
   lg = log --name-status
   praise = blame
 
