@@ -23,7 +23,9 @@
  '(swbuff-status-window-layout (quote adjust))
  '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
  '(tool-bar-mode t)
- '(uniquify-buffer-name-style nil nil (uniquify)))
+ '(uniquify-buffer-name-style nil nil (uniquify))
+ '(xterm-mouse-mode t)
+)
 
 ;;
 ;; Wombat theme ported from Vim
