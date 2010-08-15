@@ -69,8 +69,8 @@
 
 (require 'tabbar)
 (tabbar-mode 1)
-(define-key global-map [(alt j)] 'tabbar-backward)
-(define-key global-map [(alt k)] 'tabbar-forward)
+(global-set-key (kbd "M-j") 'tabbar-backward)
+(global-set-key (kbd "M-k") 'tabbar-forward)
 
 (require 'smooth-scrolling)
 
