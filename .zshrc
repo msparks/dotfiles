@@ -55,7 +55,7 @@ alias rm='nocorrect rm -i'
 alias mkdir='nocorrect mkdir'
 
 # Editor preferences
-alias emacs='TERM=xterm-256color emacs -nw'
+alias emacs='emacs -nw'
 export EDITOR=`which vim`
 export FCEDIT=`which vim`
 
