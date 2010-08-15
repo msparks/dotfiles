@@ -77,3 +77,6 @@ XTerm*visualBell: true
 XTerm*geometry: 90x40
 XTerm*utf8: 1
 XTerm*locale: true
+
+! needs 'ncurses-term' package in Debian
+XTerm*termName: xterm-256color
