@@ -54,6 +54,11 @@ alias mv='nocorrect mv'
 alias rm='nocorrect rm -i'
 alias mkdir='nocorrect mkdir'
 
+# Editor preferences
+alias emacs='TERM=xterm-256color emacs -nw'
+export EDITOR=`which vim`
+export FCEDIT=`which vim`
+
 # Load modules
 if [[ -d "${HOME}/.zsh" ]] ; then
   for file in "${HOME}"/.zsh/*(N.x:t) ; do
