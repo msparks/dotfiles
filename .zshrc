@@ -5,9 +5,9 @@
 # Considerable zsh-fu from compnerd, jdong, Mako, and majnematic.
 
 # History variables
-HISTSIZE=1000
+HISTSIZE=5000
 HISTFILE=~/.zsh/.history     # history file name
-SAVEHIST=1000                # lines of history
+SAVEHIST=5000                # lines of history
 
 # Set options
 setopt   CORRECT             # correct misspelled commands
