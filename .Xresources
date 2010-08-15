@@ -18,8 +18,8 @@ URxvt*color15: #ffffff
 
 URxvt*colorBDMode: true
 URxvt*colorBD: #ffffff
-URxvt*background:black
-URxvt*foreground:#A8A8A8
+URxvt*background: black
+URxvt*foreground: #A8A8A8
 URxvt*cursorColor: yellow
 
 URxvt*saveLines: 1000
@@ -38,42 +38,42 @@ URxvt*transparentScrollbar: true
 URxvt*hideButtons: true
 URxvt*transparentMenubar: true
 
-! default: `"'&()*,;<=>?@[]{|}
-! remove: &,;<=>?@
-URxvt*cutchars: `"'()*<>[]{|}
-
 URxvt*font: 6x13
 URxvt*boldFont: 6x13
 
 
-! UXTerm
-UXTerm*color0:  #000000
-UXTerm*color1:  #cc0000
-UXTerm*color2:  #00cc00
-UXTerm*color3:  #cccc00
-UXTerm*color4:  #0000cc
-UXTerm*color5:  #cc00cc
-UXTerm*color6:  #00cccc
-UXTerm*color7:  #aaaaaa
-UXTerm*color8:  #333333
-UXTerm*color9:  #ff0000
-UXTerm*color10: #00ff00
-UXTerm*color11: #ffff00
-UXTerm*color12: #0099ff
-UXTerm*color13: #ff00ff
-UXTerm*color14: #00ffff
-UXTerm*color15: #ffffff
+! XTerm
+XTerm*color0:  #000000
+XTerm*color1:  #cc0000
+XTerm*color2:  #00cc00
+XTerm*color3:  #cccc00
+XTerm*color4:  #0000cc
+XTerm*color5:  #cc00cc
+XTerm*color6:  #00cccc
+XTerm*color7:  #aaaaaa
+XTerm*color8:  #333333
+XTerm*color9:  #ff0000
+XTerm*color10: #00ff00
+XTerm*color11: #ffff00
+XTerm*color12: #0099ff
+XTerm*color13: #ff00ff
+XTerm*color14: #00ffff
+XTerm*color15: #ffffff
 
-UXTerm*colorBDMode: true
-UXTerm*colorBD: white
-UXTerm*background: black
-UXTerm*foreground: #A8A8A8
-UXTerm*cursorColor: yellow
+!XTerm*colorBDMode: 1
+!XTerm*colorBD: white
+XTerm*background: black
+XTerm*foreground: #A8A8A8
+XTerm*cursorColor: yellow
 
-UXTerm*font: 6x13
-UXTerm*boldFont: 6x13
+XTerm*font: 6x13
+XTerm*boldFont: 6x13
 
-UXTerm*saveLines: 1000
-UXTerm*eightBitInput: false
-UXTerm*charClass: 33:48,37-38:48,44-47:48,59-64:48
-UXTerm*visualBell: true
+XTerm*saveLines: 10000
+XTerm*eightBitInput: false
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*visualBell: true
+
+XTerm*geometry: 90x40
+XTerm*utf8: 1
+XTerm*locale: true
