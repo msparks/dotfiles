@@ -14,6 +14,7 @@
  '(global-font-lock-mode t nil (font-lock))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(indent-tabs-mode nil)
+ '(inhibit-splash-screen t)
  '(large-file-warning-threshold nil)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
