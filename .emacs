@@ -14,7 +14,6 @@
  '(global-font-lock-mode t nil (font-lock))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(indent-tabs-mode nil)
- '(inhibit-splash-screen t)
  '(large-file-warning-threshold nil)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
@@ -75,9 +74,44 @@
 (global-linum-mode)
 
 (require 'tabbar)
-(tabbar-mode 1)
+(tabbar-mode)
 (global-set-key (kbd "M-p") 'tabbar-backward)
 (global-set-key (kbd "M-n") 'tabbar-forward)
+
+(setq tabbar-buffer-groups-function
+      (lambda ()
+        (list "All Buffers")))
+
+(setq tabbar-buffer-list-function
+      (lambda ()
+        (remove-if
+         (lambda(buffer)
+           (find (aref (buffer-name buffer) 0) " *"))
+         (buffer-list))))
+
+;; Add a buffer modification state indicator in the tab label,
+;; and place a space around the label to make it look less crowded.
+(defadvice tabbar-buffer-tab-label (after fixup activate)
+  (setq ad-return-value
+        (if (and (buffer-modified-p (tabbar-tab-value tab))
+                 (buffer-file-name (tabbar-tab-value tab)))
+            (concat " " (concat ad-return-value "[+] "))
+          (concat " " (concat ad-return-value " ")))))
+;; called each time the modification state of the buffer changed
+(defun ztl-modification-state-change ()
+  (tabbar-set-template tabbar-current-tabset nil)
+  (tabbar-display-update))
+;; first-change-hook is called BEFORE the change is made
+(defun ztl-on-buffer-modification ()
+  (set-buffer-modified-p t)
+  (ztl-modification-state-change))
+(add-hook 'after-save-hook 'ztl-modification-state-change)
+;; this doesn't work for revert
+;;(add-hook 'after-revert-hook 'ztl-modification-state-change)
+(add-hook 'first-change-hook 'ztl-on-buffer-modification)
+
+(setq tabbar-home-button (quote (("[Home]") "[x]")))
+(setq tabbar-separator (quote (" ")))
 
 (require 'smooth-scrolling)
 
@@ -106,6 +140,9 @@
 ;; Show column-number in the mode line
 (column-number-mode 1)
 
+;; Disable menu bar
+(menu-bar-mode -1)
+
 ;; fill columns
 (setq-default fill-column 79)
 
@@ -122,12 +159,14 @@
 (setq display-time-24hr-format t)
 (display-time)
 
+;; Disable splash screen
+(setq inhibit-splash-screen t)
+
 (add-hook 'sh-mode-hook
      (lambda ()
        (auto-fill-mode nil)))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ '(tabbar-default ((t (:background "#202020" :foreground "white"))))
+ '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
+ '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
  '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973")))))
