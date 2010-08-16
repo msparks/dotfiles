@@ -27,38 +27,42 @@
  '(xterm-mouse-mode t)
 )
 
-;;
-;; Wombat theme ported from Vim
-;;
-(set-background-color "#242424")
-(set-foreground-color "#d8d8d8")
-(set-cursor-color "#656565")
-(set-face-foreground 'font-lock-comment-face "#99968b")
-(set-face-italic-p 'font-lock-comment-face t)
-(set-face-foreground 'font-lock-doc-face "#99968b")
-(set-face-italic-p 'font-lock-doc-face t)
-(set-face-foreground 'font-lock-constant-face "#e5786d")
-(set-face-foreground 'font-lock-string-face "#95e454")
-(set-face-italic-p 'font-lock-string-face t)
-(set-face-foreground 'font-lock-variable-name-face "#cae682")
-(set-face-foreground 'font-lock-function-name-face "#cae682")
-(set-face-foreground 'font-lock-type-face "#cae682")
-(set-face-foreground 'font-lock-builtin-face "#8ac6f2")
-(set-face-foreground 'font-lock-keyword-face "#8ac6f2")
-(set-face-foreground 'font-lock-preprocessor-face "#e5786d")
-(set-face-foreground 'font-lock-negation-char-face "#e7f6da")
-(set-face-foreground 'link "#8ac6f2")
-(set-face-bold-p 'link t)
-(set-face-underline-p 'link t)
-(set-face-foreground 'show-paren-match "#f6f3e8")
-(set-face-background 'show-paren-match "#857b6f")
-(set-face-bold-p 'show-paren-match t)
-(set-face-foreground 'region "#f6f3e8")
-(set-face-background 'region "#444444")
-(set-face-foreground 'lazy-highlight "black")
-(set-face-background 'lazy-highlight "yellow")
-(set-face-background 'modeline "#505050")
-(set-face-foreground 'modeline "#f0f0f0")
+(require 'color-theme)
+(defun color-theme-wombat ()
+  (interactive)
+  (color-theme-install
+   '(color-theme-midnight
+     ((font . "fixed")
+      (width . 130)
+      (height . 50)
+      (background-color . "#202020")
+      (foreground-color . "#cccccc")
+      (background-mode . dark)
+      (mouse-color . "grey85")
+      (cursor-color . "grey85"))
+     (default ((t (nil))))
+     (font-lock-comment-face ((t (:italic t :foreground "#c0bc6c"))))
+     (font-lock-string-face ((t (:foreground "#95e454"))))
+     (font-lock-keyword-face ((t (:foreground "#87afff"))))
+     (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
+     (font-lock-constant-face ((t (:foreground "#bbbbbb"))))
+     (font-lock-type-face ((t (:foreground "#bbbbbb"))))
+     (font-lock-variable-name-face ((t (:foreground "#caeb82"))))
+     (font-lock-function-name-face ((t (:foreground "#caeb82"))))
+     (font-lock-builtin-face ((t (:foreground "SkyBlue"))))
+     (modeline ((t (:foreground "#caeb82" :background "#444444"))))
+     (modeline-buffer-id ((t (:foreground "#87afff" :background "#222222"))))
+     (modeline-mousable ((t (:foreground "#f6f3e8" :background "#444444"))))
+     (highline-face ((t (:background "grey12"))))
+     (setnu-line-number-face ((t (:background "Grey15" :foreground "White" :bold t))))
+     (show-paren-match-face ((t (:background "grey30"))))
+     (region ((t (:background "grey30"))))
+     (highlight ((t (:background "blue"))))
+     (secondary-selection ((t (:background "navy"))))
+     (widget-field-face ((t (:background "navy"))))
+     (widget-single-line-field-face ((t (:background "royalblue")))))) )
+
+(color-theme-wombat)
 
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
@@ -72,14 +76,15 @@
 
 (require 'tabbar)
 (tabbar-mode 1)
-(global-set-key (kbd "M-j") 'tabbar-backward)
-(global-set-key (kbd "M-k") 'tabbar-forward)
+(global-set-key (kbd "M-p") 'tabbar-backward)
+(global-set-key (kbd "M-n") 'tabbar-forward)
 
 (require 'smooth-scrolling)
 
-(require 'whitespace)
-(global-whitespace-mode)
-(setq whitespace-style '(tabs trailing lines-tail empty))
+;; This causes massive CPU usage when scrolling with lots of colors
+;;(require 'whitespace)
+;;(global-whitespace-mode)
+;;(setq whitespace-style '(tabs trailing lines-tail empty))
 
 ;; set indent style to 'k&r' style for everything but java
 ;; http://en.wikipedia.org/wiki/Indent_style
@@ -113,9 +118,9 @@
 ;; Show region after marking
 (transient-mark-mode)
 
-;; To include .reminders as a shell mode
-(setq auto-mode-alist
-      (cons '(".reminders$" . shell-script-mode) auto-mode-alist))
+;; Display time
+(setq display-time-24hr-format t)
+(display-time)
 
 (add-hook 'sh-mode-hook
      (lambda ()
