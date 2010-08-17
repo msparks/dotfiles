@@ -17,6 +17,10 @@
  '(large-file-warning-threshold nil)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
+ ;; Scroll in small amounts with the mousewheel
+ '(mouse-wheel-scroll-amount '(2))
+ ;; Don't accelerate when scrolling faster
+ '(mouse-wheel-progressive-speed nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(swbuff-clear-delay 3)
@@ -54,7 +58,6 @@
      (modeline-buffer-id ((t (:foreground "#87afff" :background "#222222"))))
      (modeline-mousable ((t (:foreground "#f6f3e8" :background "#444444"))))
      (highline-face ((t (:background "grey12"))))
-     (trailing-whitespace ((t (:background "red" :foreground "red"))))
      (setnu-line-number-face ((t (:background "Grey15" :foreground "White" :bold t))))
      (show-paren-match-face ((t (:background "grey30"))))
      (region ((t (:background "grey30"))))
@@ -164,10 +167,45 @@
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
 
+;; Make bells less visible. The visible bell (terminal flash) is annoying.
+(setq ring-bell-function (lambda () (message "*beep*")))
+
+(defun font-lock-set-up-width-warning (width)
+  "In the current buffer, make text beyond column `width' appear in
+`font-lock-warning-face'."
+  (require 'font-lock)
+  (font-lock-mode 1)
+  (make-local-variable 'font-lock-keywords)
+  (font-lock-add-keywords
+   nil
+   `((,(format "^.\\{%d\\}\\(.+\\)" width) 1 font-lock-warning-face t))))
+
+(add-hook 'c-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'c++-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'java-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'python-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'text-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+
+;; Draw tabs with the same color as trailing whitespace
+(add-hook 'font-lock-mode-hook
+          (lambda ()
+            (font-lock-add-keywords
+             nil
+             '(("\t" 0 'trailing-whitespace prepend)))))
+
 (add-hook 'sh-mode-hook
      (lambda ()
        (auto-fill-mode nil)))
 (custom-set-faces
+ '(trailing-whitespace ((t (:background "#aaaaaa" :foreground "red"))))
+ '(font-lock-warning-face ((t (:background "purple"))))
  '(tabbar-default ((t (:background "#202020" :foreground "white"))))
  '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
  '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
