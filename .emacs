@@ -25,7 +25,6 @@
  '(show-trailing-whitespace t)
  '(swbuff-clear-delay 3)
  '(swbuff-status-window-layout (quote adjust))
- '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
  '(tool-bar-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
  '(xterm-mouse-mode t)
@@ -120,6 +119,9 @@
 
 (require 'smooth-scrolling)
 
+;; Coding style preferences
+(require 'google-coding-style)
+
 ;; This causes massive CPU usage when scrolling with lots of colors
 ;;(require 'whitespace)
 ;;(global-whitespace-mode)
@@ -148,11 +150,14 @@
 ;; Disable menu bar
 (menu-bar-mode -1)
 
-;; fill columns
+;; Fill columns
 (setq-default fill-column 79)
 
-;; fill mode for text mode by default
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; Fill mode for text mode by default
+;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; Fill mode by default for all major modes
+(setq-default auto-fill-function 'do-auto-fill)
 
 ;; Make Text mode the default mode for new buffers
 (setq default-major-mode 'text-mode)
