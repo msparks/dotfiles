@@ -1,6 +1,4 @@
 # Add to and unique-ify the path
-manpath=($manpath /opt/local/share/man)
 path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
 path=($path /opt/local/bin /opt/local/sbin)  # MacPorts paths
-typeset -U manpath
 typeset -U path
