@@ -218,6 +218,9 @@
 (setq matlab-indent-function t)
 (setq matlab-shell-command "matlab")
 
+;; Diff mode settings.
+(setq diff-default-read-only t)  ;; open diffs in RO mode
+
 ;; Draw tabs with the same color as trailing whitespace
 (add-hook 'font-lock-mode-hook
           (lambda ()
