@@ -44,6 +44,18 @@
       (mouse-color . "grey85")
       (cursor-color . "grey85"))
      (default ((t (nil))))
+     (diff-added ((t (:foreground "green"))))
+     (diff-context ((t nil)))
+     (diff-file-header ((((class color) (min-colors 88) (background dark))
+                         (:foreground "RoyalBlue1"))))
+     (diff-function ((t (:foreground "#00bbdd"))))
+     (diff-header ((((class color) (min-colors 88) (background dark)) (:foreground
+                                                                       "RoyalBlue1"))))
+     (diff-hunk-header ((t (:foreground "#fbde2d"))))
+     (diff-nonexistent ((t (:inherit diff-file-header :strike-through nil))))
+     (diff-refine-change ((((class color) (min-colors 88) (background dark))
+                           (:background "#182042"))))
+     (diff-removed ((t (:foreground "#de1923"))))
      (font-lock-comment-face ((t (:italic t :foreground "#c0bc6c"))))
      (font-lock-string-face ((t (:foreground "#95e454"))))
      (font-lock-keyword-face ((t (:foreground "#87afff"))))
@@ -197,6 +209,14 @@
           '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'text-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
+
+;; Matlab major mode.
+(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+(add-to-list
+ 'auto-mode-alist
+ '("\\.m$" . matlab-mode))
+(setq matlab-indent-function t)
+(setq matlab-shell-command "matlab")
 
 ;; Draw tabs with the same color as trailing whitespace
 (add-hook 'font-lock-mode-hook
