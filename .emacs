@@ -89,6 +89,10 @@
 (require 'linum)
 (global-linum-mode)
 
+;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
+;; to edit code written by evil people.
+(require 'smarttabs)
+
 (require 'tabbar)
 (tabbar-mode)
 (global-set-key (kbd "M-p") 'tabbar-backward)
