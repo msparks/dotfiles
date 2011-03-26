@@ -17,18 +17,16 @@
  '(large-file-warning-threshold nil)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
- ;; Scroll in small amounts with the mousewheel
- '(mouse-wheel-scroll-amount '(2))
- ;; Don't accelerate when scrolling faster
  '(mouse-wheel-progressive-speed nil)
+ '(mouse-wheel-scroll-amount (quote (2)))
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(swbuff-clear-delay 3)
  '(swbuff-status-window-layout (quote adjust))
+ '(tab-width 2)
  '(tool-bar-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
- '(xterm-mouse-mode t)
-)
+ '(xterm-mouse-mode t))
 
 (require 'color-theme)
 (defun color-theme-wombat ()
@@ -81,7 +79,6 @@
 
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
-  (setq tab-width 2)
   (setq c-basic-offset tab-width)
   (setq indent-tabs-mode nil))  ;; force only spaces for indentation
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
@@ -225,23 +222,31 @@
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
-;; cperl-mode is preferred to perl-mode
+;; cperl-mode is preferred to perl-mode.
 (defalias 'perl-mode 'cperl-mode)
 
-;; Draw tabs with the same color as trailing whitespace
+;; Define a new face for hard tabs.
+(defface hard-tabs-face
+  '((t (:foreground "gray30" :underline t))) "Used for hard tabs.")
+
+;; Draw hard tabs with the custom face.
 (add-hook 'font-lock-mode-hook
           (lambda ()
             (font-lock-add-keywords
              nil
-             '(("\t" 0 'trailing-whitespace prepend)))))
+             '(("\t" 0 'hard-tabs-face prepend)))))
 
 (add-hook 'sh-mode-hook
      (lambda ()
        (auto-fill-mode nil)))
 (custom-set-faces
- '(trailing-whitespace ((t (:background "#aaaaaa" :foreground "red"))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(font-lock-warning-face ((t (:background "purple"))))
+ '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973"))))
+ '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
  '(tabbar-default ((t (:background "#202020" :foreground "white"))))
  '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
- '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
- '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973")))))
+ '(trailing-whitespace ((t (:background "#aaaaaa")))))
