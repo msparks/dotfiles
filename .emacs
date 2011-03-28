@@ -198,18 +198,8 @@
    nil
    `((,(format "^.\\{%d\\}\\(.+\\)" width) 1 font-lock-warning-face t))))
 
-(add-hook 'c-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 80)))
-(add-hook 'c++-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 80)))
-(add-hook 'java-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 80)))
-(add-hook 'python-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 80)))
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 80)))
-(add-hook 'text-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 80)))
+;; cperl-mode is preferred to perl-mode.
+(defalias 'perl-mode 'cperl-mode)
 
 ;; Matlab major mode.
 (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
@@ -219,11 +209,25 @@
 (setq matlab-indent-function t)
 (setq matlab-shell-command "matlab")
 
+(add-hook 'c-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'c++-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'java-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'cperl-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'python-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'text-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'matlab-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
-
-;; cperl-mode is preferred to perl-mode.
-(defalias 'perl-mode 'cperl-mode)
 
 ;; Define a new face for hard tabs.
 (defface hard-tabs-face
