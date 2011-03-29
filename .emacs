@@ -13,6 +13,7 @@
  '(delete-old-versions t)
  '(global-font-lock-mode t nil (font-lock))
  '(gud-gdb-command-name "gdb --annotate=1")
+ '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
  '(indent-tabs-mode nil)
  '(large-file-warning-threshold nil)
  '(mouse-wheel-follow-mouse t)
@@ -79,8 +80,7 @@
 
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
-  (setq c-basic-offset tab-width)
-  (setq indent-tabs-mode nil))  ;; force only spaces for indentation
+  (setq c-basic-offset tab-width))
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 (require 'linum)
@@ -89,6 +89,23 @@
 ;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
 ;; to edit code written by evil people.
 (require 'smarttabs)
+
+;; Use guess-style.el to automatically figure out the indentation settings of
+;; the file we're editing. The customized guess-style-guesser-alist setting
+;; above determines what settings to discover.
+(require 'guess-style)
+(autoload 'guess-style-set-variable "guess-style" nil t)
+(autoload 'guess-style-guess-variable "guess-style")
+(autoload 'guess-style-guess-all "guess-style" nil t)
+(add-hook 'c-mode-hook 'guess-style-guess-all)
+(add-hook 'c++-mode-hook 'guess-style-guess-all)
+(add-hook 'java-mode-hook 'guess-style-guess-all)
+(add-hook 'cperl-mode-hook 'guess-style-guess-all)
+(add-hook 'python-mode-hook 'guess-style-guess-all)
+(add-hook 'emacs-lisp-mode-hook 'guess-style-guess-all)
+(add-hook 'text-mode-hook 'guess-style-guess-all)
+(add-hook 'matlab-mode-hook 'guess-style-guess-all)
+(global-guess-style-info-mode 1)
 
 (require 'tabbar)
 (tabbar-mode)
