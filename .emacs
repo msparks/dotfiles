@@ -243,6 +243,9 @@
 (add-hook 'matlab-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
 
+;; git-commit major mode.
+(require 'git-commit)
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
