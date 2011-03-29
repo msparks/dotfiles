@@ -58,8 +58,8 @@ alias mkdir='nocorrect mkdir'
 
 # Editor preferences
 alias emacs='emacs -nw'
-export EDITOR=`which vim`
-export FCEDIT=`which vim`
+export EDITOR='emacs'
+export FCEDIT='emacs'
 
 # Load modules
 if [[ -d "${HOME}/.zsh" ]] ; then
