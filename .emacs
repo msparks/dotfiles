@@ -219,6 +219,8 @@
           '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'python-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'rst-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'emacs-lisp-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'text-mode-hook
@@ -236,6 +238,10 @@
 ;; CSS major mode.
 (autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
+
+;; reStructuredText major mode.
+(autoload 'rst-mode "rst" nil t)
+(add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
 
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
@@ -286,6 +292,8 @@
   ;; If there is more than one, they won't work right.
  '(font-lock-warning-face ((t (:background "purple"))))
  '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973"))))
+ '(rst-level-1-face ((t nil)) t)
+ '(rst-level-2-face ((t nil)) t)
  '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
  '(tabbar-default ((t (:background "#202020" :foreground "white"))))
  '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
