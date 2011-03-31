@@ -86,27 +86,6 @@
 (require 'linum)
 (global-linum-mode)
 
-;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
-;; to edit code written by evil people.
-(require 'smarttabs)
-
-;; Use guess-style.el to automatically figure out the indentation settings of
-;; the file we're editing. The customized guess-style-guesser-alist setting
-;; above determines what settings to discover.
-(require 'guess-style)
-(autoload 'guess-style-set-variable "guess-style" nil t)
-(autoload 'guess-style-guess-variable "guess-style")
-(autoload 'guess-style-guess-all "guess-style" nil t)
-(add-hook 'c-mode-hook 'guess-style-guess-all)
-(add-hook 'c++-mode-hook 'guess-style-guess-all)
-(add-hook 'java-mode-hook 'guess-style-guess-all)
-(add-hook 'cperl-mode-hook 'guess-style-guess-all)
-(add-hook 'python-mode-hook 'guess-style-guess-all)
-(add-hook 'emacs-lisp-mode-hook 'guess-style-guess-all)
-(add-hook 'text-mode-hook 'guess-style-guess-all)
-(add-hook 'matlab-mode-hook 'guess-style-guess-all)
-(global-guess-style-info-mode 1)
-
 (require 'tabbar)
 (tabbar-mode)
 (global-set-key (kbd "M-p") 'tabbar-backward)
@@ -250,8 +229,37 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;; CSS major mode.
+(autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
+(add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
+
+;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
+;; to edit code written by evil people.
+(require 'smarttabs)
+
+;; Use guess-style.el to automatically figure out the indentation settings of
+;; the file we're editing. The customized guess-style-guesser-alist setting
+;; above determines what settings to discover.
+(require 'guess-style)
+(autoload 'guess-style-set-variable "guess-style" nil t)
+(autoload 'guess-style-guess-variable "guess-style")
+(autoload 'guess-style-guess-all "guess-style" nil t)
+(add-hook 'c-mode-hook 'guess-style-guess-all)
+(add-hook 'c++-mode-hook 'guess-style-guess-all)
+(add-hook 'java-mode-hook 'guess-style-guess-all)
+(add-hook 'cperl-mode-hook 'guess-style-guess-all)
+(add-hook 'python-mode-hook 'guess-style-guess-all)
+(add-hook 'emacs-lisp-mode-hook 'guess-style-guess-all)
+(add-hook 'text-mode-hook 'guess-style-guess-all)
+(add-hook 'matlab-mode-hook 'guess-style-guess-all)
+(global-guess-style-info-mode 1)
+
+;; More indentation preferences.
+(add-hook 'css-mode-hook
+          '(lambda () (setq css-indent-offset tab-width)))
 
 ;; Define a new face for hard tabs.
 (defface hard-tabs-face
