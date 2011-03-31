@@ -209,7 +209,11 @@
           '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'c++-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'css-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'java-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 80)))
+(add-hook 'js2-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'cperl-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
