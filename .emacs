@@ -271,6 +271,9 @@
 (add-hook 'css-mode-hook
           '(lambda () (setq css-indent-offset tab-width)))
 
+;; Prefer a dark background.
+(setq frame-background-mode 'dark)
+
 ;; Define a new face for hard tabs.
 (defface hard-tabs-face
   '((t (:foreground "gray30" :underline t))) "Used for hard tabs.")
@@ -292,8 +295,6 @@
   ;; If there is more than one, they won't work right.
  '(font-lock-warning-face ((t (:background "purple"))))
  '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973"))))
- '(rst-level-1-face ((t nil)) t)
- '(rst-level-2-face ((t nil)) t)
  '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
  '(tabbar-default ((t (:background "#202020" :foreground "white"))))
  '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
