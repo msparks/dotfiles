@@ -246,6 +246,10 @@
 ;; git-commit major mode.
 (require 'git-commit)
 
+;; Javascript major mode.
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
