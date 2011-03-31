@@ -24,6 +24,7 @@
  '(show-trailing-whitespace t)
  '(swbuff-clear-delay 3)
  '(swbuff-status-window-layout (quote adjust))
+ '(tab-width 2)
  '(tool-bar-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
  '(xterm-mouse-mode t))

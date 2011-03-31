@@ -64,10 +64,6 @@
 
 ;; Python
 (smart-tabs-advice python-indent-line-1 python-indent)
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode t)
-            (setq tab-width (default-value 'tab-width))))
 
 ;; Ruby
 (smart-tabs-advice ruby-indent-line ruby-indent-level)
@@ -76,5 +72,15 @@
 ;; VHDL
 (smart-tabs-advice vhdl-indent-line vhdl-basic-offset)
 (setq vhdl-indent-tabs-mode t)
+
+;; Makefiles
+(add-hook 'makefile-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq tab-width 8)))
+(add-hook 'makefile-automake-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)
+            (setq tab-width 8)))
 
 (provide 'smarttabs)
