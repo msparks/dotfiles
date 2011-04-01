@@ -76,7 +76,7 @@
 ;; Makefiles
 (add-hook 'makefile-mode-hook
           (lambda ()
-            (setq indent-tabs-mode nil)
+            (setq indent-tabs-mode t)
             (setq tab-width 8)))
 (add-hook 'makefile-automake-mode-hook
           (lambda ()
