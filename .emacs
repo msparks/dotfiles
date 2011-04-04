@@ -243,6 +243,9 @@
 (autoload 'rst-mode "rst" nil t)
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
 
+;; Arduino code is C++.
+(add-to-list 'auto-mode-alist '("\\.pde$" . c++-mode))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
