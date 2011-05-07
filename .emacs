@@ -172,7 +172,7 @@
 (setq default-major-mode 'text-mode)
 
 ;; Show region after marking
-(transient-mark-mode)
+(setq-default transient-mark-mode t)
 
 ;; Display time
 (setq display-time-24hr-format t)
