@@ -1,11 +1,13 @@
 #!/bin/bash
-rsync -ruv .zsh* .vim* .gitconfig .screenrc .emacs* .ssh ~
+rsync -av .zsh* .vim* .gitconfig .screenrc .emacs* ~
+rsync -av .ssh/config ~/.ssh
 
 # vim stuff.
 mkdir -p ~/.vim/backup ~/.vim/temp
 
 # ssh stuff.
 mkdir -m 700 -p ~/.ssh/sockets/
+chmod 700 ~/.ssh/config
 touch ~/.ssh/known_hosts
 
 if [ `uname -s` == "Darwin" ]; then
