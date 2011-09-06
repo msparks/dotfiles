@@ -1,6 +1,6 @@
 # Environment variables
 export LESS="-R -M --shift 5"
-export GREP_OPTIONS='--color=auto -I -n'
+export GREP_OPTIONS='--color=auto -I'
 
 # Set up lesspipe if it's available
 if which lesspipe.sh >&/dev/null; then

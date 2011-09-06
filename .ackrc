@@ -1,0 +1,5 @@
+# Ignore case distinctions in PATTERN, only if PATTERN contains no upper case.
+--smart-case
+
+# Send output to less by default.
+--pager=less -R
