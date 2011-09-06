@@ -239,6 +239,10 @@
 (autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 
+;; Markdown major mode.
+(autoload 'markdown-mode "markdown-mode.el" "Mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+
 ;; reStructuredText major mode.
 (autoload 'rst-mode "rst" nil t)
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
