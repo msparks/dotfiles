@@ -1,5 +1,5 @@
 #!/bin/bash
-rsync -av .zsh* .vim* .gitconfig .screenrc .emacs* ~
+rsync -av .zsh* .vim* .gitconfig .gitignore_global .screenrc .emacs* ~
 rsync -av .ssh/config ~/.ssh
 
 # vim stuff.

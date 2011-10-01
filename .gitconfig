@@ -24,3 +24,6 @@
   diff = true
   interactive = true
   status = true
+
+[core]
+  excludesfile = ~/.gitignore_global
