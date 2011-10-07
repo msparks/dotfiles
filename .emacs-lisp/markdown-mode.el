@@ -1363,8 +1363,9 @@ it in the usual way."
     (define-key map "\C-c\C-ts" 'markdown-insert-section)
     ;; WikiLink Following
     (define-key map "\C-c\C-f" 'markdown-follow-wiki-link-at-point)
-    (define-key map "\M-n" 'markdown-next-wiki-link)
-    (define-key map "\M-p" 'markdown-previous-wiki-link)
+    ;; NOTE(ms): Disabled the following two on 2011-10-05.
+    ;;(define-key map "\M-n" 'markdown-next-wiki-link)
+    ;;(define-key map "\M-p" 'markdown-previous-wiki-link)
     ;; Indentation
     (define-key map "\C-m" 'markdown-enter-key)
     ;; Visibility cycling
