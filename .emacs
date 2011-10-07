@@ -178,6 +178,13 @@
 (setq display-time-24hr-format t)
 (display-time)
 
+;; Enable time-stamp updating on save.
+(setq
+ time-stamp-active t          ; do enable time-stamps
+ time-stamp-line-limit 10     ; check first 10 buffer lines for Time-stamp:
+ time-stamp-format "%04y-%02m-%02d %02H:%02M:%02S")  ; date format
+(add-hook 'write-file-hooks 'time-stamp)             ; update when saving
+
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
 
