@@ -1369,8 +1369,10 @@ it in the usual way."
     ;; Indentation
     (define-key map "\C-m" 'markdown-enter-key)
     ;; Visibility cycling
-    (define-key map (kbd "<tab>") 'markdown-cycle)
-    (define-key map (kbd "<S-iso-lefttab>") 'markdown-shifttab)
+    ;; NOTE(ms): These tab bindings were altered to work for emacs 22 on OS X
+    ;; and emacs 23 on Linux. 2011-10-24.
+    (define-key map (kbd "TAB") 'markdown-cycle)
+    (define-key map (kbd "<backtab>") 'markdown-shifttab)
     ;; Header navigation
     (define-key map (kbd "C-M-n") 'outline-next-visible-heading)
     (define-key map (kbd "C-M-p") 'outline-previous-visible-heading)
