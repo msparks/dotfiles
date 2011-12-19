@@ -91,6 +91,8 @@
 (global-set-key (kbd "M-p") 'tabbar-backward)
 (global-set-key (kbd "M-n") 'tabbar-forward)
 
+(global-set-key (kbd "C-c c") 'compile)
+
 (setq tabbar-buffer-groups-function
       (lambda ()
         (list "All Buffers")))
@@ -174,6 +176,9 @@
 ;; Show region after marking
 (setq-default transient-mark-mode t)
 
+;; Periodically reload buffers from disk.
+(global-auto-revert-mode)
+
 ;; Display time
 (setq display-time-24hr-format t)
 (display-time)
@@ -234,6 +239,32 @@
           '(lambda () (font-lock-set-up-width-warning 80)))
 (add-hook 'matlab-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
+
+;; Look for spelling mistakes in code comments and strings.
+(add-hook 'c-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'c++-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'css-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'java-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'js2-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'cperl-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'python-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'emacs-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+(add-hook 'matlab-mode-hook
+          '(lambda () (flyspell-prog-mode)))
+
+;; Look for spelling mistakes in all text.
+(add-hook 'text-mode-hook
+          '(lambda () (flyspell-mode)))
+(add-hook 'rst-mode-hook
+          '(lambda () (flyspell-mode)))
 
 ;; git-commit major mode.
 (require 'git-commit)
