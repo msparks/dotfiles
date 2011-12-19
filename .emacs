@@ -160,6 +160,20 @@
 ;; Save all backup file in this directory.
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
 
+;; Put autosave files (i.e., #foo#) in ~/.emacs_autosaves.
+(defvar autosave-dir (concat "~/.emacs_autosaves/"))
+(make-directory autosave-dir t)
+
+(defun auto-save-file-name-p (filename)
+  (string-match "^#.*#$" (file-name-nondirectory filename)))
+
+(defun make-auto-save-file-name ()
+  (concat autosave-dir
+          (if buffer-file-name
+              (concat "#" (file-name-nondirectory buffer-file-name) "#")
+            (expand-file-name
+             (concat "#%" (buffer-name) "#")))))
+
 ;; Show line-number in the mode line
 (line-number-mode 1)
 
