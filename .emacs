@@ -10,6 +10,8 @@
  '(case-fold-search t)
  '(current-language-environment "UTF-8")
  '(default-input-method "rfc1345")
+ '(deft-extension "md")
+ '(deft-text-mode (quote markdown-mode))
  '(delete-old-versions t)
  '(global-font-lock-mode t nil (font-lock))
  '(gud-gdb-command-name "gdb --annotate=1")
@@ -133,7 +135,10 @@
 
 (require 'smooth-scrolling)
 
-;; Coding style preferences
+;; Enable deft for note-taking.
+(require 'deft)
+
+;; Coding style preferences.
 (require 'google-coding-style)
 
 ;; This causes massive CPU usage when scrolling with lots of colors
