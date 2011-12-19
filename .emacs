@@ -17,7 +17,7 @@
  '(indent-tabs-mode nil)
  '(large-file-warning-threshold nil)
  '(mouse-wheel-follow-mouse t)
- '(mouse-wheel-mode t nil (mwheel))
+ '(mouse-wheel-mode t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (2)))
  '(show-paren-mode t nil (paren))
@@ -28,6 +28,9 @@
  '(tool-bar-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
  '(xterm-mouse-mode t))
+
+;; Disable mouse wheel.
+(setq mouse-wheel-mode nil)
 
 (require 'color-theme)
 (defun color-theme-wombat ()
