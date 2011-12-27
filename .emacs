@@ -65,7 +65,7 @@
      (font-lock-keyword-face ((t (:foreground "#87afff"))))
      (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
      (font-lock-constant-face ((t (:foreground "#bbbbbb"))))
-     (font-lock-type-face ((t (:foreground "#bbbbbb"))))
+     (font-lock-type-face ((t (:foreground "#bcf0f1"))))
      (font-lock-variable-name-face ((t (:foreground "#caeb82"))))
      (font-lock-function-name-face ((t (:foreground "#caeb82"))))
      (font-lock-builtin-face ((t (:foreground "SkyBlue"))))
