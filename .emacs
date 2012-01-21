@@ -309,6 +309,7 @@
 
 ;; Arduino code is C++.
 (add-to-list 'auto-mode-alist '("\\.pde$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ino$" . c++-mode))
 
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
