@@ -320,6 +320,11 @@
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
+;; Goto-last-change. Bound to 'C-x \'.
+(autoload 'goto-last-change "goto-last-change"
+  "Set point to the position of the last change." t)
+(global-set-key (kbd "C-x \\") 'goto-last-change)
+
 ;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
 ;; to edit code written by evil people.
 (require 'smarttabs)
