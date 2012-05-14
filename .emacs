@@ -184,7 +184,7 @@
 (menu-bar-mode -1)
 
 ;; Fill columns
-(setq-default fill-column 79)
+(setq-default fill-column 80)
 
 ;; Fill mode for text mode by default
 ;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
