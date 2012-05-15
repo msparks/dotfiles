@@ -316,6 +316,12 @@
 (add-to-list 'auto-mode-alist '("\\.pde$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ino$" . c++-mode))
 
+;; Protocol buffer definitions are best edited as C.
+(add-to-list 'auto-mode-alist '("\\.proto$" . c-mode))
+
+;; BUILD files in python-mode.
+(add-to-list 'auto-mode-alist '("^BUILD$" . python-mode))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
