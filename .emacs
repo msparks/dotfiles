@@ -288,6 +288,7 @@
 
 ;; git-commit major mode.
 (require 'git-commit)
+(add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
 
 ;; Use 72-column fills in git-commit mode.
 (add-hook 'git-commit-mode-hook
