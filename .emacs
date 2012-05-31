@@ -313,6 +313,12 @@
 (add-hook 'git-commit-mode-hook
           '(lambda () (font-lock-set-up-width-warning 72)))
 
+;; Use 72-column fills in mail mode.
+(add-hook 'mail-mode-hook
+          (lambda () (set-fill-column 72)))
+(add-hook 'mail-mode-hook
+          '(lambda () (font-lock-set-up-width-warning 72)))
+
 ;; Javascript major mode.
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
