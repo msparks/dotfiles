@@ -155,6 +155,20 @@
 ;; Enable deft for note-taking.
 (require 'deft)
 
+;; Ido mode for magic autocompleting.
+(ido-mode)
+
+;; Ido mode in M-x.
+(global-set-key
+ "\M-x"
+ (lambda ()
+   (interactive)
+   (call-interactively
+    (intern
+     (ido-completing-read
+      "M-x "
+      (all-completions "" obarray 'commandp))))))
+
 ;; Coding style preferences.
 (require 'google-coding-style)
 
