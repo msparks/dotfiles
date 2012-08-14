@@ -38,7 +38,7 @@
 (defun color-theme-wombat ()
   (interactive)
   (color-theme-install
-   '(color-theme-midnight
+   '(color-theme-wombat
      ((font . "fixed")
       (width . 130)
       (height . 50)
