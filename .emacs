@@ -22,6 +22,7 @@
  '(mouse-wheel-mode t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (2)))
+ '(require-final-newline t)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(swbuff-clear-delay 3)
