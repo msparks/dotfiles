@@ -7,7 +7,20 @@ PR_ROOT_HOSTNAME=$'%{\e[01;31m%}%m'
 PR_USER_HOSTNAME=$'%{\e[01;32m%}%n@%m'
 
 # Current working directory with tilde-substitution.
-PR_PATH=$'%{\e[01;34m%}%~'
+#
+# Collapses paths with at least four components to '.../<last two components>'.
+# This reduces a path with four components to three, including the '.../'. This
+# will shorten paths like so:
+#
+#   ~                  -> ~
+#   ~/foo              -> ~/foo
+#   ~/foo/bar          -> ~/foo/bar
+#   ~/foo/bar/baz      -> .../bar/baz
+#   ~/foo/bar/baz/quux -> .../baz/quux
+#   /usr/local         -> /usr/local
+#   /usr/local/share   -> /usr/local/share
+#   /usr/local/share/a -> .../share/a
+PR_PATH=$'%{\e[01;34m%}%(4~|.../%2~|%~)'
 
 # Prompt character (# if root, % if not).
 PR_CHAR=$'%(?.%{\e[01;34m%}.%{\e[01;31m%})%#'
