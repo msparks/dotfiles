@@ -318,6 +318,10 @@
 ;; TypeScript files in javascript-mode.
 (add-to-list 'auto-mode-alist '("\\.ts$" . javascript-mode))
 
+;; SCons files in python-mode.
+(add-to-list 'auto-mode-alist '("SConstruct$" . python-mode))
+(add-to-list 'auto-mode-alist '("SConscript$" . python-mode))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
