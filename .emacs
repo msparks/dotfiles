@@ -315,6 +315,9 @@
 ;; BUILD files in python-mode.
 (add-to-list 'auto-mode-alist '("^BUILD$" . python-mode))
 
+;; TypeScript files in javascript-mode.
+(add-to-list 'auto-mode-alist '("\\.ts$" . javascript-mode))
+
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
