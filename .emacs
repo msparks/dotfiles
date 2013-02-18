@@ -44,6 +44,9 @@
   (setq c-basic-offset tab-width))
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
+;; Go mode.
+(require 'go-mode-load)
+
 (require 'linum)
 (global-linum-mode)
 
