@@ -17,6 +17,10 @@
 *.tar
 *.zip
 
+# Xcode.
+project.xcworkspace/
+xcuserdata/
+
 # Logs and databases.
 *.log
 *.sql
