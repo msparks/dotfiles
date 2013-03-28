@@ -345,6 +345,14 @@
   "Set point to the position of the last change." t)
 (global-set-key (kbd "C-x \\") 'goto-last-change)
 
+;; For finding and updating TAGS files.
+(require 'etags-table)
+(setq etags-table-search-up-depth 10)
+
+(autoload 'turn-on-ctags-auto-update-mode
+  "ctags-update" "turn on ctags-auto-update-mode'." t)
+(add-hook 'c-mode-common-hook 'turn-on-ctags-auto-update-mode)
+
 ;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
 ;; to edit code written by evil people.
 (require 'smarttabs)
