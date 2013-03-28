@@ -50,40 +50,33 @@
 (require 'linum)
 (global-linum-mode)
 
+;; Tab bar.
 (require 'tabbar)
 (tabbar-mode)
-(global-set-key (kbd "M-p") 'tabbar-backward)
-(global-set-key (kbd "M-n") 'tabbar-forward)
+;; Move between tabs within a group with M-p and M-n.
+(global-set-key (kbd "M-p") 'tabbar-backward-tab)
+(global-set-key (kbd "M-n") 'tabbar-forward-tab)
+;; Move between tab groups with C-M-p and C-M-n.
+(global-set-key (kbd "C-M-p") 'tabbar-backward-group)
+(global-set-key (kbd "C-M-n") 'tabbar-forward-group)
 
-(global-set-key (kbd "C-c C-c C-c") 'compile)
+;; From "Xah Lee".
+(defun tabbar-buffer-groups ()
+  "Return the list of group names the current buffer belongs to.
+ This function is a custom function for tabbar-mode's
+ tabbar-buffer-groups.  This function group all buffers into 3
+ groups: Those Dired, those user buffer, and those emacs buffer.
+ Emacs buffer are those starting with '*'."
+  (list
+   (cond
+    ((or (string-equal "*" (substring (buffer-name) 0 1))
+         (string-equal "TAGS" (buffer-name)))
+     "Emacs Buffer")
+    ((eq major-mode 'dired-mode)
+     "Dired")
+    (t "User Buffer"))))
 
-;; Helper for compilation. Close the compilation window if there was no error at
-;; all.
-;; http://emacswiki.org/emacs/ModeCompile
-(defun compilation-exit-autoclose (status code msg)
-  ;; If M-x compile exists with a 0
-  (when (and (eq status 'exit) (zerop code))
-    ;; then bury the *compilation* buffer, so that C-x b doesn't go there
-    (bury-buffer)
-    ;; and delete the *compilation* window
-    (delete-window (get-buffer-window (get-buffer "*compilation*"))))
-  ;; Always return the anticipated result of compilation-exit-message-function
-  (cons msg code))
-(setq compilation-exit-message-function 'compilation-exit-autoclose)
-
-;; Only prompt for a compile command if a prefix argument is given.
-(setq compilation-read-command nil)
-
-(setq tabbar-buffer-groups-function
-      (lambda ()
-        (list "All Buffers")))
-
-(setq tabbar-buffer-list-function
-      (lambda ()
-        (remove-if
-         (lambda(buffer)
-           (find (aref (buffer-name buffer) 0) " *"))
-         (buffer-list))))
+(setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
 
 ;; Add a buffer modification state indicator in the tab label,
 ;; and place a space around the label to make it look less crowded.
@@ -108,6 +101,25 @@
 
 (setq tabbar-home-button (quote (("[Home]") "[x]")))
 (setq tabbar-separator (quote (" ")))
+
+(global-set-key (kbd "C-c C-c C-c") 'compile)
+
+;; Helper for compilation. Close the compilation window if there was no error at
+;; all.
+;; http://emacswiki.org/emacs/ModeCompile
+(defun compilation-exit-autoclose (status code msg)
+  ;; If M-x compile exists with a 0
+  (when (and (eq status 'exit) (zerop code))
+    ;; then bury the *compilation* buffer, so that C-x b doesn't go there
+    (bury-buffer)
+    ;; and delete the *compilation* window
+    (delete-window (get-buffer-window (get-buffer "*compilation*"))))
+  ;; Always return the anticipated result of compilation-exit-message-function
+  (cons msg code))
+(setq compilation-exit-message-function 'compilation-exit-autoclose)
+
+;; Only prompt for a compile command if a prefix argument is given.
+(setq compilation-read-command nil)
 
 (require 'smooth-scrolling)
 
