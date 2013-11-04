@@ -312,6 +312,9 @@
 (autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 
+;; Dart looks a little like C++.
+(add-to-list 'auto-mode-alist '("\\.dart$" . c++-mode))
+
 ;; Markdown major mode.
 (autoload 'markdown-mode "markdown-mode.el" "Mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
