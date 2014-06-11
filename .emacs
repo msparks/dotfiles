@@ -331,7 +331,7 @@
 (add-to-list 'auto-mode-alist '("\\.proto$" . c-mode))
 
 ;; BUILD files in python-mode.
-(add-to-list 'auto-mode-alist '("^BUILD$" . python-mode))
+(add-to-list 'auto-mode-alist '("\/BUILD$" . python-mode))
 
 ;; TypeScript files in javascript-mode.
 (add-to-list 'auto-mode-alist '("\\.ts$" . javascript-mode))
