@@ -53,10 +53,7 @@ run touch /var/shared/.placeholder
 run chown -R ms:ms /var/shared
 volume /var/shared
 
-# User home directory and environment.
-# Everything below is running as the user.
-user ms
-run mkdir -p /home/ms/go /home/ms/bin /home/ms/lib /home/ms/include
+# Set up environment.
 env HOME /home/ms
 env PATH /home/ms/bin:$PATH
 env PKG_CONFIG_PATH /home/ms/lib/pkgconfig
@@ -65,9 +62,15 @@ env GOPATH /home/ms/go:$GOPATH
 env LC_ALL en_US.UTF-8
 
 # Install dotfiles.
-run mkdir /home/ms/dev
-run (cd /home/ms/dev && git clone https://github.com/msparks/dotfiles.git)
-run (cd /home/ms/dev/dotfiles && ./install.sh)
+add . /tmp/dotfiles
+run chown -R ms:ms /tmp/dotfiles
+run ls -l /tmp
+run (cd /tmp/dotfiles && sudo -u ms ./install.sh)
+run rm -rf /tmp/dotfiles
+
+# User home directory.
+user ms
+run mkdir -p /home/ms/go /home/ms/bin /home/ms/lib /home/ms/include
 
 workdir /home/ms
 cmd ["/bin/zsh"]
