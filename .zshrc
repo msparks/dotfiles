@@ -16,7 +16,9 @@ setopt   CORRECT             # correct misspelled commands
 setopt   INC_APPEND_HISTORY  # Append history file immediately
 setopt   SHARE_HISTORY       # Read history file for history
 setopt   HIST_IGNORE_SPACE
-setopt   HIST_REDUCE_BLANKS
+# HIST_REDUCE_BLANKS corrupts history.
+# https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/1334858
+unsetopt   HIST_REDUCE_BLANKS
 setopt   HIST_IGNORE_ALL_DUPS
 setopt   EXTENDED_HISTORY
 unsetopt BEEP                # No beeps on error
