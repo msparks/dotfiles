@@ -27,6 +27,7 @@
  '(show-trailing-whitespace t)
  '(swbuff-clear-delay 3)
  '(swbuff-status-window-layout (quote adjust))
+ '(standard-indent 2)
  '(tab-width 2)
  '(tool-bar-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
@@ -339,6 +340,10 @@
 ;; SCons files in python-mode.
 (add-to-list 'auto-mode-alist '("SConstruct$" . python-mode))
 (add-to-list 'auto-mode-alist '("SConscript$" . python-mode))
+
+;; OpenSCAD files.
+(autoload 'scad-mode "scad-mode" "Major mode for editing SCAD code." t)
+(add-to-list 'auto-mode-alist '("\\.scad$" . scad-mode))
 
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
