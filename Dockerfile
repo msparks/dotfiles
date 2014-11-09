@@ -36,6 +36,12 @@ run chmod +x /usr/local/bin/docker
 # Unrestricted sudo.
 run echo "ALL ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+# Workaround: sudo in Ubuntu 14.10 images is missing the setuid bit.
+# See https://github.com/tianon/docker-brew-ubuntu-core/issues/17. 14.04 is
+# fixed but 14.10 isn't as of 2014-11-09.
+run chown root:root /usr/bin/sudo
+run chmod 4755 /usr/bin/sudo
+
 # Timezone.
 run cp /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 
