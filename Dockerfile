@@ -1,5 +1,5 @@
 # Published as msparks/devbox on Docker Hub.
-from ubuntu:14.04
+from ubuntu:14.10
 maintainer Matt Sparks <ms@quadpoint.org>
 
 run apt-get update
@@ -8,6 +8,7 @@ run apt-get install -y build-essential
 run apt-get install -y cmake
 run apt-get install -y curl
 run apt-get install -y diffstat
+run apt-get install -y dnsutils
 run apt-get install -y git
 run apt-get install -y pkg-config
 run apt-get install -y python
