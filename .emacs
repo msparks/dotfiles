@@ -57,6 +57,9 @@
 (when (not (require 'go-mode nil t))
   (package-install 'go-mode))
 
+(when (not (require 'smooth-scrolling nil t))
+  (package-install 'smooth-scrolling))
+
 ;; Always enable line numbers.
 (require 'linum)
 (global-linum-mode)
@@ -131,8 +134,6 @@
 
 ;; Only prompt for a compile command if a prefix argument is given.
 (setq compilation-read-command nil)
-
-(require 'smooth-scrolling)
 
 ;; Enable deft for note-taking.
 (require 'deft)
