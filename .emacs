@@ -52,6 +52,8 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+(ac-flyspell-workaround)
+(ac-linum-workaround)
 
 ;; Irony mode.
 (when (not (require 'irony nil t))
@@ -72,6 +74,12 @@
 (eval-after-load 'flycheck
   '(add-to-list 'flycheck-checkers 'irony))
 (global-flycheck-mode)
+
+(when (not (require 'company-irony nil t))
+  (package-install 'company-irony))
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
