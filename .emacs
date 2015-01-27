@@ -30,7 +30,6 @@
  '(swbuff-status-window-layout (quote adjust))
  '(standard-indent 2)
  '(tab-width 2)
- '(tool-bar-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
  '(xterm-mouse-mode t))
 
