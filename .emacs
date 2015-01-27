@@ -11,8 +11,6 @@
  '(current-language-environment "UTF-8")
  '(custom-theme-directory "~/.emacs.d/themes/")
  '(default-input-method "rfc1345")
- '(deft-extension "md")
- '(deft-text-mode (quote markdown-mode))
  '(delete-old-versions t)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
@@ -133,9 +131,6 @@
 
 ;; Only prompt for a compile command if a prefix argument is given.
 (setq compilation-read-command nil)
-
-;; Enable deft for note-taking.
-(require 'deft)
 
 ;; Ido mode for magic autocompleting.
 (ido-mode)
