@@ -45,6 +45,34 @@
 ;; Disable mouse wheel.
 (setq mouse-wheel-mode nil)
 
+;; Set up auto-complete.
+(when (not (require 'auto-complete nil t))
+  (package-install 'auto-complete))
+(require 'auto-complete)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;; Irony mode.
+(when (not (require 'irony nil t))
+  (package-install 'irony))
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(when (not (require 'flycheck-irony nil t))
+  (package-install 'flycheck-irony))
+(eval-after-load 'flycheck
+  '(add-to-list 'flycheck-checkers 'irony))
+(global-flycheck-mode)
+
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
   (setq c-basic-offset tab-width))
