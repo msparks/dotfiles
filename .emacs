@@ -9,6 +9,7 @@
  '(browse-url-xterm-program "term.sh")
  '(case-fold-search t)
  '(current-language-environment "UTF-8")
+ '(custom-theme-directory "~/.emacs.d/themes/")
  '(default-input-method "rfc1345")
  '(deft-extension "md")
  '(deft-text-mode (quote markdown-mode))
@@ -37,6 +38,9 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
+
+;; Load custom theme.
+(load-theme 'wombat-ms t)
 
 (when (not (require 'git-commit-mode nil t))
   (package-install 'git-commit-mode))
