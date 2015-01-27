@@ -36,13 +36,13 @@
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(when (not (require 'git-commit-mode nil t))
+  (package-install 'git-commit-mode))
 
 ;; Disable mouse wheel.
 (setq mouse-wheel-mode nil)
-
-;(require 'color-theme)
-;(color-theme-initialize)
-;(color-theme-wombat)
 
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
@@ -292,10 +292,6 @@
           '(lambda () (flyspell-mode)))
 (add-hook 'rst-mode-hook
           '(lambda () (flyspell-mode)))
-
-;; git-commit major mode.
-;(require 'git-commit)
-;(add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
 
 ;; Use 72-column fills in git-commit mode.
 (add-hook 'git-commit-mode-hook
