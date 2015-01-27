@@ -33,13 +33,14 @@
  '(uniquify-buffer-name-style nil nil (uniquify))
  '(xterm-mouse-mode t))
 
-(require 'package) ;; You might already have this line
+(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 (when (not (require 'git-commit-mode nil t))
   (package-install 'git-commit-mode))
+(add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
 
 ;; Disable mouse wheel.
 (setq mouse-wheel-mode nil)
