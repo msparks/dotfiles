@@ -54,6 +54,7 @@
 (ac-config-default)
 (ac-flyspell-workaround)
 (ac-linum-workaround)
+(setq ac-auto-show-menu 0.8)
 
 ;; Irony mode.
 (when (not (require 'irony nil t))
@@ -80,6 +81,7 @@
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+(global-company-mode)
 
 (require 'cc-mode)
 (defun my-c-mode-common-hook ()
