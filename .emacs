@@ -14,7 +14,6 @@
  '(deft-extension "md")
  '(deft-text-mode (quote markdown-mode))
  '(delete-old-versions t)
- '(global-font-lock-mode t nil (font-lock))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
  '(indent-tabs-mode nil)
@@ -367,10 +366,6 @@
 (autoload 'turn-on-ctags-auto-update-mode
   "ctags-update" "turn on ctags-auto-update-mode'." t)
 (add-hook 'c-mode-common-hook 'turn-on-ctags-auto-update-mode)
-
-;; Load in smart tabs (indent with hard tabs, indent with spaces) when we need
-;; to edit code written by evil people.
-(require 'smarttabs)
 
 ;; Use guess-style.el to automatically figure out the indentation settings of
 ;; the file we're editing. The customized guess-style-guesser-alist setting
