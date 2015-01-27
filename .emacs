@@ -386,8 +386,9 @@
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
 ;; Goto-last-change. Bound to 'C-x \'.
-(autoload 'goto-last-change "goto-last-change"
-  "Set point to the position of the last change." t)
+(when (not (require 'goto-last-change nil t))
+  (package-install 'goto-last-change))
+(require 'goto-last-change)
 (global-set-key (kbd "C-x \\") 'goto-last-change)
 
 ;; For finding and updating TAGS files.
