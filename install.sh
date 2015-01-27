@@ -1,6 +1,10 @@
 #!/bin/bash
 rsync -av .zsh* .vim* .gitconfig .gitignore_global .screenrc .tmux.conf ~
-rsync -av .emacs* ~
+
+# Emacs configuration.
+rsync -av .emacs ~
+rsync -av .emacs.d ~
+rm -rf ~/.emacs-lisp ~/.emacs-mail
 
 mkdir -m 700 -p ~/.ssh
 rsync -av .ssh/config ~/.ssh
