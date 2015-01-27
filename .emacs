@@ -54,8 +54,10 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; Go mode.
-(require 'go-mode-load)
+(when (not (require 'go-mode nil t))
+  (package-install 'go-mode))
 
+;; Always enable line numbers.
 (require 'linum)
 (global-linum-mode)
 
