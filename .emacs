@@ -379,6 +379,8 @@
 (global-set-key (kbd "C-x \\") 'goto-last-change)
 
 ;; For finding and updating TAGS files.
+(when (not (require 'etags-table nil t))
+  (package-install 'etags-table))
 (require 'etags-table)
 (setq etags-table-search-up-depth 10)
 
