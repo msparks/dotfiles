@@ -196,11 +196,6 @@
 ;; Coding style preferences.
 (require 'custom-google-coding-style)
 
-;; This causes massive CPU usage when scrolling with lots of colors
-;;(require 'whitespace)
-;;(global-whitespace-mode)
-;;(setq whitespace-style '(tabs trailing lines-tail empty))
-
 ;; set indent style to 'k&r' style for everything but java
 ;; http://en.wikipedia.org/wiki/Indent_style
 (setq c-default-style
