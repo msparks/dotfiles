@@ -1,5 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -10,6 +8,9 @@
  '(case-fold-search t)
  '(column-number-mode t)
  '(current-language-environment "UTF-8")
+ '(custom-safe-themes
+   (quote
+    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(custom-theme-directory "~/.emacs.d/themes/")
  '(default-input-method "rfc1345")
  '(delete-old-versions t)
@@ -29,6 +30,15 @@
  '(require-final-newline t)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
+ '(sml/col-number-format "%02c]")
+ '(sml/line-number-format "[%3l")
+ '(sml/modified-char "×")
+ '(sml/numbers-separator ",")
+ '(sml/pos-id-separator ")")
+ '(sml/pos-minor-modes-separator "")
+ '(sml/position-percentage-format "%p")
+ '(sml/pre-id-separator " (")
+ '(sml/pre-minor-modes-separator "")
  '(standard-indent 2)
  '(swbuff-clear-delay 3)
  '(swbuff-status-window-layout (quote adjust))
@@ -38,6 +48,8 @@
  '(version-control t)
  '(xterm-mouse-mode t))
 
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
@@ -45,6 +57,12 @@
 
 ;; Load custom theme.
 (load-theme 'wombat-ms t)
+
+;; Set up smart-mode-line.
+(when (not (require 'smart-mode-line nil t))
+  (package-install 'smart-mode-line))
+(sml/setup)
+(sml/apply-theme 'respectful)
 
 (when (not (require 'git-commit-mode nil t))
   (package-install 'git-commit-mode))
@@ -426,6 +444,13 @@
  ;; If there is more than one, they won't work right.
  '(font-lock-warning-face ((t (:background "purple"))))
  '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973"))))
+ '(sml/col-number ((t (:foreground "#9A75A6"))))
+ '(sml/git ((t (:foreground "#CC6666"))))
+ '(sml/line-number ((t (:foreground "#9A75A6" :weight bold))))
+ '(sml/minor-modes ((t (:foreground "#81A2BE"))))
+ '(sml/modes ((t (:foreground "#5F819D" :weight normal))))
+ '(sml/numbers-separator ((t (:foreground "#aaa"))))
+ '(sml/position-percentage ((t (:foreground "#B294BB" :weight normal))))
  '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
  '(tabbar-default ((t (:background "#202020" :foreground "white"))))
  '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
