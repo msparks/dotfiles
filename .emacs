@@ -339,10 +339,6 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-;; CSS major mode.
-(autoload 'css-mode "css-mode" "Mode for editing CSS files" t)
-(add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
-
 ;; Dart looks a little like C++.
 (add-to-list 'auto-mode-alist '("\\.dart$" . c++-mode))
 
