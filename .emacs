@@ -347,8 +347,10 @@
 (add-to-list 'auto-mode-alist '("\\.dart$" . c++-mode))
 
 ;; Markdown major mode.
-(autoload 'markdown-mode "markdown-mode.el" "Mode for editing Markdown files" t)
+(when (not (require 'markdown-mode nil t))
+  (package-install 'markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 
 ;; reStructuredText major mode.
 (autoload 'rst-mode "rst" nil t)
