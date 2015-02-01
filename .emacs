@@ -13,6 +13,7 @@
  '(custom-theme-directory "~/.emacs.d/themes/")
  '(default-input-method "rfc1345")
  '(delete-old-versions t)
+ '(display-time-24hr-format t)
  '(fill-column 80)
  '(global-linum-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
@@ -232,10 +233,6 @@
 
 ;; Periodically reload buffers from disk.
 (global-auto-revert-mode)
-
-;; Display time
-(setq display-time-24hr-format t)
-(display-time)
 
 ;; Enable time-stamp updating on save.
 (setq
