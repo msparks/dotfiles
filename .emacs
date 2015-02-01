@@ -103,6 +103,8 @@
 (global-linum-mode)
 
 ;; Tab bar.
+(when (not (require 'tabbar nil t))
+  (package-install 'tabbar))
 (require 'tabbar)
 (tabbar-mode)
 ;; Move between tabs within a group with M-p and M-n.
