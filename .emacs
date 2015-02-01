@@ -269,8 +269,8 @@
 (defalias 'perl-mode 'cperl-mode)
 
 ;; Matlab major mode.
-(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
-(add-to-list 'auto-mode-alist '("\\.m$" . matlab-mode))
+(when (not (require 'matlab nil t))
+  (package-install 'matlab-mode))
 (setq matlab-indent-function t)
 (setq matlab-shell-command "matlab")
 
