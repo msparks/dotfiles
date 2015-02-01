@@ -335,10 +335,6 @@
 (add-hook 'mail-mode-hook
           '(lambda () (font-lock-set-up-width-warning 72)))
 
-;; Javascript major mode.
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
 ;; Dart looks a little like C++.
 (add-to-list 'auto-mode-alist '("\\.dart$" . c++-mode))
 
