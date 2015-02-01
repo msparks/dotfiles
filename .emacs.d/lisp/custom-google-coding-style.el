@@ -50,71 +50,6 @@ multiple lines."
       (c-setup-paragraph-variables))))
 
 
-;; python-mode
-
-(defadvice python-calculate-indentation (around calculate-with-google-style)
-  "Modify Python indentation to match the Google style guide.
-
-Currently, there are two cases in particular that this
-handles. Both have to do with multi-line parenthesized
-expressions.  In the first case, the default indentation for
-such expressions is `python-indent', but Google mandates
-`python-continuation-offset' instead. For example:
-
-  function(
-      arg_indented_four_spaces)
-
-In the second case, when doubly-nested multi-line parenthesized
-expressions exist, Google mandates that the second nested
-expression be indented relative to the first, as so:
-
-  function('string' % (
-               'format indented relative to first arg'))"
-  (unless
-      (block nil
-        (setq python-indent-list nil
-              python-indent-list-length 1)
-        ;; These conditions are all taken directly from python.el.
-        ;; Not great for code reuse, but probably better than copying
-        ;; the entire function.
-        (save-excursion
-          (beginning-of-line)
-          (let* ((syntax (syntax-ppss))
-                 (point (point))
-                 (open-start (cadr syntax)))
-            (when (eq 'string (syntax-ppss-context syntax)) (return))
-            (unless (python-continuation-line-p) (return))
-            (unless open-start (return))
-            (goto-char (1+ open-start))
-            (when (with-syntax-table python-space-backslash-table
-                    (let ((parse-sexp-ignore-comments t))
-                      (condition-case ()
-                          (progn (forward-sexp)
-                                 (backward-sexp)
-                                 (< (point) point))
-                        (error nil))))
-              (return))
-            (goto-char (1+ open-start))
-            (setq ad-return-value
-                  (if (eolp)
-                      (+ (current-indentation) python-continuation-offset)
-                    (current-indentation))))))
-    ;; If we don't meet the conditions for the Google workarounds,
-    ;; use the normal definition.
-    ad-do-it))
-
-;; Okay we'll use 2 everywhere for Python
-(defun google-set-python-style ()
-  (setq py-indent-offset 2)  ; For the third_party python-mode.el
-
-  ;; For GNU Emacs' python.el
-  (setq python-indent 2)
-  (when (fboundp 'python-calculate-indentation)
-    (ad-activate 'python-calculate-indentation)))
-
-(add-hook 'python-mode-hook 'google-set-python-style)
-
-
 ;; perl-mode
 
 ;; Let's make perl work properly by default.
@@ -359,4 +294,4 @@ JavaScript Style Guide."
 
 ;; java-mode
 
-(provide 'google-coding-style)
+(provide 'custom-google-coding-style)

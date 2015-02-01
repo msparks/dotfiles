@@ -185,7 +185,7 @@
       (all-completions "" obarray 'commandp))))))
 
 ;; Coding style preferences.
-(require 'google-coding-style)
+(require 'custom-google-coding-style)
 
 ;; This causes massive CPU usage when scrolling with lots of colors
 ;;(require 'whitespace)
