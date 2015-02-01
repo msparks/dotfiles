@@ -68,6 +68,15 @@
   (package-install 'git-commit-mode))
 (add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
 
+;; Set up projectile.
+(when (not (require 'projectile nil t))
+  (package-install 'projectile))
+(projectile-global-mode)
+
+;; flx-ido for better matching with projectile and ido.
+(when (not (require 'flx-ido nil t))
+  (package-install 'flx-ido))
+
 ;; Set up auto-complete.
 (when (not (require 'auto-complete nil t))
   (package-install 'auto-complete))
