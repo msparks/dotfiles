@@ -35,6 +35,8 @@ are included.")
    ;; Mode line faces
    `(mode-line ((,class (:background "#444444" :foreground "#caeb82"))))
    `(mode-line-inactive ((,class (:background "#444444" :foreground "#857b6f"))))
+   ;; Window faces
+   `(vertical-border ((,class (:background "#000000" :foreground "#000000"))))
    ;; Escape and prompt faces
    `(minibuffer-prompt ((,class (:foreground "Cyan"))))
    `(escape-glyph ((,class (:foreground "#ddaa6f" :weight bold))))
