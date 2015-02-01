@@ -1,33 +1,39 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(browse-url-netscape-program "opera")
  '(browse-url-xterm-program "term.sh")
  '(case-fold-search t)
+ '(column-number-mode t)
  '(current-language-environment "UTF-8")
  '(custom-theme-directory "~/.emacs.d/themes/")
  '(default-input-method "rfc1345")
  '(delete-old-versions t)
+ '(fill-column 80)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
  '(indent-tabs-mode nil)
  '(large-file-warning-threshold nil)
+ '(line-number-mode t)
+ '(menu-bar-mode nil)
  '(mouse-wheel-follow-mouse t)
- '(mouse-wheel-mode t)
+ '(mouse-wheel-mode nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (2)))
  '(require-final-newline t)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
+ '(standard-indent 2)
  '(swbuff-clear-delay 3)
  '(swbuff-status-window-layout (quote adjust))
- '(standard-indent 2)
  '(tab-width 2)
+ '(transient-mark-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
+ '(version-control t)
  '(xterm-mouse-mode t))
 
 (require 'package)
@@ -41,9 +47,6 @@
 (when (not (require 'git-commit-mode nil t))
   (package-install 'git-commit-mode))
 (add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
-
-;; Disable mouse wheel.
-(setq mouse-wheel-mode nil)
 
 ;; Set up auto-complete.
 (when (not (require 'auto-complete nil t))
@@ -200,9 +203,6 @@
 ;; Enable backup files.
 (setq make-backup-files t)
 
-;; Enable versioning with default values (keep five last versions, I think!)
-(setq version-control t)
-
 ;; Save all backup file in this directory.
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
 
@@ -220,18 +220,6 @@
             (expand-file-name
              (concat "#%" (buffer-name) "#")))))
 
-;; Show line-number in the mode line
-(line-number-mode 1)
-
-;; Show column-number in the mode line
-(column-number-mode 1)
-
-;; Disable menu bar
-(menu-bar-mode -1)
-
-;; Fill columns
-(setq-default fill-column 80)
-
 ;; Fill mode for text mode by default
 ;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
@@ -240,9 +228,6 @@
 
 ;; Make Text mode the default mode for new buffers
 (setq default-major-mode 'text-mode)
-
-;; Show region after marking
-(setq-default transient-mark-mode t)
 
 ;; Periodically reload buffers from disk.
 (global-auto-revert-mode)
@@ -440,10 +425,10 @@
      (lambda ()
        (auto-fill-mode nil)))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(font-lock-warning-face ((t (:background "purple"))))
  '(linum ((t (:inherit (shadow default) :background "black" :foreground "#989973"))))
  '(tabbar-button ((t (:background "#202020" :foreground "#202020"))))
