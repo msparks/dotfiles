@@ -379,8 +379,9 @@
 (require 'etags-table)
 (setq etags-table-search-up-depth 10)
 
-(autoload 'turn-on-ctags-auto-update-mode
-  "ctags-update" "turn on ctags-auto-update-mode'." t)
+(when (not (require 'ctags-update nil t))
+  (package-install 'ctags-update))
+(require 'ctags-update)
 (add-hook 'c-mode-common-hook 'turn-on-ctags-auto-update-mode)
 
 ;; Use guess-style.el to automatically figure out the indentation settings of
