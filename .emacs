@@ -14,6 +14,7 @@
  '(default-input-method "rfc1345")
  '(delete-old-versions t)
  '(fill-column 80)
+ '(global-linum-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
  '(indent-tabs-mode nil)
@@ -98,9 +99,12 @@
 (when (not (require 'smooth-scrolling nil t))
   (package-install 'smooth-scrolling))
 
-;; Always enable line numbers.
-(require 'linum)
-(global-linum-mode)
+;; Dynamically calculate linum-format based on the number of lines in the file.
+(defadvice linum-update-window (around linum-dynamic activate)
+  (let* ((w (length (number-to-string
+                     (count-lines (point-min) (point-max)))))
+         (linum-format (concat "%" (number-to-string w) "d ")))
+    ad-do-it))
 
 ;; Tab bar.
 (when (not (require 'tabbar nil t))
