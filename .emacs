@@ -372,8 +372,8 @@
 (add-to-list 'auto-mode-alist '("SConscript$" . python-mode))
 
 ;; OpenSCAD files.
-(autoload 'scad-mode "scad-mode" "Major mode for editing SCAD code." t)
-(add-to-list 'auto-mode-alist '("\\.scad$" . scad-mode))
+(when (not (require 'scad nil t))
+  (package-install 'scad-mode))
 
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
