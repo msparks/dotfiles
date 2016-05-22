@@ -1,5 +1,5 @@
 # Published as msparks/devbox on Docker Hub.
-from ubuntu:14.10
+from ubuntu:16.04
 maintainer Matt Sparks <ms@quadpoint.org>
 
 run apt-get update && apt-get install -y \
@@ -9,7 +9,7 @@ run apt-get update && apt-get install -y \
   curl \
   diffstat \
   dnsutils \
-  emacs23-nox \
+  emacs24-nox \
   git \
   irssi \
   pkg-config \
@@ -26,7 +26,7 @@ run apt-get update && apt-get install -y \
   && apt-get clean
 
 # Install go.
-run curl https://storage.googleapis.com/golang/go1.3.linux-amd64.tar.gz \
+run curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz \
   | tar -C /usr/local -zx
 env GOROOT /usr/local/go
 env PATH /usr/local/go/bin:$PATH
