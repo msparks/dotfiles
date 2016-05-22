@@ -68,23 +68,6 @@
   (package-install 'git-commit-mode))
 (add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
 
-;; Set up git-gutter.
-(when (not (require 'git-gutter nil t))
-  (package-install 'git-gutter))
-(global-git-gutter-mode t)
-(git-gutter:linum-setup)
-(setq git-gutter:lighter " GG")
-(set-face-background 'git-gutter:unchanged "yellow")
-(set-face-background 'git-gutter:modified "black")
-(set-face-foreground 'git-gutter:added "green")
-(set-face-background 'git-gutter:added "black")
-(set-face-foreground 'git-gutter:deleted "red")
-(set-face-background 'git-gutter:deleted "black")
-(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
-(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
-(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
-
 ;; Set up projectile.
 (when (not (require 'projectile nil t))
   (package-install 'projectile))
