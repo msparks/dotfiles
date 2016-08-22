@@ -21,7 +21,9 @@ if [[ -x `which git` ]]; then
 
   function git-prompt() {
     gstatus=$(git status 2> /dev/null)
-    branch=$(echo $gstatus | head -1 | sed -E 's/^(# )?On branch //')
+    branch=$(echo $gstatus | head -1 \
+                  | sed -E 's/^(# )?On branch //' \
+                  | sed -E 's/# interactive rebase .* onto ([0-9a-f]+)/rebase:\1/')
     dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -2 | grep 'nothing to commit.*working directory clean.*'; echo $?)
     if [[ x$branch != x ]]; then
       dirty_color=$fg[cyan]
