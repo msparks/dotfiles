@@ -58,6 +58,8 @@ alias mv='nocorrect mv'
 alias rm='nocorrect rm -i'
 alias mkdir='nocorrect mkdir'
 
+alias grep='grep --color -I'
+
 # Editor preferences
 alias emacs='emacs -nw'
 export EDITOR='emacs'
