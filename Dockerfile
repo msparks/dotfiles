@@ -12,6 +12,10 @@ run apt-get update && apt-get install -y \
   emacs24-nox \
   git \
   irssi \
+  iptables \
+  iputils-ping \
+  netcat \
+  net-tools \
   pkg-config \
   python \
   strace \
