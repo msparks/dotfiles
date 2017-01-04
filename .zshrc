@@ -65,17 +65,18 @@ alias emacs='emacs -nw'
 export EDITOR='emacs'
 export FCEDIT='emacs'
 
-# Load modules.
-if [[ -d "${HOME}/.zsh" ]] ; then
-  for file in "${HOME}"/.zsh/*(N.x:t) ; do
-    source "${HOME}/.zsh/${file}"
-  done
-fi
-
 # Load oh-my-zsh plugins.
 if [[ -d "${HOME}/.zsh/omz-plugins" ]]; then
   for file in ${HOME}/.zsh/omz-plugins/**/*(N.x); do
     source $file
+  done
+fi
+
+# Load custom modules. Load these after oh-my-zsh so that customizations can be
+# done here.
+if [[ -d "${HOME}/.zsh" ]] ; then
+  for file in "${HOME}"/.zsh/*(N.x:t) ; do
+    source "${HOME}/.zsh/${file}"
   done
 fi
 
