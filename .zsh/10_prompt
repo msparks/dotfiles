@@ -41,3 +41,5 @@ else
     PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
   fi
 fi
+
+unset RPROMPT

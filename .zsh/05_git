@@ -19,19 +19,6 @@ if [[ -x `which git` ]]; then
     git rebase master
   }
 
-  function git-prompt() {
-    gstatus=$(git status 2> /dev/null)
-    branch=$(echo $gstatus | head -1 \
-                  | sed -E 's/^(# )?On branch //' \
-                  | sed -E 's/# interactive rebase .* onto ([0-9a-f]+)/rebase:\1/')
-    dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -2 | grep 'nothing to commit.*working directory clean.*'; echo $?)
-    if [[ x$branch != x ]]; then
-      dirty_color=$fg[cyan]
-      if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
-      [ x$branch != x ] && echo "%{$dirty_color%}$branch%{$reset_color%} "
-    fi
-  }
-
   function git-scoreboard () {
     git log | grep Author | sort | uniq -ci | sort -r
   }
@@ -61,3 +48,20 @@ if [[ -x `which git` ]]; then
     nohup gitk --all &
   }
 fi
+
+# Customizations for git-prompt oh-my-zsh plugin.
+function git-prompt() {
+  # Provided by git-prompt oh-my-zsh plugin.
+  p=$(git_super_status)
+  [ x$p != x ] && echo "$p "
+}
+
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[magenta]%}%{●%G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{×%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{+%G%}"
+ZSH_THEME_GIT_PROMPT_SEPARATOR=""
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[magenta]%}%{…%G%}"
