@@ -36,7 +36,7 @@ if po.returncode != 0:
     sys.exit(0)  # Not a git repository
 
 # collect git status information
-untracked, staged, changed, conflicts = [], [], [], []
+untracked, staged, changed, deleted, conflicts = [], [], [], [], []
 ahead, behind = 0, 0
 status = [(line[0], line[1], line[2:]) for line in stdout.decode('utf-8').splitlines()]
 for st in status:
@@ -67,6 +67,8 @@ for st in status:
     else:
         if st[1] == 'M':
             changed.append(st)
+        if st[1] == 'D':
+            deleted.append(st)
         if st[0] == 'U':
             conflicts.append(st)
         elif st[0] != ' ':
@@ -80,5 +82,6 @@ out = ' '.join([
     str(len(conflicts)),
     str(len(changed)),
     str(len(untracked)),
+    str(len(deleted)),
 ])
 print(out, end='')
