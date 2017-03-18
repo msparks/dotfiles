@@ -225,8 +225,10 @@
 ;; Fill mode for text mode by default
 ;;(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Fill mode by default for all major modes
+;; Fill mode by default for most major modes.
 (setq-default auto-fill-function 'do-auto-fill)
+(add-hook 'sh-mode-hook (lambda () (auto-fill-mode nil)))
+(add-hook 'go-mode-hook (lambda () (auto-fill-mode nil)))
 
 ;; Make Text mode the default mode for new buffers
 (setq default-major-mode 'text-mode)
@@ -410,9 +412,6 @@
              nil
              '(("\t" 0 'hard-tabs-face prepend)))))
 
-(add-hook 'sh-mode-hook
-     (lambda ()
-       (auto-fill-mode nil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
