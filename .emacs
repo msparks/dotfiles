@@ -64,10 +64,6 @@
 (sml/setup)
 (sml/apply-theme 'respectful)
 
-(when (not (require 'git-commit-mode nil t))
-  (package-install 'git-commit-mode))
-(add-to-list 'auto-mode-alist '("\-change\-description$" . git-commit-mode))
-
 ;; Set up projectile.
 (when (not (require 'projectile nil t))
   (package-install 'projectile))
@@ -80,17 +76,6 @@
 ;; ag for search.
 (when (not (require 'ag nil t))
   (package-install 'ag))
-
-;; Set up auto-complete.
-(when (not (require 'auto-complete nil t))
-  (package-install 'auto-complete))
-(require 'auto-complete)
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-(ac-flyspell-workaround)
-(ac-linum-workaround)
-(setq ac-auto-show-menu 0.8)
 
 ;; Irony mode.
 (when (not (require 'irony nil t))
@@ -105,12 +90,6 @@
     'irony-completion-at-point-async))
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-(when (not (require 'flycheck-irony nil t))
-  (package-install 'flycheck-irony))
-(eval-after-load 'flycheck
-  '(add-to-list 'flycheck-checkers 'irony))
-(global-flycheck-mode)
 
 (when (not (require 'company-irony nil t))
   (package-install 'company-irony))
