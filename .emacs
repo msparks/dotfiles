@@ -64,6 +64,10 @@
 (sml/setup)
 (sml/apply-theme 'respectful)
 
+(when (not (require 'magit nil t))
+  (package-install 'magit))
+(setq git-commit-fill-column 72)
+
 ;; Set up projectile.
 (when (not (require 'projectile nil t))
   (package-install 'projectile))
@@ -310,12 +314,6 @@
           '(lambda () (flyspell-mode)))
 (add-hook 'rst-mode-hook
           '(lambda () (flyspell-mode)))
-
-;; Use 72-column fills in git-commit mode.
-(add-hook 'git-commit-mode-hook
-          (lambda () (set-fill-column 72)))
-(add-hook 'git-commit-mode-hook
-          '(lambda () (font-lock-set-up-width-warning 72)))
 
 ;; Use 72-column fills in mail mode.
 (add-hook 'mail-mode-hook
