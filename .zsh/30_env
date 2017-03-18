@@ -5,3 +5,6 @@ export LESS="-R -M --shift 5"
 if which lesspipe.sh >&/dev/null; then
   export LESSOPEN="|lesspipe.sh %s"
 fi
+
+# Bay Area represent.
+TZ="America/Los_Angeles"
