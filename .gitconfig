@@ -3,12 +3,16 @@
   email = ms@quadpoint.org
 
 [alias]
+  aa = commit --amend -a
+  aac = commit --amend -a -c HEAD
+  amend = comment --amend
   ci = commit -a
   co = checkout
   st = status
   lg = log --stat --decorate
   lgg = log --graph --decorate --pretty=format:'%C(bold red)%h%Creset -%C(cyan)%d%Creset %s %C(cyan)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   praise = blame
+  undo = reset --soft HEAD^
 
 [apply]
   whitespace = strip
