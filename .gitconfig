@@ -32,6 +32,10 @@
 [core]
   excludesfile = ~/.gitignore_global
 
+[merge]
+  conflictstyle = diff3
+  ff = only
+
 [multi]
   exporttags = default
 
