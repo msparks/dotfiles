@@ -12,6 +12,9 @@ rm -rf ~/.emacs-lisp ~/.emacs-mail
 mkdir -m 700 -p ~/.ssh
 rsync -av .ssh/config ~/.ssh
 
+mkdir -m 700 -p ~/.gnupg
+rsync -av .gnupg/gpg.conf ~/.gnupg
+
 # vim stuff.
 mkdir -p ~/.vim/backup ~/.vim/temp
 
