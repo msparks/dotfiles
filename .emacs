@@ -394,9 +394,11 @@
 (add-hook 'matlab-mode-hook 'guess-style-guess-all)
 (global-guess-style-info-mode 1)
 
-;; More indentation preferences.
-(add-hook 'css-mode-hook
-          '(lambda () (setq css-indent-offset tab-width)))
+;; Language-cpecific indentation tweaks.
+;; https://dougie.io/emacs/indentation/
+(setq-default css-indent-offset tab-width)     ;; CSS
+(setq-default python-indent-offset tab-width)  ;; Python
+(setq-default js-indent-level tab-width)       ;; Javascript
 
 ;; Prefer a dark background.
 (setq frame-background-mode 'dark)
