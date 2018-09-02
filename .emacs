@@ -259,8 +259,11 @@
  time-stamp-format "%04y-%02m-%02d %02H:%02M:%02S")  ; date format
 (add-hook 'write-file-hooks 'time-stamp)             ; update when saving
 
-;; Disable splash screen
+;; Disable splash screen.
 (setq inhibit-splash-screen t)
+;; And startup message.
+(eval-after-load "startup" '(fset
+                             'display-startup-echo-area-message (lambda ())))
 
 ;; Make bells less visible. The visible bell (terminal flash) is annoying.
 (setq ring-bell-function (lambda () (message "*beep*")))
