@@ -1,3 +1,15 @@
+;; Add a hook to display the startup time for profiling.
+;;
+;; Source: https://blog.d46.us/advanced-emacs-startup/
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract
+                               after-init-time before-init-time)))
+                     gcs-done)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
