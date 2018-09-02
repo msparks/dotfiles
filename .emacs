@@ -71,35 +71,34 @@
              '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+;; https://github.com/jwiegley/use-package
+(eval-when-compile
+  (require 'use-package))
+(setq use-package-always-ensure t)
+
 ;; Load custom theme.
 (load-theme 'wombat-ms t)
 
 ;; Set up smart-mode-line.
-(when (not (require 'smart-mode-line nil t))
-  (package-install 'smart-mode-line))
+(use-package smart-mode-line)
 (sml/setup)
 (sml/apply-theme 'respectful)
 
-(when (not (require 'magit nil t))
-  (package-install 'magit))
+(use-package magit)
 (setq git-commit-fill-column 72)
 
 ;; Set up projectile.
-(when (not (require 'projectile nil t))
-  (package-install 'projectile))
+(use-package projectile)
 (projectile-global-mode)
 
 ;; flx-ido for better matching with projectile and ido.
-(when (not (require 'flx-ido nil t))
-  (package-install 'flx-ido))
+(use-package flx-ido)
 
 ;; ag for search.
-(when (not (require 'ag nil t))
-  (package-install 'ag))
+(use-package ag)
 
 ;; Irony mode.
-(when (not (require 'irony nil t))
-  (package-install 'irony))
+(use-package irony)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
@@ -111,8 +110,7 @@
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-(when (not (require 'company-irony nil t))
-  (package-install 'company-irony))
+(use-package company-irony)
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
@@ -124,11 +122,9 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; Go mode.
-(when (not (require 'go-mode nil t))
-  (package-install 'go-mode))
+(use-package go-mode)
 
-(when (not (require 'smooth-scrolling nil t))
-  (package-install 'smooth-scrolling))
+(use-package smooth-scrolling)
 
 ;; Dynamically calculate linum-format based on the number of lines in the file.
 (defadvice linum-update-window (around linum-dynamic activate)
@@ -138,9 +134,7 @@
     ad-do-it))
 
 ;; Tab bar.
-(when (not (require 'tabbar nil t))
-  (package-install 'tabbar))
-(require 'tabbar)
+(use-package tabbar)
 (tabbar-mode)
 ;; Move between tabs within a group with M-p and M-n.
 (global-set-key (kbd "M-p") 'tabbar-backward-tab)
@@ -282,8 +276,8 @@
 (defalias 'perl-mode 'cperl-mode)
 
 ;; Matlab major mode.
-(when (not (require 'matlab nil t))
-  (package-install 'matlab-mode))
+(use-package matlab
+             :ensure matlab-mode)
 (setq matlab-indent-function t)
 (setq matlab-shell-command "matlab")
 
@@ -346,8 +340,7 @@
 (add-to-list 'auto-mode-alist '("\\.dart$" . c++-mode))
 
 ;; Markdown major mode.
-(when (not (require 'markdown-mode nil t))
-  (package-install 'markdown-mode))
+(use-package markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 
@@ -372,28 +365,18 @@
 (add-to-list 'auto-mode-alist '("SConstruct$" . python-mode))
 (add-to-list 'auto-mode-alist '("SConscript$" . python-mode))
 
-;; OpenSCAD files.
-(when (not (require 'scad nil t))
-  (package-install 'scad-mode))
-
 ;; Diff mode settings.
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
 ;; Goto-last-change. Bound to 'C-x \'.
-(when (not (require 'goto-last-change nil t))
-  (package-install 'goto-last-change))
-(require 'goto-last-change)
+(use-package goto-last-change)
 (global-set-key (kbd "C-x \\") 'goto-last-change)
 
 ;; For finding and updating TAGS files.
-(when (not (require 'etags-table nil t))
-  (package-install 'etags-table))
-(require 'etags-table)
+(use-package etags-table)
 (setq etags-table-search-up-depth 10)
 
-(when (not (require 'ctags-update nil t))
-  (package-install 'ctags-update))
-(require 'ctags-update)
+(use-package ctags-update)
 (add-hook 'c-mode-common-hook 'turn-on-ctags-auto-update-mode)
 
 ;; Use guess-style.el to automatically figure out the indentation settings of
