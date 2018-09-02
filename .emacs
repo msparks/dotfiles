@@ -10,6 +10,10 @@
                                after-init-time before-init-time)))
                      gcs-done)))
 
+;; Make startup faster by reducing the frequency of garbage
+;; collection.  The default is 800 kilobytes.  Measured in bytes.
+(setq gc-cons-threshold (* 100 1024 1024))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -444,3 +448,6 @@
  '(tabbar-default ((t (:background "#202020" :foreground "white"))))
  '(tabbar-selected ((t (:background "#222222" :foreground "Pink"))))
  '(trailing-whitespace ((t (:background "#aaaaaa")))))
+
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1024 1024))
