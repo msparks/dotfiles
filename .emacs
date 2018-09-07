@@ -80,35 +80,44 @@
 (load-theme 'wombat-ms t)
 
 ;; Set up smart-mode-line.
-(use-package smart-mode-line)
-(sml/setup)
-(sml/apply-theme 'respectful)
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+  (sml/apply-theme 'respectful))
 
-(use-package magit)
+(use-package magit
+  :ensure t
+  :demand t
+  :bind (("C-x g" . magit-status)))
 (setq git-commit-fill-column 72)
 
 ;; Set up projectile.
-(use-package projectile)
-(projectile-global-mode)
+(use-package projectile
+  :defer 2
+  :config
+  (projectile-global-mode))
 
 ;; flx-ido for better matching with projectile and ido.
-(use-package flx-ido)
+(use-package flx-ido
+  :defer 2)
 
 ;; ag for search.
-(use-package ag)
+(use-package ag
+  :defer 2)
 
 ;; Irony mode.
-(use-package irony)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
 (defun my-irony-mode-hook ()
   (define-key irony-mode-map [remap completion-at-point]
     'irony-completion-at-point-async)
   (define-key irony-mode-map [remap complete-symbol]
     'irony-completion-at-point-async))
-(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(use-package irony
+  :init
+  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  :hook ((c-mode
+           c++-mode
+           objc-mode-hook) . irony-mode))
 
 (use-package company-irony)
 (eval-after-load 'company
@@ -122,9 +131,11 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; Go mode.
-(use-package go-mode)
+(use-package go-mode
+  :defer t)
 
-(use-package smooth-scrolling)
+(use-package smooth-scrolling
+  :defer 2)
 
 ;; Dynamically calculate linum-format based on the number of lines in the file.
 (defadvice linum-update-window (around linum-dynamic activate)
@@ -277,9 +288,11 @@
 
 ;; Matlab major mode.
 (use-package matlab
-             :ensure matlab-mode)
-(setq matlab-indent-function t)
-(setq matlab-shell-command "matlab")
+  :ensure matlab-mode
+  :defer t
+  :init
+  (setq matlab-indent-function t)
+  (setq matlab-shell-command "matlab"))
 
 (add-hook 'c-mode-hook
           '(lambda () (font-lock-set-up-width-warning 80)))
@@ -340,12 +353,12 @@
 (add-to-list 'auto-mode-alist '("\\.dart$" . c++-mode))
 
 ;; Markdown major mode.
-(use-package markdown-mode)
+(use-package markdown-mode
+  :defer t)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 
 ;; reStructuredText major mode.
-(autoload 'rst-mode "rst" nil t)
 (add-to-list 'auto-mode-alist '("\\.rst$" . rst-mode))
 
 ;; Arduino code is C++.
@@ -369,15 +382,21 @@
 (setq diff-default-read-only t)  ;; open diffs in RO mode
 
 ;; Goto-last-change. Bound to 'C-x \'.
-(use-package goto-last-change)
-(global-set-key (kbd "C-x \\") 'goto-last-change)
+(use-package goto-last-change
+  :defer 1
+  :config
+  (global-set-key (kbd "C-x \\") 'goto-last-change))
 
 ;; For finding and updating TAGS files.
-(use-package etags-table)
-(setq etags-table-search-up-depth 10)
+(use-package etags-table
+  :defer 2
+  :config
+  (setq etags-table-search-up-depth 10))
 
-(use-package ctags-update)
-(add-hook 'c-mode-common-hook 'turn-on-ctags-auto-update-mode)
+(use-package ctags-update
+  :defer 2
+  :config
+  (add-hook 'c-mode-common-hook 'turn-on-ctags-auto-update-mode))
 
 ;; Use guess-style.el to automatically figure out the indentation settings of
 ;; the file we're editing. The customized guess-style-guesser-alist setting
