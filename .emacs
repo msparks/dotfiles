@@ -420,6 +420,8 @@
 (setq-default css-indent-offset tab-width)     ;; CSS
 (setq-default python-indent-offset tab-width)  ;; Python
 (setq-default js-indent-level tab-width)       ;; Javascript
+(setq-default lisp-indent-offset 2)
+(setq lisp-indent-function 'common-lisp-indent-function)
 
 ;; Prefer a dark background.
 (setq frame-background-mode 'dark)
