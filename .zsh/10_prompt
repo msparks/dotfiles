@@ -28,18 +28,10 @@ PR_CHAR=$'%(?.%{\e[01;34m%}.%{\e[01;31m%})%#'
 # Return to normal colors.
 PR_END=$'%{\e[00m%}'
 
-if [[ $HOME[0,5] == "/afs/" ]]; then
-  if [[ $EUID == "0" ]]; then
-    PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $PR_CHAR$PR_END'
-  else
-    PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $PR_CHAR$PR_END'
-  fi
+if [[ $EUID == "0" ]]; then
+  PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
 else
-  if [[ $EUID == "0" ]]; then
-    PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
-  else
-    PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
-  fi
+  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
 fi
 
 unset RPROMPT
