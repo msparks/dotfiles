@@ -1,10 +1,21 @@
 # Set up (Gentoo-style) prompt
 setopt prompt_subst
 
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Visual-effects
+#
+# %B(%b): Start (stop) boldface mode.
+# %F(%f): Start (stop) using a different foreground color.
+# %K(%k): Start (stop) using a different bacKground color.
+#
+# Example: %F{red}this text is in red%f
+#
+# Color values are 0-255 or {black, red, green, yellow, blue, magenta, cyan,
+# white}.
+
 # <hostname>
-PR_ROOT_HOSTNAME=$'%{\e[01;31m%}%m'
+PR_ROOT_HOSTNAME="%B%F{red}%m%f%b"
 # <user@hostmame>
-PR_USER_HOSTNAME=$'%{\e[01;32m%}%n@%m'
+PR_USER_HOSTNAME="%B%F{green}%n@%m%f%b"
 
 # Current working directory with tilde-substitution.
 #
@@ -20,18 +31,22 @@ PR_USER_HOSTNAME=$'%{\e[01;32m%}%n@%m'
 #   /usr/local         -> /usr/local
 #   /usr/local/share   -> /usr/local/share
 #   /usr/local/share/a -> .../share/a
-PR_PATH=$'%{\e[01;34m%}%(4~|.../%2~|%~)'
+PR_PATH="%B%F{blue}%(4~|.../%2~|%~)%f%b"
 
-# Prompt character (# if root, % if not).
-PR_CHAR=$'%(?.%{\e[01;34m%}.%{\e[01;31m%})%#'
-
-# Return to normal colors.
-PR_END=$'%{\e[00m%}'
+# Prompt character (# if root, % if not), colored based on the exit code of the
+# last command.
+#
+#  %(x.true-text.false-text): ternary expression.
+#  %#: A '#' if the shell is running with privileges, a '%' if not.
+#
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Shell-state
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Conditional-Substrings-in-Prompts
+PR_CHAR="%B%(?.%F{blue}.%F{red})%#%f%b"
 
 if [[ $EUID == "0" ]]; then
-  PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
+  PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR '
 else
-  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR $PR_END'
+  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR '
 fi
 
 unset RPROMPT
