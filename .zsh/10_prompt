@@ -44,9 +44,65 @@ PR_PATH="%B%F{blue}%(4~|.../%2~|%~)%f%b"
 PR_CHAR="%B%(?.%F{blue}.%F{red})%#%f%b"
 
 if [[ $EUID == "0" ]]; then
-  PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR '
+  PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $PR_CHAR '
 else
-  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(git-prompt)$PR_CHAR '
+  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(cat $PROMPT_FILE)$PR_CHAR '
 fi
 
 unset RPROMPT
+
+# Asynchronous prompt support: dynamic prompts without blocking.
+#
+# Based on https://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
+#
+# Each zsh process has a temporary file in $PROMPT_FILE to which extra text can
+# be written to be displayed in the shell prompt. Functions in the prompt_hooks
+# array are run serially in the background and their outputs are written to
+# $PROMPT_FILE. The prompt is re-rendered with `zle reset-prompt' after
+# $PROMPT_FILE is updated with the new contents.
+#
+# Example:
+#
+#   function slow_date() { sleep 3 && date }
+#   prompt_hooks+=(slow_date)
+
+function prompt_run_hooks() {
+  function run_async() {
+    # Collect output from each prompt hook.
+    local output=""
+    for hook in $prompt_hooks; do
+      output+="$($hook)"
+    done
+
+    # Write new prompt and signal parent shell.
+    echo -n $output > $PROMPT_FILE
+    kill -USR1 $$
+  }
+
+  # Kill any existing background process generating a prompt.
+  if [[ $PROMPT_ASYNC_PID != 0 ]]; then
+    kill $PROMPT_ASYNC_PID 2>&1 > /dev/null
+  fi
+
+  run_async &!
+  PROMPT_ASYNC_PID=$!
+}
+
+function TRAPUSR1() {
+  # Rerender prompt.
+  zle && zle reset-prompt
+  PROMPT_ASYNC_PID=0
+}
+
+PROMPT_ASYNC_PID=0
+PROMPT_FILE="/tmp/zsh_prompt_$$"
+touch $PROMPT_FILE
+
+# Array of hook functions that write the dynamic part of the prompt.
+typeset -a prompt_hooks
+
+# Start running the hooks before displaying each prompt.
+precmd_functions+=prompt_run_hooks
+
+# Delete the prompt file when the shell exits.
+trap "rm -f $PROMPT_FILE" EXIT
