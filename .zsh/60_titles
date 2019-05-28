@@ -2,7 +2,6 @@
 case $TERM in
   *xterm*|rxvt|(dt|k|E|a)term)
     precmd() { print -Pn "\e]0;%n@%m %~\a" }
-    preexec() { print -Pn "\e]0;%n@%m <${(Vq)2}> %~\a" }
   ;;
   screen*)
     precmd() { print -Pn "\ekzsh\e\\" }
