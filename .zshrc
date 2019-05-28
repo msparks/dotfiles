@@ -4,8 +4,6 @@
 #
 # Considerable zsh-fu from compnerd, jdong, Mako, and majnematic.
 
-zsh_load_start_time=$(perl -MTime::HiRes -e 'print int(1000 * Time::HiRes::gettimeofday),"\n"')
-
 # History variables
 HISTSIZE=5000
 HISTFILE=~/.zsh/.history     # history file name
@@ -79,7 +77,3 @@ if [[ -d "${HOME}/.zsh" ]] ; then
     source "${HOME}/.zsh/${file}"
   done
 fi
-
-zsh_load_end_time=$(perl -MTime::HiRes -e 'print int(1000 * Time::HiRes::gettimeofday),"\n"')
-zsh_load_time=$(expr $zsh_load_end_time - $zsh_load_start_time)
-echo "zsh load time: ${zsh_load_time}ms"
