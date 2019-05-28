@@ -52,7 +52,7 @@ fi
 # Customizations for git-prompt oh-my-zsh plugin.
 function git-prompt() {
   # Provided by git-prompt oh-my-zsh plugin.
-  p=$(git_super_status)
+  p=$(update_current_git_vars && git_super_status)
   [ x$p != x ] && echo "$p "
 }
 
@@ -65,3 +65,11 @@ ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{+%G%}"
 ZSH_THEME_GIT_PROMPT_SEPARATOR=""
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[magenta]%}%{…%G%}"
+
+# Neutralize the functions that run in the git-prompt omz plugin.
+function chpwd_update_git_vars() { }
+function precmd_update_git_vars() { }
+function preexec_update_git_vars() { }
+
+# Produce the details for the prompt asynchronously.
+prompt_hooks+=(git-prompt)
