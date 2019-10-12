@@ -368,6 +368,11 @@
 
 ;; Markdown major mode.
 (use-package markdown-mode
+  :config
+  ;; M-n and M-p are used for switching between buffers, so unbind them from
+  ;; markdown-mode.
+  (unbind-key "M-n" markdown-mode-map)
+  (unbind-key "M-p" markdown-mode-map)
   :defer t)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
