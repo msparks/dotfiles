@@ -37,12 +37,22 @@
  '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
  '(indent-tabs-mode nil)
  '(large-file-warning-threshold nil)
+  '(ledger-reports
+     (quote
+       (("Foo" "ledger ")
+         ("bal" "%(binary) -f %(ledger-file) bal")
+         ("reg" "%(binary) -f %(ledger-file) reg")
+         ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
+         ("account" "%(binary) -f %(ledger-file) reg %(account)"))))
  '(line-number-mode t)
  '(menu-bar-mode nil)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (2)))
+  '(package-selected-packages
+     (quote
+       (ledger-mode yasnippet yaml-tomato yaml-mode use-package tabbar smooth-scrolling smart-mode-line-powerline-theme scad-mode rainbow-mode projectile nginx-mode matlab-mode markdown-mode magit goto-last-change gotham-theme go-mode git-gutter-fringe git-gutter-fringe+ flycheck-irony flx-ido f etags-table esup dockerfile-mode ctags-update company-irony color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized benchmark-init ag ac-etags ac-c-headers)))
  '(require-final-newline t)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
@@ -129,6 +139,10 @@
 (defun my-c-mode-common-hook ()
   (setq c-basic-offset tab-width))
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; https://github.com/ledger/ledger-mode
+(use-package ledger-mode
+  :defer t)
 
 ;; Go mode.
 (use-package go-mode
