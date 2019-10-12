@@ -442,6 +442,10 @@
 (setq-default lisp-indent-offset 2)
 (setq lisp-indent-function 'common-lisp-indent-function)
 
+;; Default window fame size.
+(add-to-list 'default-frame-alist '(height . 45))
+(add-to-list 'default-frame-alist '(width . 85))  ;; 80+5 for gutter
+
 ;; Prefer a dark background.
 (setq frame-background-mode 'dark)
 
