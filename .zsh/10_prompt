@@ -46,7 +46,7 @@ PR_CHAR="%B%(?.%F{blue}.%F{red})%#%f%b"
 if [[ $EUID == "0" ]]; then
   PROMPT=$'$PR_ROOT_HOSTNAME $PR_PATH $PR_CHAR '
 else
-  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(cat $PROMPT_FILE)$PR_CHAR '
+  PROMPT=$'$PR_USER_HOSTNAME $PR_PATH $(cat $PROMPT_FILE 2>/dev/null)$PR_CHAR '
 fi
 
 unset RPROMPT
