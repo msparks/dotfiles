@@ -5,7 +5,7 @@
 [alias]
   aa = commit --amend -a
   aac = commit --amend -a -c HEAD
-  amend = comment --amend
+  amend = commit --amend
   ci = commit -a
   co = checkout
   st = status
