@@ -1,0 +1,25 @@
+[window]
+padding = { x = 3, y = 3 }
+opacity = 0.99
+option_as_alt = "OnlyLeft"
+resize_increments = true
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Thin" }
+bold = { style = "Regular" }
+size = 14
+
+[colors]
+draw_bold_text_with_bright_colors = false 
+
+[colors.primary]
+foreground = "#bbbbbb"
+background = "#121212"
+
+[scrolling]
+history = 100000
+
+[mouse]
+# hide_when_typing seems to be buggy and causes the mouse cursor to stay
+# hidden.
+#hide_when_typing = true
