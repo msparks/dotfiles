@@ -1,7 +1,0 @@
--i2
--l80
--br
--bap
--ce
--di0
--npsl
