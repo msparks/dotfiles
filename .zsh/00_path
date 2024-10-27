@@ -1,4 +1,5 @@
 # Add to and unique-ify the path
 path=($path /usr/sbin /sbin ~/bin /opt/bin /usr/local/sbin /usr/local/bin)
+path=($path /opt/homebrew/bin)
 path=($path /opt/local/bin /opt/local/sbin)  # MacPorts paths
 typeset -U path
