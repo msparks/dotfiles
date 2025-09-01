@@ -24,9 +24,15 @@
  '(case-fold-search t)
  '(column-number-mode t)
  '(current-language-environment "UTF-8")
-  '(custom-safe-themes
-     (quote
-       ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(custom-safe-themes
+    '("9b21c848d09ba7df8af217438797336ac99cbbbc87a08dc879e9291673a6a631"
+       "fc1275617f9c8d1c8351df9667d750a8e3da2658077cfdda2ca281a2ebc914e0"
+       "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223"
+       "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+       "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e"
+       "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482"
+       "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f"
+       default))
  '(custom-theme-directory "~/.emacs.d/themes/")
  '(default-input-method "rfc1345")
  '(delete-old-versions t)
@@ -34,25 +40,28 @@
  '(fill-column 80)
  '(global-linum-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
- '(guess-style-guesser-alist (quote ((indent-tabs-mode . guess-style-guess-tabs-mode))))
+ '(guess-style-guesser-alist '((indent-tabs-mode . guess-style-guess-tabs-mode)))
  '(indent-tabs-mode nil)
  '(large-file-warning-threshold nil)
-  '(ledger-reports
-     (quote
-       (("Foo" "ledger ")
-         ("bal" "%(binary) -f %(ledger-file) bal")
-         ("reg" "%(binary) -f %(ledger-file) reg")
-         ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
-         ("account" "%(binary) -f %(ledger-file) reg %(account)"))))
+ '(ledger-reports
+    '(("Foo" "ledger ") ("bal" "%(binary) -f %(ledger-file) bal")
+       ("reg" "%(binary) -f %(ledger-file) reg")
+       ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
+       ("account" "%(binary) -f %(ledger-file) reg %(account)")))
  '(line-number-mode t)
  '(menu-bar-mode nil)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t)
  '(mouse-wheel-progressive-speed nil)
- '(mouse-wheel-scroll-amount (quote (2)))
-  '(package-selected-packages
-     (quote
-       (ledger-mode yasnippet yaml-tomato yaml-mode use-package tabbar smooth-scrolling smart-mode-line-powerline-theme scad-mode rainbow-mode projectile nginx-mode matlab-mode markdown-mode magit goto-last-change gotham-theme go-mode git-gutter-fringe git-gutter-fringe+ flycheck-irony flx-ido f etags-table esup dockerfile-mode ctags-update company-irony color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized benchmark-init ag ac-etags ac-c-headers)))
+ '(mouse-wheel-scroll-amount '(2))
+ '(package-selected-packages
+    '(ledger-mode yasnippet yaml-tomato yaml-mode use-package tabbar
+       smooth-scrolling smart-mode-line-powerline-theme scad-mode rainbow-mode
+       projectile nginx-mode matlab-mode markdown-mode magit goto-last-change
+       gotham-theme go-mode git-gutter-fringe git-gutter-fringe+ flycheck-irony
+       flx-ido f etags-table esup dockerfile-mode ctags-update company-irony
+       color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized
+       benchmark-init ag ac-etags ac-c-headers))
  '(require-final-newline t)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
@@ -67,7 +76,7 @@
  '(sml/pre-minor-modes-separator "")
  '(standard-indent 2)
  '(swbuff-clear-delay 3)
- '(swbuff-status-window-layout (quote adjust))
+ '(swbuff-status-window-layout 'adjust)
  '(tab-width 2)
  '(transient-mark-mode t)
  '(uniquify-buffer-name-style nil nil (uniquify))
