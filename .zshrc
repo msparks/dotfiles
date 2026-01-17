@@ -71,8 +71,8 @@ alias grep='grep --color -I'
 
 # Editor preferences
 alias emacs='emacs -nw'
-export EDITOR='emacs'
-export FCEDIT='emacs'
+export EDITOR='nvim'
+export FCEDIT='nvim'
 
 # Load oh-my-zsh plugins.
 if [[ -d "${HOME}/.zsh/omz-plugins" ]]; then
