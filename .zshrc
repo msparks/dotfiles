@@ -71,6 +71,7 @@ alias grep='grep --color -I'
 
 # Editor preferences
 alias emacs='emacs -nw'
+alias v='nvim'
 export EDITOR='nvim'
 export FCEDIT='nvim'
 
