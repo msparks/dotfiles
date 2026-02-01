@@ -6,6 +6,7 @@
   aa = commit --amend -a
   aac = commit --amend -a -c HEAD
   amend = commit --amend
+  br = branch
   ci = commit -a
   co = checkout
   st = status
