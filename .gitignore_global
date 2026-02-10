@@ -34,3 +34,6 @@ Thumbs.db
 
 # Editor helper files.
 TAGS
+
+# For git worktrees inside repos.
+.wt
