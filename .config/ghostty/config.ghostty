@@ -39,7 +39,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = Wombat
+theme = ms
 
 background-blur = true
 background-opacity = 0.95
